@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:ns1="http://schemas.android.com/tools">
+    <color name="celestial_background">#FAF9F5</color>
+    <color name="celestial_border">#D0C5AF</color>
+    <color name="celestial_card_background">#FFFFFF</color>
+    <color name="celestial_danger">#BA1A1A</color>
+    <color name="celestial_moon">#90A4AE</color>
+    <color name="celestial_outline">#7F7663</color>
+    <color name="celestial_primary">#735C00</color>
+    <color name="celestial_primary_container">#D4AF37</color>
+    <color name="celestial_primary_strong">#554300</color>
+    <color name="celestial_row_background">#7CFFFFFF</color>
+    <color name="celestial_row_border">#1A706656</color>
+    <color name="celestial_row_selected_background">#C2FFFFFF</color>
+    <color name="celestial_row_selected_border">#6BD4AF37</color>
+    <color name="celestial_secondary">#8F4E00</color>
+    <color name="celestial_secondary_container">#FE9832</color>
+    <color name="celestial_success">#4CAF50</color>
+    <color name="celestial_surface">#FAF9F5</color>
+    <color name="celestial_surface_glass">#80FFFFFF</color>
+    <color name="celestial_surface_strong">#EFEEEA</color>
+    <color name="celestial_text">#1B1C1A</color>
+    <color name="celestial_text_muted">#757575</color>
+    <color name="celestial_transparent">#00000000</color>
+    <color name="celestial_warning">#FFC107</color>
+    <color name="celestial_white">#FFFFFF</color>
+    <color name="choghadiya_amrit">#338566</color>
+    <color name="choghadiya_amrit_dark">#24614A</color>
+    <color name="choghadiya_chal">#66708F</color>
+    <color name="choghadiya_chal_dark">#4F5770</color>
+    <color name="choghadiya_kal">#C43D49</color>
+    <color name="choghadiya_kal_dark">#9C2E37</color>
+    <color name="choghadiya_labh">#D98C29</color>
+    <color name="choghadiya_labh_dark">#B36F1C</color>
+    <color name="choghadiya_rog">#C43D49</color>
+    <color name="choghadiya_rog_dark">#9C2E37</color>
+    <color name="choghadiya_shubh">#D4A72E</color>
+    <color name="choghadiya_shubh_end">#B88E1B</color>
+    <color name="choghadiya_shubh_start">#D4A72E</color>
+    <color name="choghadiya_udveg">#C43D49</color>
+    <color name="choghadiya_udveg_dark">#9C2E37</color>
+    <string name="app_name">Divine Choghadiya</string>
+    <string name="com.google.firebase.crashlytics.mapping_file_id" ns1:ignore="UnusedResources,TypographyDashes" translatable="false">00000000000000000000000000000000</string>
+    <string name="gcm_defaultSenderId" translatable="false">770952263246</string>
+    <string name="google_api_key" translatable="false">AIzaSyAu0HidhebV7mmU27my9moKNtKm0vGc-tA</string>
+    <string name="google_app_id" translatable="false">1:770952263246:android:483e2c5efe6f334769351f</string>
+    <string name="google_crash_reporting_api_key" translatable="false">AIzaSyAu0HidhebV7mmU27my9moKNtKm0vGc-tA</string>
+    <string name="google_storage_bucket" translatable="false">chogadiya-divine.firebasestorage.app</string>
+    <string name="project_id" translatable="false">chogadiya-divine</string>
+    <style name="CircleImageView" parent="">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">50%</item>
+    </style>
+    <style name="Theme.ChoghadiyaApp" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+        
+        <item name="colorPrimary">@color/celestial_primary</item>
+        <item name="colorPrimaryVariant">@color/celestial_primary_strong</item>
+        <item name="colorOnPrimary">@color/celestial_white</item>
+        
+        
+        <item name="colorSecondary">@color/celestial_secondary</item>
+        <item name="colorSecondaryVariant">@color/celestial_secondary_container</item>
+        <item name="colorOnSecondary">@color/celestial_white</item>
+        
+        
+        <item name="android:statusBarColor">@color/celestial_surface</item>
+        <item name="android:windowLightStatusBar">true</item>
+        
+        
+        <item name="android:windowBackground">@color/celestial_background</item>
+        <item name="colorSurface">@color/celestial_surface</item>
+        <item name="colorOnSurface">@color/celestial_text</item>
+    </style>
+    <style name="Theme.ChoghadiyaApp.Splash" parent="Theme.ChoghadiyaApp">
+        <item name="android:windowBackground">@drawable/bg_splash</item>
+    </style>
+</resources>

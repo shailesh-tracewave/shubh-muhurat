@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="celestial_background">#12141A</color>
+    <color name="celestial_border">#2EDC7540</color>
+    <color name="celestial_card_background">#1C1E26</color>
+    <color name="celestial_danger">#F89C98</color>
+    <color name="celestial_moon">#BCC2D0</color>
+    <color name="celestial_outline">#949499</color>
+    <color name="celestial_primary">#F5E6BD</color>
+    <color name="celestial_primary_container">#EDC754</color>
+    <color name="celestial_primary_strong">#EDC754</color>
+    <color name="celestial_row_background">#12FFFFFF</color>
+    <color name="celestial_row_border">#22F5E6BD</color>
+    <color name="celestial_row_selected_background">#24FFFFFF</color>
+    <color name="celestial_row_selected_border">#8AD4AF37</color>
+    <color name="celestial_secondary">#E8D499</color>
+    <color name="celestial_secondary_container">#EDC754</color>
+    <color name="celestial_success">#88D4A5</color>
+    <color name="celestial_surface">#1C1E26</color>
+    <color name="celestial_surface_glass">#E624262E</color>
+    <color name="celestial_surface_strong">#2B2E38</color>
+    <color name="celestial_text">#F2EDE8</color>
+    <color name="celestial_text_muted">#B7B5AB</color>
+    <color name="celestial_transparent">#00000000</color>
+    <color name="celestial_warning">#EDC754</color>
+    <color name="celestial_white">#FFFFFF</color>
+    <color name="choghadiya_amrit">#87D4A5</color>
+    <color name="choghadiya_amrit_dark">#65B283</color>
+    <color name="choghadiya_chal">#BCC8E6</color>
+    <color name="choghadiya_chal_dark">#9AA6C4</color>
+    <color name="choghadiya_kal">#F79B9A</color>
+    <color name="choghadiya_kal_dark">#D57978</color>
+    <color name="choghadiya_labh">#F5C42B</color>
+    <color name="choghadiya_labh_dark">#D1A11A</color>
+    <color name="choghadiya_rog">#F79B9A</color>
+    <color name="choghadiya_rog_dark">#D57978</color>
+    <color name="choghadiya_shubh">#EDC754</color>
+    <color name="choghadiya_shubh_end">#CBA532</color>
+    <color name="choghadiya_shubh_start">#EDC754</color>
+    <color name="choghadiya_udveg">#F79B9A</color>
+    <color name="choghadiya_udveg_dark">#D57978</color>
+    <style name="Theme.ChoghadiyaApp" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+        
+        <item name="colorPrimary">@color/celestial_primary</item>
+        <item name="colorPrimaryVariant">@color/celestial_primary_strong</item>
+        <item name="colorOnPrimary">@color/celestial_white</item>
+        
+        
+        <item name="colorSecondary">@color/celestial_secondary</item>
+        <item name="colorSecondaryVariant">@color/celestial_secondary_container</item>
+        <item name="colorOnSecondary">@color/celestial_white</item>
+        
+        
+        <item name="android:statusBarColor">@color/celestial_surface</item>
+        <item name="android:windowLightStatusBar">false</item>
+        
+        
+        <item name="android:windowBackground">@color/celestial_background</item>
+        <item name="colorSurface">@color/celestial_surface</item>
+        <item name="colorOnSurface">@color/celestial_text</item>
+    </style>
+    <style name="Theme.ChoghadiyaApp.Splash" parent="Theme.ChoghadiyaApp">
+        <item name="android:windowBackground">@drawable/bg_splash</item>
+    </style>
+</resources>
