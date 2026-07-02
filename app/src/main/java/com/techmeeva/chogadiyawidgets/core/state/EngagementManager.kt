@@ -104,12 +104,12 @@ class EngagementManager(private val context: Context) {
         }
 
         if (isVersionOlderThan(currentVersion, config.minimumSupportedVersion) || config.forceUpdate) {
-            return EngagementSurface.ForceUpdate(config.updateTitle, config.updateMessage, config.appStoreURL)
+            return EngagementSurface.ForceUpdate(config.updateTitle, config.updateMessage, config.playStoreURL ?: config.appStoreURL)
         }
 
         val skippedVersion = prefs.getString(SKIPPED_UPDATE_VERSION_KEY, null)
         if (isVersionOlderThan(currentVersion, config.latestVersion) && skippedVersion != config.latestVersion) {
-            return EngagementSurface.OptionalUpdate(config.updateTitle, config.updateMessage, config.appStoreURL, config.latestVersion)
+            return EngagementSurface.OptionalUpdate(config.updateTitle, config.updateMessage, config.playStoreURL ?: config.appStoreURL, config.latestVersion)
         }
 
         return null

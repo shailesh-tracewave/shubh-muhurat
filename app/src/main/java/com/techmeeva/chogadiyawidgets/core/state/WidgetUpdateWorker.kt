@@ -3,15 +3,17 @@ package com.techmeeva.chogadiyawidgets.core.state
 import android.appwidget.AppWidgetManager
 import android.content.ComponentName
 import android.content.Context
-import android.content.Intent
 import androidx.work.CoroutineWorker
+import androidx.work.ExistingPeriodicWorkPolicy
 import androidx.work.WorkerParameters
 import androidx.work.OneTimeWorkRequestBuilder
+import androidx.work.PeriodicWorkRequestBuilder
 import androidx.work.WorkManager
 import androidx.work.ExistingWorkPolicy
 import com.techmeeva.chogadiyawidgets.widget.TimelineWidgetProvider
 import com.techmeeva.chogadiyawidgets.widget.DetailCardWidgetProvider
 import com.techmeeva.chogadiyawidgets.widget.LargeWidgetProvider
+import com.techmeeva.chogadiyawidgets.widget.WidgetResponsiveBuilder
 import java.util.Date
 import java.util.concurrent.TimeUnit
 
@@ -34,20 +36,22 @@ class WidgetUpdateWorker(
                 forceRefresh = true // Force reload fresh data
             )
 
+            val nowDate = Date()
             dataStore.loadAstronomy(
                 baseURL = appState.apiBaseURL,
                 city = appState.selectedCity,
-                date = Date(),
+                date = nowDate,
                 subscriptionStatus = appState.subscriptionPlan.rawValue,
                 language = appState.selectedLanguage,
                 forceRefresh = true
             )
 
-            // 2. Broadcast updates to widgets
-            triggerWidgetRedraw()
+            // 2. Update widgets directly from the freshly loaded/cache-backed state.
+            updateWidgetsFromStore(appState, dataStore, nowDate)
 
             // 3. Schedule next boundary transition
             val state = dataStore.getHomeState(appState.selectedCity)
+            val astronomyState = dataStore.getAstronomyState(appState.selectedCity, nowDate)
             val currentSlot = state.currentSlot
             if (currentSlot != null) {
                 val now = System.currentTimeMillis()
@@ -67,39 +71,42 @@ class WidgetUpdateWorker(
                 }
             }
 
-            return Result.success()
+            return if ((state.errorMessage != null && !state.hasContent) ||
+                (astronomyState.errorMessage != null && !astronomyState.hasContent)
+            ) {
+                Result.retry()
+            } else {
+                Result.success()
+            }
         } catch (e: Exception) {
+            runCatching { updateWidgetsFromStore(appState, dataStore, Date()) }
             return Result.retry()
         }
     }
 
-    private fun triggerWidgetRedraw() {
-        // Redraw Timeline Widget
-        val timelineIntent = Intent(context, TimelineWidgetProvider::class.java).apply {
-            action = AppWidgetManager.ACTION_APPWIDGET_UPDATE
-            val appWidgetManager = AppWidgetManager.getInstance(context)
-            val ids = appWidgetManager.getAppWidgetIds(ComponentName(context, TimelineWidgetProvider::class.java))
-            putExtra(AppWidgetManager.EXTRA_APPWIDGET_IDS, ids)
-        }
-        context.sendBroadcast(timelineIntent)
+    private fun updateWidgetsFromStore(
+        appState: AppState,
+        dataStore: ChoghadiyaDataStore,
+        date: Date
+    ) {
+        val appWidgetManager = AppWidgetManager.getInstance(context)
+        val widgetIds = allWidgetIds(appWidgetManager)
+        if (widgetIds.isEmpty()) return
 
-        // Redraw Detail Card Widget
-        val detailIntent = Intent(context, DetailCardWidgetProvider::class.java).apply {
-            action = AppWidgetManager.ACTION_APPWIDGET_UPDATE
-            val appWidgetManager = AppWidgetManager.getInstance(context)
-            val ids = appWidgetManager.getAppWidgetIds(ComponentName(context, DetailCardWidgetProvider::class.java))
-            putExtra(AppWidgetManager.EXTRA_APPWIDGET_IDS, ids)
-        }
-        context.sendBroadcast(detailIntent)
+        val views = WidgetResponsiveBuilder.build(
+            context = context,
+            state = dataStore.getHomeState(appState.selectedCity),
+            astroDay = dataStore.getAstronomyState(appState.selectedCity, date).day,
+            language = appState.selectedLanguage,
+            timezone = appState.selectedCity.timezone
+        )
+        widgetIds.forEach { appWidgetManager.updateAppWidget(it, views) }
+    }
 
-        // Redraw Large Widget
-        val largeIntent = Intent(context, LargeWidgetProvider::class.java).apply {
-            action = AppWidgetManager.ACTION_APPWIDGET_UPDATE
-            val appWidgetManager = AppWidgetManager.getInstance(context)
-            val ids = appWidgetManager.getAppWidgetIds(ComponentName(context, LargeWidgetProvider::class.java))
-            putExtra(AppWidgetManager.EXTRA_APPWIDGET_IDS, ids)
-        }
-        context.sendBroadcast(largeIntent)
+    private fun allWidgetIds(appWidgetManager: AppWidgetManager): IntArray {
+        return appWidgetManager.getAppWidgetIds(ComponentName(context, TimelineWidgetProvider::class.java)) +
+            appWidgetManager.getAppWidgetIds(ComponentName(context, DetailCardWidgetProvider::class.java)) +
+            appWidgetManager.getAppWidgetIds(ComponentName(context, LargeWidgetProvider::class.java))
     }
 
     companion object {
@@ -109,8 +116,19 @@ class WidgetUpdateWorker(
                 .build()
 
             WorkManager.getInstance(context).enqueueUniqueWork(
-                "slot_boundary_update",
-                ExistingWorkPolicy.KEEP,
+                "widget_refresh_now",
+                ExistingWorkPolicy.REPLACE,
+                workRequest
+            )
+        }
+
+        fun enqueuePeriodic(context: Context) {
+            val workRequest = PeriodicWorkRequestBuilder<WidgetUpdateWorker>(15, TimeUnit.MINUTES)
+                .build()
+
+            WorkManager.getInstance(context).enqueueUniquePeriodicWork(
+                "widget_refresh_periodic",
+                ExistingPeriodicWorkPolicy.UPDATE,
                 workRequest
             )
         }

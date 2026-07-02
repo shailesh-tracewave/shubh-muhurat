@@ -16,14 +16,12 @@ import androidx.lifecycle.lifecycleScope
 import com.techmeeva.chogadiyawidgets.R
 import com.techmeeva.chogadiyawidgets.core.localization.AppLocalizer
 import com.techmeeva.chogadiyawidgets.core.localization.AppTextKey
-import com.techmeeva.chogadiyawidgets.core.state.AppConfiguration
 import com.techmeeva.chogadiyawidgets.core.state.AppState
 import com.techmeeva.chogadiyawidgets.core.state.ChoghadiyaDataStore
 import com.techmeeva.chogadiyawidgets.core.state.MonthScheduleState
 import com.techmeeva.chogadiyawidgets.databinding.FragmentCalendarBinding
 import com.techmeeva.chogadiyawidgets.models.ChoghadiyaDay
 import com.techmeeva.chogadiyawidgets.models.ChoghadiyaSlot
-import com.techmeeva.chogadiyawidgets.models.SubscriptionPlan
 import kotlinx.coroutines.launch
 import java.text.SimpleDateFormat
 import java.util.Calendar
@@ -80,18 +78,31 @@ class CalendarFragment : Fragment() {
             changeMonth(1)
         }
 
-        binding.btnUnlockCalendar.setOnClickListener {
-            // Unlock premium instantly for QA testing
-            appState.subscriptionPlan = SubscriptionPlan.PREMIUM_MONTHLY
-            binding.layoutPaywall.visibility = View.GONE
-            binding.scrollDayDetails.visibility = View.VISIBLE
+        binding.btnCalendarToday.setOnClickListener {
+            val now = Date()
+            currentMonth = dataStore.normalizedMonth(now, appState.selectedCity.timezone)
+            selectedDate = now
+            refreshMonthData(force = false)
+        }
+
+        binding.btnCalendarRetry.setOnClickListener {
             refreshMonthData(force = true)
-            Toast.makeText(requireContext(), "Celestial Premium activated!", Toast.LENGTH_SHORT).show()
+        }
+
+        binding.btnUnlockCalendar.setOnClickListener {
+            Toast.makeText(requireContext(), AppLocalizer.text(AppTextKey.UPGRADE_IN_APP, appState.selectedLanguage), Toast.LENGTH_SHORT).show()
         }
 
         binding.calendarGrid.setOnItemClickListener { _, _, position, _ ->
             val adapter = binding.calendarGrid.adapter as? CalendarGridAdapter ?: return@setOnItemClickListener
-            val clickedDate = adapter.getItem(position) ?: return@setOnItemClickListener
+            val clickedDate = adapter.getItem(position)
+
+            if (!isSameMonth(clickedDate, currentMonth)) {
+                currentMonth = dataStore.normalizedMonth(clickedDate, appState.selectedCity.timezone)
+                selectedDate = clickedDate
+                refreshMonthData(force = false)
+                return@setOnItemClickListener
+            }
 
             // Check if within premium boundary
             if (isPremiumLocked(clickedDate)) {
@@ -124,9 +135,20 @@ class CalendarFragment : Fragment() {
 
     private fun setupStaticTranslations() {
         val language = appState.selectedLanguage
-        binding.tvDaytimeHeader.text = AppLocalizer.text(AppTextKey.DAYTIME, language).uppercase(Locale.US) + " FLOW"
-        binding.tvNighttimeHeader.text = AppLocalizer.text(AppTextKey.NIGHTTIME, language).uppercase(Locale.US) + " FLOW"
+        binding.tvCalendarTitle.text = AppLocalizer.text(AppTextKey.CALENDAR, language)
+        binding.tvCalendarSubtitle.text = appState.selectedCity.city
+        binding.btnCalendarToday.text = AppLocalizer.text(AppTextKey.ACTIVE_NOW, language)
+        binding.tvCalendarLegend.text = AppLocalizer.text(AppTextKey.AUSPICIOUS_DAYS, language)
+        binding.tvDayNightSubtitle.text = AppLocalizer.text(AppTextKey.DAY_NIGHT_FLOW, language)
+        binding.tvDaytimeHeader.text = AppLocalizer.text(AppTextKey.DAYTIME, language).uppercase(Locale.US)
+        binding.tvNighttimeHeader.text = AppLocalizer.text(AppTextKey.NIGHTTIME, language).uppercase(Locale.US)
         binding.btnUnlockCalendar.text = AppLocalizer.text(AppTextKey.UPGRADE, language).uppercase(Locale.US)
+        binding.btnCalendarRetry.text = AppLocalizer.text(AppTextKey.TRY_AGAIN, language).uppercase(Locale.US)
+        binding.tvCalendarLoading.text = when (language) {
+            com.techmeeva.chogadiyawidgets.core.localization.AppLanguage.ENGLISH -> "Updating calendar"
+            com.techmeeva.chogadiyawidgets.core.localization.AppLanguage.HINDI -> "कैलेंडर अपडेट हो रहा है"
+            com.techmeeva.chogadiyawidgets.core.localization.AppLanguage.GUJARATI -> "કેલેન્ડર અપડેટ થઈ રહ્યું છે"
+        }
 
         // Populate Weekday labels
         binding.layoutWeekdays.removeAllViews()
@@ -137,7 +159,7 @@ class CalendarFragment : Fragment() {
                 gravity = android.view.Gravity.CENTER
                 text = day
                 setTextColor(ContextCompat.getColor(requireContext(), R.color.celestial_outline))
-                textSize = 10f
+                textSize = 11f
                 paintFlags = paintFlags or android.graphics.Paint.SUBPIXEL_TEXT_FLAG
                 setTypeface(null, android.graphics.Typeface.BOLD)
             }
@@ -165,6 +187,7 @@ class CalendarFragment : Fragment() {
         cal.time = currentMonth
         cal.add(Calendar.MONTH, offset)
         currentMonth = cal.time
+        selectedDate = firstDayOfMonth(currentMonth)
         refreshMonthData(force = false)
     }
 
@@ -194,13 +217,29 @@ class CalendarFragment : Fragment() {
 
     private fun bindMonthState(state: MonthScheduleState) {
         binding.tvMonthTitle.text = AppLocalizer.localizedMonthYear(currentMonth, appState.selectedLanguage, appState.selectedCity.timezone)
+        binding.tvCalendarSubtitle.text = appState.selectedCity.city
 
         if (state.errorMessage != null && !state.hasContent) {
-            Toast.makeText(requireContext(), state.errorMessage, Toast.LENGTH_SHORT).show()
+            binding.calendarLoadingState.visibility = View.GONE
+            binding.scrollDayDetails.visibility = View.GONE
+            binding.layoutPaywall.visibility = View.GONE
+            binding.calendarErrorState.visibility = View.VISIBLE
+            binding.tvCalendarErrorTitle.text = AppLocalizer.text(AppTextKey.COULD_NOT_LOAD_MONTH, appState.selectedLanguage)
+            binding.tvCalendarErrorMessage.text = state.errorMessage
             return
         }
 
-        if (!state.hasContent) return
+        if (!state.hasContent) {
+            binding.scrollDayDetails.visibility = View.GONE
+            binding.layoutPaywall.visibility = View.GONE
+            binding.calendarErrorState.visibility = View.GONE
+            binding.calendarLoadingState.visibility = if (state.isLoading) View.VISIBLE else View.GONE
+            return
+        }
+
+        binding.calendarErrorState.visibility = View.GONE
+        binding.calendarLoadingState.visibility = if (state.isRefreshing) View.VISIBLE else View.GONE
+        binding.scrollDayDetails.visibility = View.VISIBLE
 
         val days = getDaysForMonth(currentMonth, appState.selectedCity.timezone)
         binding.calendarGrid.adapter = CalendarGridAdapter(days, state.days)
@@ -215,6 +254,7 @@ class CalendarFragment : Fragment() {
         }
         val dateStr = sdf.format(selectedDate)
         binding.tvSelectedDateLabel.text = AppLocalizer.localizedLongDate(dateStr, appState.selectedLanguage, appState.selectedCity.timezone)
+        binding.tvDayNightSubtitle.text = AppLocalizer.text(AppTextKey.DAY_NIGHT_FLOW, appState.selectedLanguage)
 
         val dayData = days.firstOrNull { it.date == dateStr }
 
@@ -237,13 +277,12 @@ class CalendarFragment : Fragment() {
         val daySlots = dayData.slots.filter { it.slot in 1..8 }
         val nightSlots = dayData.slots.filter { it.slot in 9..16 }
 
-        bindSlotsToContainer(daySlots, binding.daytimeSlotsContainer, dayData.date)
-        bindSlotsToContainer(nightSlots, binding.nighttimeSlotsContainer, dayData.date)
+        bindSlotsToContainer(daySlots, binding.daytimeSlotsContainer)
+        bindSlotsToContainer(nightSlots, binding.nighttimeSlotsContainer)
     }
 
-    private fun bindSlotsToContainer(slots: List<ChoghadiyaSlot>, container: LinearLayout, dateStr: String) {
+    private fun bindSlotsToContainer(slots: List<ChoghadiyaSlot>, container: LinearLayout) {
         val language = appState.selectedLanguage
-        val timezone = appState.selectedCity.timezone
 
         for (slot in slots) {
             val slotRow = LayoutInflater.from(requireContext()).inflate(R.layout.item_timeline_slot, container, false)
@@ -256,7 +295,7 @@ class CalendarFragment : Fragment() {
             val slotColorInt = ContextCompat.getColor(requireContext(), slotColorRes)
 
             tvSlotName.text = AppLocalizer.slotName(slot.type, language)
-            tvSlotName.setTextColor(slotColorInt)
+            tvSlotName.setTextColor(ContextCompat.getColor(requireContext(), R.color.celestial_text))
             viewColorDot.backgroundTintList = ColorStateList.valueOf(slotColorInt)
 
             // Convert raw start_time / end_time or construct correct dates
@@ -340,6 +379,19 @@ class CalendarFragment : Fragment() {
         return sdf.format(date)
     }
 
+    private fun firstDayOfMonth(date: Date): Date {
+        val cal = Calendar.getInstance(TimeZone.getTimeZone(appState.selectedCity.timezone), Locale.US)
+        cal.time = dataStore.normalizedMonth(date, appState.selectedCity.timezone)
+        return cal.time
+    }
+
+    private fun isSameMonth(first: Date, second: Date): Boolean {
+        val c1 = Calendar.getInstance(TimeZone.getTimeZone(appState.selectedCity.timezone), Locale.US).apply { time = first }
+        val c2 = Calendar.getInstance(TimeZone.getTimeZone(appState.selectedCity.timezone), Locale.US).apply { time = second }
+        return c1.get(Calendar.YEAR) == c2.get(Calendar.YEAR) &&
+                c1.get(Calendar.MONTH) == c2.get(Calendar.MONTH)
+    }
+
     private inner class CalendarGridAdapter(
         private val days: List<Date>,
         private val monthDaysData: List<ChoghadiyaDay>
@@ -384,17 +436,20 @@ class CalendarFragment : Fragment() {
             if (isCurrentMonth) {
                 tvDayNumber.setTextColor(ContextCompat.getColor(parent.context, R.color.celestial_text))
             } else {
-                tvDayNumber.setTextColor(Color.LTGRAY)
+                tvDayNumber.setTextColor(ContextCompat.getColor(parent.context, R.color.celestial_text_muted))
+                tvDayNumber.alpha = 0.45f
             }
+            if (isCurrentMonth) tvDayNumber.alpha = 1f
 
             // Highlighting selection
             val isSelected = isSameDay(date, selectedDay)
             if (isSelected) {
-                tvDayNumber.setBackgroundResource(R.drawable.bg_circle_solid)
-                tvDayNumber.backgroundTintList = ColorStateList.valueOf(ContextCompat.getColor(parent.context, R.color.celestial_primary_container))
+                tvDayNumber.setBackgroundResource(R.drawable.bg_calendar_day_selected)
+                tvDayNumber.backgroundTintList = null
                 tvDayNumber.setTextColor(Color.WHITE)
             } else {
                 tvDayNumber.background = null
+                tvDayNumber.backgroundTintList = null
             }
 
             // Auspicious dot highlights

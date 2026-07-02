@@ -1,24 +1,28 @@
 package com.techmeeva.chogadiyawidgets.features.home
 
+import android.app.AlertDialog
 import android.content.res.ColorStateList
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.LinearLayout
 import android.widget.TextView
 import android.widget.Toast
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.findNavController
 import com.techmeeva.chogadiyawidgets.R
-import com.techmeeva.chogadiyawidgets.core.TimelineBuilder
+import com.techmeeva.chogadiyawidgets.core.localization.AppLanguage
 import com.techmeeva.chogadiyawidgets.core.localization.AppLocalizer
 import com.techmeeva.chogadiyawidgets.core.localization.AppTextKey
 import com.techmeeva.chogadiyawidgets.core.state.AppState
+import com.techmeeva.chogadiyawidgets.core.state.AstronomyState
 import com.techmeeva.chogadiyawidgets.core.state.ChoghadiyaDataStore
 import com.techmeeva.chogadiyawidgets.core.state.HomeTimelineState
+import com.techmeeva.chogadiyawidgets.core.state.WidgetUpdateWorker
 import com.techmeeva.chogadiyawidgets.databinding.FragmentHomeBinding
+import com.techmeeva.chogadiyawidgets.models.SeedCity
 import com.techmeeva.chogadiyawidgets.models.TimelineSlot
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.delay
@@ -55,14 +59,46 @@ class HomeFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         binding.tvCurrentCity.text = appState.selectedCity.city
+        binding.tvHomeDate.text = AppLocalizer.localizedShortDate(
+            Date(),
+            appState.selectedLanguage,
+            appState.selectedCity.timezone
+        )
+        binding.tvHomeLoading.text = "Updating today’s flow"
 
         dataStore.homeStates.observe(viewLifecycleOwner) { states ->
             val state = states[appState.selectedCity.id] ?: return@observe
             bindHomeState(state)
         }
 
+        dataStore.astronomyStates.observe(viewLifecycleOwner) { states ->
+            val stateKey = "${appState.selectedCity.id}|${AppLocalizer.todayDateKey(appState.selectedCity.timezone)}"
+            bindAstronomyState(states[stateKey] ?: AstronomyState())
+        }
+
         binding.layoutLocationPicker.setOnClickListener {
-            Toast.makeText(requireContext(), "Configure location mode in Settings tab.", Toast.LENGTH_SHORT).show()
+            showLocationDialog()
+        }
+        binding.btnSkyShortcut.setOnClickListener {
+            findNavController().navigate(R.id.skyFragment)
+        }
+        binding.layoutMoonPill.setOnClickListener {
+            findNavController().navigate(R.id.skyFragment)
+        }
+        binding.cardSunrise.setOnClickListener {
+            findNavController().navigate(R.id.skyFragment)
+        }
+        binding.cardSunset.setOnClickListener {
+            findNavController().navigate(R.id.skyFragment)
+        }
+        binding.cardProvider.setOnClickListener {
+            findNavController().navigate(R.id.skyFragment)
+        }
+        binding.tvFullSchedule.setOnClickListener {
+            findNavController().navigate(R.id.calendarFragment)
+        }
+        binding.btnHomeRetry.setOnClickListener {
+            refreshHomeData(force = true)
         }
     }
 
@@ -88,6 +124,14 @@ class HomeFragment : Fragment() {
                 dataStore.loadHome(
                     baseURL = appState.apiBaseURL,
                     city = appState.selectedCity,
+                    subscriptionStatus = appState.subscriptionPlan.rawValue,
+                    language = appState.selectedLanguage,
+                    forceRefresh = force
+                )
+                dataStore.loadAstronomy(
+                    baseURL = appState.apiBaseURL,
+                    city = appState.selectedCity,
+                    date = Date(),
                     subscriptionStatus = appState.subscriptionPlan.rawValue,
                     language = appState.selectedLanguage,
                     forceRefresh = force
@@ -119,6 +163,7 @@ class HomeFragment : Fragment() {
 
         val now = System.currentTimeMillis()
         val end = currentSlot.end.time
+        val start = currentSlot.start.time
         val diffSeconds = (end - now) / 1000
 
         if (diffSeconds > 0) {
@@ -127,6 +172,9 @@ class HomeFragment : Fragment() {
             val seconds = diffSeconds % 60
             val countdownStr = String.format(Locale.US, "%02d:%02d:%02d", hours, minutes, seconds)
             binding.tvHeroCountdown.text = countdownStr
+            val total = (end - start).coerceAtLeast(1L)
+            val elapsed = (now - start).coerceIn(0L, total)
+            binding.progressHero.progress = ((elapsed.toDouble() / total.toDouble()) * 100).toInt()
         } else {
             // Trigger local recalculation of timeline slots
             refreshHomeData(force = false)
@@ -134,19 +182,42 @@ class HomeFragment : Fragment() {
     }
 
     private fun bindHomeState(state: HomeTimelineState) {
+        val language = appState.selectedLanguage
         binding.tvCurrentCity.text = appState.selectedCity.city
+        binding.tvHomeTitle.text = "Shubh Muhurat"
+        binding.tvHomeDate.text = AppLocalizer.localizedShortDate(Date(), language, appState.selectedCity.timezone)
+        binding.tvSunriseLabel.text = AppLocalizer.text(AppTextKey.SUNRISE, language)
+        binding.tvSunsetLabel.text = AppLocalizer.text(AppTextKey.SUNSET, language)
+        binding.tvTimelineTitle.text = AppLocalizer.text(AppTextKey.TODAYS_PATH, language)
+        binding.tvFullSchedule.text = AppLocalizer.text(AppTextKey.FULL_SCHEDULE, language)
+        binding.tvHeroEndsAt.text = AppLocalizer.text(AppTextKey.ENDS_AT, language)
+        binding.btnHomeRetry.text = AppLocalizer.text(AppTextKey.TRY_AGAIN, language).uppercase(Locale.US)
 
         if (state.errorMessage != null && !state.hasContent) {
-            Toast.makeText(requireContext(), state.errorMessage, Toast.LENGTH_LONG).show()
+            binding.homeLoadingState.visibility = View.GONE
+            binding.homeLoadedContent.visibility = View.GONE
+            binding.homeErrorState.visibility = View.VISIBLE
+            binding.tvHomeErrorTitle.text = AppLocalizer.text(AppTextKey.COULD_NOT_LOAD_TODAY_FLOW, language)
+            binding.tvHomeErrorMessage.text = state.errorMessage
             return
         }
 
         if (!state.hasContent) {
+            binding.homeLoadedContent.visibility = View.GONE
+            binding.homeErrorState.visibility = View.GONE
+            binding.homeLoadingState.visibility = if (state.isLoading) View.VISIBLE else View.GONE
             return
         }
 
+        binding.homeLoadingState.visibility = View.GONE
+        binding.homeErrorState.visibility = View.GONE
+        binding.homeLoadedContent.visibility = View.VISIBLE
+
+        if (state.errorMessage != null && state.isRefreshing) {
+            Toast.makeText(requireContext(), state.errorMessage, Toast.LENGTH_SHORT).show()
+        }
+
         val currentSlot = state.currentSlot ?: return
-        val language = appState.selectedLanguage
 
         // 1. Hero Card details
         binding.tvHeroSlotName.text = AppLocalizer.slotName(currentSlot.type, language)
@@ -154,24 +225,33 @@ class HomeFragment : Fragment() {
         val colorInt = ContextCompat.getColor(requireContext(), colorRes)
         binding.tvHeroSlotName.setTextColor(colorInt)
         binding.viewHeroColorDot.backgroundTintList = ColorStateList.valueOf(colorInt)
+        binding.progressHero.progressTintList = ColorStateList.valueOf(colorInt)
 
-        binding.tvHeroBadge.text = AppLocalizer.text(AppTextKey.ACTIVE_NOW, language).uppercase(Locale.US)
+        binding.tvHeroBadge.text = AppLocalizer.text(AppTextKey.ACTIVE_NOW, language)
         binding.tvHeroTimeRange.text = AppLocalizer.localizedRange(
             currentSlot.start,
             currentSlot.end,
             language,
             appState.selectedCity.timezone
         )
+        binding.tvHeroEndTime.text = AppLocalizer.localizedTime(
+            currentSlot.end,
+            language,
+            appState.selectedCity.timezone
+        )
         binding.tvHeroMeaning.text = AppLocalizer.slotDescription(currentSlot.type, language)
+        binding.tvTimelineSubtitle.text = AppLocalizer.slotMeaning(currentSlot.type, language)
+        updateCountdown()
 
         // 2. Astronomy strip
         binding.tvSunrise.text = AppLocalizer.localizedTime(state.sunrise, language)
         binding.tvSunset.text = AppLocalizer.localizedTime(state.sunset, language)
-        binding.tvProvider.text = state.provider
+        binding.tvProviderLabel.text = moonLabel(language)
+        binding.tvProvider.text = state.provider.ifBlank { "--:--" }
 
         // 3. Upcoming Slots List
         binding.upcomingSlotsContainer.removeAllViews()
-        val upcomingSlots = state.nextSlots.take(6)
+        val upcomingSlots = (listOf(currentSlot) + state.nextSlots).take(6)
 
         for ((index, slot) in upcomingSlots.withIndex()) {
             val slotRow = LayoutInflater.from(requireContext()).inflate(R.layout.item_timeline_slot, binding.upcomingSlotsContainer, false)
@@ -184,7 +264,7 @@ class HomeFragment : Fragment() {
             val slotColorInt = ContextCompat.getColor(requireContext(), slotColorRes)
 
             tvSlotName.text = AppLocalizer.slotName(slot.type, language)
-            tvSlotName.setTextColor(slotColorInt)
+            tvSlotName.setTextColor(ContextCompat.getColor(requireContext(), R.color.celestial_text))
             viewColorDot.backgroundTintList = ColorStateList.valueOf(slotColorInt)
 
             tvSlotTimeRange.text = AppLocalizer.localizedRange(
@@ -196,13 +276,62 @@ class HomeFragment : Fragment() {
 
             if (index == 0) {
                 tvSlotBadge.visibility = View.VISIBLE
-                tvSlotBadge.text = AppLocalizer.text(AppTextKey.NEXT, language).uppercase(Locale.US)
+                tvSlotBadge.text = AppLocalizer.text(AppTextKey.ACTIVE_NOW, language)
+                tvSlotBadge.backgroundTintList = ColorStateList.valueOf(slotColorInt)
+                tvSlotBadge.setTextColor(ContextCompat.getColor(requireContext(), R.color.celestial_white))
+            } else if (index == 1) {
+                tvSlotBadge.visibility = View.VISIBLE
+                tvSlotBadge.text = AppLocalizer.text(AppTextKey.NEXT, language)
+                tvSlotBadge.backgroundTintList = null
+                tvSlotBadge.setTextColor(ContextCompat.getColor(requireContext(), R.color.celestial_primary))
             } else {
                 tvSlotBadge.visibility = View.GONE
             }
 
             binding.upcomingSlotsContainer.addView(slotRow)
         }
+    }
+
+    private fun bindAstronomyState(state: AstronomyState) {
+        val language = appState.selectedLanguage
+        val day = state.day
+        if (day == null) {
+            binding.layoutMoonPill.visibility = View.GONE
+            return
+        }
+
+        val moonPhase = AppLocalizer.moonPhaseName(day.moonPhaseKey, language)
+        binding.layoutMoonPill.visibility = View.VISIBLE
+        binding.tvMoonPill.text = moonPhase
+        binding.tvProviderLabel.text = moonPhase
+        binding.tvProvider.text = day.moonrise?.let { AppLocalizer.localizedTime(it, language) } ?: "--:--"
+    }
+
+    private fun moonLabel(language: AppLanguage): String {
+        return when (language) {
+            AppLanguage.ENGLISH -> "Moon"
+            AppLanguage.HINDI -> "चंद्र"
+            AppLanguage.GUJARATI -> "ચંદ્ર"
+        }
+    }
+
+    private fun showLocationDialog() {
+        val cities = appState.availableCities
+        val items = cities.map { "${it.city}, ${it.state}" }.toTypedArray()
+        val checkedItem = cities.indexOfFirst { it.id == appState.selectedCity.id }
+
+        AlertDialog.Builder(requireContext())
+            .setTitle(AppLocalizer.text(AppTextKey.SELECT_LOCATION, appState.selectedLanguage))
+            .setSingleChoiceItems(items, checkedItem) { dialog, which ->
+                val selected = cities.getOrNull(which) ?: SeedCity.ahmedabadFallback
+                appState.selectCity(selected)
+                binding.tvCurrentCity.text = selected.city
+                dialog.dismiss()
+                refreshHomeData(force = true)
+                WidgetUpdateWorker.enqueueInitial(requireContext().applicationContext)
+            }
+            .setNegativeButton(AppLocalizer.text(AppTextKey.CLOSE, appState.selectedLanguage), null)
+            .show()
     }
 
     private fun getSlotColorRes(type: String): Int {

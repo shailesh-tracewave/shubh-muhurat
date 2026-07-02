@@ -100,6 +100,7 @@ class ChoghadiyaDataStore(context: Context) {
         loadCalendarMonth(baseURL, city, currentMonth)
     }
 
+    @Suppress("UNUSED_PARAMETER")
     suspend fun loadHome(
         baseURL: String,
         city: SeedCity,
@@ -236,6 +237,7 @@ class ChoghadiyaDataStore(context: Context) {
         }
     }
 
+    @Suppress("UNUSED_PARAMETER")
     suspend fun loadAstronomy(
         baseURL: String,
         city: SeedCity,

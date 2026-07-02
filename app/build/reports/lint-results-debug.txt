@@ -1,0 +1,1200 @@
+/Users/milan/Desktop/TraceWave App/ChogadiyaApp/android/app/build.gradle:16: Warning: Not targeting the latest versions of Android; compatibility modes apply. Consider testing and updating this version. Consult the android.os.Build.VERSION_CODES javadoc for details. [OldTargetApi]
+        targetSdk = 35
+        ~~~~~~~~~~~~~~
+
+   Explanation for issues of type "OldTargetApi":
+   When your application runs on a version of Android that is more recent than
+   your targetSdkVersion specifies that it has been tested with, various
+   compatibility modes kick in. This ensures that your application continues
+   to work, but it may look out of place. For example, if the targetSdkVersion
+   is less than 14, your app may get an option button in the UI.
+
+   To fix this issue, set the targetSdkVersion to the highest available value.
+   Then test your app to make sure everything works correctly. You may want to
+   consult the compatibility notes to see what changes apply to each version
+   you are adding support for:
+   https://developer.android.com/reference/android/os/Build.VERSION_CODES.html
+   as well as follow this guide:
+   https://developer.android.com/distribute/best-practices/develop/target-sdk.
+   html
+
+   https://developer.android.com/distribute/best-practices/develop/target-sdk.html
+
+/Users/milan/Desktop/TraceWave App/ChogadiyaApp/android/app/src/main/res/layout/activity_main.xml:11: Warning: Replace the <fragment> tag with FragmentContainerView. [FragmentTagUsage from androidx.fragment]
+    <fragment
+     ~~~~~~~~
+
+   Explanation for issues of type "FragmentTagUsage":
+   FragmentContainerView replaces the <fragment> tag as the preferred         
+          way of adding fragments via XML. Unlike the <fragment> tag,
+   FragmentContainerView                 uses a normal FragmentTransaction
+   under the hood to add the initial fragment,                 allowing
+   further FragmentTransaction operations on the FragmentContainerView        
+           and providing a consistent timing for lifecycle events.
+
+   https://developer.android.com/reference/androidx/fragment/app/FragmentContainerView.html
+
+   Vendor: Android Open Source Project
+   Identifier: androidx.fragment
+   Feedback: https://issuetracker.google.com/issues/new?component=460964
+
+/Users/milan/Desktop/TraceWave App/ChogadiyaApp/android/app/build.gradle:43: Warning: A newer version of androidx.core:core-ktx than 1.13.1 is available: 1.19.0 [GradleDependency]
+    implementation 'androidx.core:core-ktx:1.13.1'
+                   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/Users/milan/Desktop/TraceWave App/ChogadiyaApp/android/app/build.gradle:44: Warning: A newer version of androidx.appcompat:appcompat than 1.7.0 is available: 1.7.1 [GradleDependency]
+    implementation 'androidx.appcompat:appcompat:1.7.0'
+                   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/Users/milan/Desktop/TraceWave App/ChogadiyaApp/android/app/build.gradle:45: Warning: A newer version of com.google.android.material:material than 1.12.0 is available: 1.14.0 [GradleDependency]
+    implementation 'com.google.android.material:material:1.12.0'
+                   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/Users/milan/Desktop/TraceWave App/ChogadiyaApp/android/app/build.gradle:46: Warning: A newer version of androidx.constraintlayout:constraintlayout than 2.1.4 is available: 2.2.1 [GradleDependency]
+    implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
+                   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/Users/milan/Desktop/TraceWave App/ChogadiyaApp/android/app/build.gradle:47: Warning: A newer version of androidx.navigation:navigation-fragment-ktx than 2.7.7 is available: 2.9.8 [GradleDependency]
+    implementation 'androidx.navigation:navigation-fragment-ktx:2.7.7'
+                   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/Users/milan/Desktop/TraceWave App/ChogadiyaApp/android/app/build.gradle:48: Warning: A newer version of androidx.navigation:navigation-ui-ktx than 2.7.7 is available: 2.9.8 [GradleDependency]
+    implementation 'androidx.navigation:navigation-ui-ktx:2.7.7'
+                   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/Users/milan/Desktop/TraceWave App/ChogadiyaApp/android/app/build.gradle:56: Warning: A newer version of androidx.room:room-runtime than 2.6.1 is available: 2.8.4 [GradleDependency]
+    implementation 'androidx.room:room-runtime:2.6.1'
+                   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/Users/milan/Desktop/TraceWave App/ChogadiyaApp/android/app/build.gradle:57: Warning: A newer version of androidx.room:room-ktx than 2.6.1 is available: 2.8.4 [GradleDependency]
+    implementation 'androidx.room:room-ktx:2.6.1'
+                   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/Users/milan/Desktop/TraceWave App/ChogadiyaApp/android/app/build.gradle:58: Warning: A newer version of androidx.room:room-compiler than 2.6.1 is available: 2.8.4 [GradleDependency]
+    kapt 'androidx.room:room-compiler:2.6.1'
+         ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/Users/milan/Desktop/TraceWave App/ChogadiyaApp/android/app/build.gradle:61: Warning: A newer version of androidx.work:work-runtime-ktx than 2.9.0 is available: 2.11.2 [GradleDependency]
+    implementation 'androidx.work:work-runtime-ktx:2.9.0'
+                   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/Users/milan/Desktop/TraceWave App/ChogadiyaApp/android/app/build.gradle:64: Warning: A newer version of com.android.billingclient:billing-ktx than 7.0.0 is available: 9.1.0 [GradleDependency]
+    implementation 'com.android.billingclient:billing-ktx:7.0.0'
+                   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/Users/milan/Desktop/TraceWave App/ChogadiyaApp/android/app/build.gradle:67: Warning: A newer version of androidx.lifecycle:lifecycle-viewmodel-ktx than 2.8.1 is available: 2.11.0 [GradleDependency]
+    implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.8.1'
+                   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/Users/milan/Desktop/TraceWave App/ChogadiyaApp/android/app/build.gradle:68: Warning: A newer version of androidx.lifecycle:lifecycle-livedata-ktx than 2.8.1 is available: 2.11.0 [GradleDependency]
+    implementation 'androidx.lifecycle:lifecycle-livedata-ktx:2.8.1'
+                   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/Users/milan/Desktop/TraceWave App/ChogadiyaApp/android/app/build.gradle:71: Warning: A newer version of com.google.firebase:firebase-bom than 33.1.0 is available: 34.15.0 [GradleDependency]
+    implementation platform('com.google.firebase:firebase-bom:33.1.0')
+                   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/Users/milan/Desktop/TraceWave App/ChogadiyaApp/android/app/build.gradle:78: Warning: A newer version of androidx.test.ext:junit than 1.1.5 is available: 1.3.0 [GradleDependency]
+    androidTestImplementation 'androidx.test.ext:junit:1.1.5'
+                              ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/Users/milan/Desktop/TraceWave App/ChogadiyaApp/android/app/build.gradle:79: Warning: A newer version of androidx.test.espresso:espresso-core than 3.5.1 is available: 3.7.0 [GradleDependency]
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'
+                              ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+   Explanation for issues of type "GradleDependency":
+   This detector looks for usages of libraries where the version you are using
+   is not the current stable release. Using older versions is fine, and there
+   are cases where you deliberately want to stick with an older version.
+   However, you may simply not be aware that a more recent version is
+   available, and that is what this lint check helps find.
+
+/Users/milan/Desktop/TraceWave App/ChogadiyaApp/android/app/src/main/AndroidManifest.xml:11: Warning: The attribute android:allowBackup is deprecated from Android 12 and the default allows backup [DataExtractionRules]
+        android:allowBackup="true"
+                             ~~~~
+
+   Explanation for issues of type "DataExtractionRules":
+   Before Android 12, the attributes android:allowBackup and
+   android:fullBackupContent were used to configure all forms of backup,
+   including cloud backups, device-to-device transfers and adb backup.
+
+   In Android 12 and higher, these attributes have been deprecated and will
+   only apply to cloud backups. You should instead use the attribute
+   android:dataExtractionRules, specifying an @xml resource that configures
+   which files to back up, for cloud backups and for device-to-device
+   transfers, separately. If your minSdkVersion supports older versions,
+   you'll still want to specify an android:fullBackupContent resource if the
+   default behavior is not right for your app.
+
+   https://developer.android.com/about/versions/12/backup-restore#xml-changes
+   https://goo.gle/DataExtractionRules
+
+/Users/milan/Desktop/TraceWave App/ChogadiyaApp/android/app/src/main/res/mipmap-anydpi-v26: Warning: This folder configuration (v26) is unnecessary; minSdkVersion is 31. Merge all the resources in this folder into mipmap-anydpi. [ObsoleteSdkInt]
+
+   Explanation for issues of type "ObsoleteSdkInt":
+   This check flags version checks that are not necessary, because the
+   minSdkVersion (or surrounding known API level) is already at least as high
+   as the version checked for.
+
+   Similarly, it also looks for resources in -vNN folders, such as values-v14
+   where the version qualifier is less than or equal to the minSdkVersion,
+   where the contents should be merged into the best folder.
+
+/Users/milan/Desktop/TraceWave App/ChogadiyaApp/android/app/src/main/res/layout/fragment_calendar.xml:187: Warning: This tag and its children can be replaced by one <TextView/> and a compound drawable [UseCompoundDrawables]
+                <LinearLayout
+                 ~~~~~~~~~~~~
+/Users/milan/Desktop/TraceWave App/ChogadiyaApp/android/app/src/main/res/layout/widget_detail_card.xml:340: Warning: This tag and its children can be replaced by one <TextView/> and a compound drawable [UseCompoundDrawables]
+            <LinearLayout
+             ~~~~~~~~~~~~
+/Users/milan/Desktop/TraceWave App/ChogadiyaApp/android/app/src/main/res/layout/widget_detail_card.xml:479: Warning: This tag and its children can be replaced by one <TextView/> and a compound drawable [UseCompoundDrawables]
+                <LinearLayout
+                 ~~~~~~~~~~~~
+/Users/milan/Desktop/TraceWave App/ChogadiyaApp/android/app/src/main/res/layout/widget_detail_card.xml:525: Warning: This tag and its children can be replaced by one <TextView/> and a compound drawable [UseCompoundDrawables]
+                <LinearLayout
+                 ~~~~~~~~~~~~
+/Users/milan/Desktop/TraceWave App/ChogadiyaApp/android/app/src/main/res/layout/widget_detail_card.xml:570: Warning: This tag and its children can be replaced by one <TextView/> and a compound drawable [UseCompoundDrawables]
+                <LinearLayout
+                 ~~~~~~~~~~~~
+/Users/milan/Desktop/TraceWave App/ChogadiyaApp/android/app/src/main/res/layout/widget_large.xml:45: Warning: This tag and its children can be replaced by one <TextView/> and a compound drawable [UseCompoundDrawables]
+        <LinearLayout
+         ~~~~~~~~~~~~
+
+   Explanation for issues of type "UseCompoundDrawables":
+   A LinearLayout which contains an ImageView and a TextView can be more
+   efficiently handled as a compound drawable (a single TextView, using the
+   drawableTop, drawableLeft, drawableRight and/or drawableBottom attributes
+   to draw one or more images adjacent to the text).
+
+   If the two widgets are offset from each other with margins, this can be
+   replaced with a drawablePadding attribute.
+
+   There's a lint quickfix to perform this conversion in the Eclipse plugin.
+
+/Users/milan/Desktop/TraceWave App/ChogadiyaApp/android/app/src/main/res/drawable/ic_settings.xml:8: Warning: Very long vector path (913 characters), which is bad for performance. Considering reducing precision, removing minor details or rasterizing vector. [VectorPath]
+      android:pathData="M19.14,12.94c0.04,-0.3 0.06,-0.61 0.06,-0.94c0,-0.32 -0.02,-0.64 -0.07,-0.94l2.03,-1.58c0.18,-0.14 0.23,-0.41 0.12,-0.61l-1.92,-3.32c-0.12,-0.22 -0.37,-0.29 -0.59,-0.22l-2.39,0.96c-0.5,-0.38 -1.03,-0.7 -1.62,-0.94L14.4,2.81c-0.04,-0.24 -0.24,-0.41 -0.48,-0.41h-3.84c-0.24,0 -0.43,0.17 -0.47,0.41L9.25,5.35C8.66,5.59 8.12,5.92 7.63,6.29L5.24,5.33c-0.22,-0.08 -0.47,0 -0.59,0.22L2.74,8.87c-0.12,0.21 -0.08,0.47 0.12,0.61l2.03,1.58C4.84,11.36 4.8,11.69 4.8,12c0,0.31 0.04,0.64 0.08,0.94l-2.03,1.58c-0.18,0.14 -0.23,0.41 -0.12,0.61l1.92,3.32c0.12,0.22 0.37,0.29 0.59,0.22l2.39,-0.96c0.5,0.38 1.03,0.7 1.62,0.94l0.36,2.54c0.05,0.24 0.24,0.41 0.48,0.41h3.84c0.24,0 0.44,-0.17 0.47,-0.41l0.36,-2.54c0.59,-0.24 1.13,-0.56 1.62,-0.94l2.39,0.96c0.22,0.08 0.47,0 0.59,-0.22l1.92,-3.32c0.12,-0.22 0.07,-0.47 -0.12,-0.61L19.14,12.94zM12,15.6c-1.98,0 -3.6,-1.62 -3.6,-3.6s1.62,-3.6 3.6,-3.6s3.6,1.62 3.6,3.6S13.98,15.6 12,15.6z"/>
+                        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+   Explanation for issues of type "VectorPath":
+   Using long vector paths is bad for performance. There are several ways to
+   make the pathData shorter:
+   * Using less precision
+   * Removing some minor details
+   * Using the Android Studio vector conversion tool
+   * Rasterizing the image (converting to PNG)
+
+/Users/milan/Desktop/TraceWave App/ChogadiyaApp/android/app/build.gradle:58: Warning: This library supports using KSP instead of kapt, which greatly improves performance. Learn more: https://developer.android.com/studio/build/migrate-to-ksp [KaptUsageInsteadOfKsp]
+    kapt 'androidx.room:room-compiler:2.6.1'
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+   Explanation for issues of type "KaptUsageInsteadOfKsp":
+   KSP is a more efficient replacement for kapt. For libraries that support
+   both, KSP should be used to improve build times.
+
+   https://developer.android.com/studio/build/migrate-to-ksp
+
+/Users/milan/Desktop/TraceWave App/ChogadiyaApp/android/app/src/main/res/layout/page_welcome.xml:81: Warning: Set android:baselineAligned="false" on this element for better performance [DisableBaselineAlignment]
+    <LinearLayout
+     ~~~~~~~~~~~~
+/Users/milan/Desktop/TraceWave App/ChogadiyaApp/android/app/src/main/res/layout/widget_detail_card.xml:2: Warning: Set android:baselineAligned="false" on this element for better performance [DisableBaselineAlignment]
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+ ~~~~~~~~~~~~
+/Users/milan/Desktop/TraceWave App/ChogadiyaApp/android/app/src/main/res/layout/widget_detail_card.xml:16: Warning: Set android:baselineAligned="false" on this element for better performance [DisableBaselineAlignment]
+        <LinearLayout
+         ~~~~~~~~~~~~
+/Users/milan/Desktop/TraceWave App/ChogadiyaApp/android/app/src/main/res/layout/widget_detail_card.xml:176: Warning: Set android:baselineAligned="false" on this element for better performance [DisableBaselineAlignment]
+        <LinearLayout
+         ~~~~~~~~~~~~
+/Users/milan/Desktop/TraceWave App/ChogadiyaApp/android/app/src/main/res/layout/widget_detail_card.xml:334: Warning: Set android:baselineAligned="false" on this element for better performance [DisableBaselineAlignment]
+        <LinearLayout
+         ~~~~~~~~~~~~
+/Users/milan/Desktop/TraceWave App/ChogadiyaApp/android/app/src/main/res/layout/widget_detail_card.xml:465: Warning: Set android:baselineAligned="false" on this element for better performance [DisableBaselineAlignment]
+        <LinearLayout
+         ~~~~~~~~~~~~
+/Users/milan/Desktop/TraceWave App/ChogadiyaApp/android/app/src/main/res/layout/widget_large.xml:38: Warning: Set android:baselineAligned="false" on this element for better performance [DisableBaselineAlignment]
+    <LinearLayout
+     ~~~~~~~~~~~~
+/Users/milan/Desktop/TraceWave App/ChogadiyaApp/android/app/src/main/res/layout/widget_large.xml:138: Warning: Set android:baselineAligned="false" on this element for better performance [DisableBaselineAlignment]
+        <LinearLayout
+         ~~~~~~~~~~~~
+/Users/milan/Desktop/TraceWave App/ChogadiyaApp/android/app/src/main/res/layout/widget_large.xml:298: Warning: Set android:baselineAligned="false" on this element for better performance [DisableBaselineAlignment]
+        <LinearLayout
+         ~~~~~~~~~~~~
+/Users/milan/Desktop/TraceWave App/ChogadiyaApp/android/app/src/main/res/layout/widget_timeline.xml:112: Warning: Set android:baselineAligned="false" on this element for better performance [DisableBaselineAlignment]
+    <LinearLayout
+     ~~~~~~~~~~~~
+
+   Explanation for issues of type "DisableBaselineAlignment":
+   When a LinearLayout is used to distribute the space proportionally between
+   nested layouts, the baseline alignment property should be turned off to
+   make the layout computation faster.
+
+/Users/milan/Desktop/TraceWave App/ChogadiyaApp/android/app/src/main/res/layout/fragment_home.xml:153: Warning: Nested weights are bad for performance [NestedWeights]
+                        android:layout_weight="1"
+                        ~~~~~~~~~~~~~~~~~~~~~~~~~
+/Users/milan/Desktop/TraceWave App/ChogadiyaApp/android/app/src/main/res/layout/fragment_home.xml:187: Warning: Nested weights are bad for performance [NestedWeights]
+                        android:layout_weight="1"
+                        ~~~~~~~~~~~~~~~~~~~~~~~~~
+/Users/milan/Desktop/TraceWave App/ChogadiyaApp/android/app/src/main/res/layout/widget_detail_card.xml:19: Warning: Nested weights are bad for performance [NestedWeights]
+            android:layout_weight="1"
+            ~~~~~~~~~~~~~~~~~~~~~~~~~
+/Users/milan/Desktop/TraceWave App/ChogadiyaApp/android/app/src/main/res/layout/widget_detail_card.xml:25: Warning: Nested weights are bad for performance [NestedWeights]
+                android:layout_weight="1"
+                ~~~~~~~~~~~~~~~~~~~~~~~~~
+/Users/milan/Desktop/TraceWave App/ChogadiyaApp/android/app/src/main/res/layout/widget_detail_card.xml:358: Warning: Nested weights are bad for performance [NestedWeights]
+                    android:layout_weight="1"
+                    ~~~~~~~~~~~~~~~~~~~~~~~~~
+/Users/milan/Desktop/TraceWave App/ChogadiyaApp/android/app/src/main/res/layout/widget_large.xml:63: Warning: Nested weights are bad for performance [NestedWeights]
+                android:layout_weight="1"
+                ~~~~~~~~~~~~~~~~~~~~~~~~~
+/Users/milan/Desktop/TraceWave App/ChogadiyaApp/android/app/src/main/res/layout/widget_large.xml:141: Warning: Nested weights are bad for performance [NestedWeights]
+            android:layout_weight="1"
+            ~~~~~~~~~~~~~~~~~~~~~~~~~
+/Users/milan/Desktop/TraceWave App/ChogadiyaApp/android/app/src/main/res/layout/widget_large.xml:147: Warning: Nested weights are bad for performance [NestedWeights]
+                android:layout_weight="1"
+                ~~~~~~~~~~~~~~~~~~~~~~~~~
+/Users/milan/Desktop/TraceWave App/ChogadiyaApp/android/app/src/main/res/layout/widget_large.xml:469: Warning: Nested weights are bad for performance [NestedWeights]
+            android:layout_weight="1"
+            ~~~~~~~~~~~~~~~~~~~~~~~~~
+/Users/milan/Desktop/TraceWave App/ChogadiyaApp/android/app/src/main/res/layout/widget_large.xml:484: Warning: Nested weights are bad for performance [NestedWeights]
+                android:layout_weight="1"
+                ~~~~~~~~~~~~~~~~~~~~~~~~~
+
+   Explanation for issues of type "NestedWeights":
+   Layout weights require a widget to be measured twice. When a LinearLayout
+   with non-zero weights is nested inside another LinearLayout with non-zero
+   weights, then the number of measurements increase exponentially.
+
+/Users/milan/Desktop/TraceWave App/ChogadiyaApp/android/app/src/main/res/layout/activity_main.xml:8: Warning: Possible overdraw: Root element paints background @color/celestial_background with a theme that also paints a background (inferred theme is @style/Theme_ChoghadiyaApp) [Overdraw]
+    android:background="@color/celestial_background"
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/Users/milan/Desktop/TraceWave App/ChogadiyaApp/android/app/src/main/res/layout/fragment_calendar.xml:7: Warning: Possible overdraw: Root element paints background @color/celestial_background with a theme that also paints a background (inferred theme is @style/Theme.ChoghadiyaApp) [Overdraw]
+    android:background="@color/celestial_background">
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/Users/milan/Desktop/TraceWave App/ChogadiyaApp/android/app/src/main/res/layout/fragment_home.xml:7: Warning: Possible overdraw: Root element paints background @color/celestial_background with a theme that also paints a background (inferred theme is @style/Theme.ChoghadiyaApp) [Overdraw]
+    android:background="@color/celestial_background">
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/Users/milan/Desktop/TraceWave App/ChogadiyaApp/android/app/src/main/res/layout/fragment_onboarding.xml:6: Warning: Possible overdraw: Root element paints background @color/celestial_background with a theme that also paints a background (inferred theme is @style/Theme.ChoghadiyaApp) [Overdraw]
+    android:background="@color/celestial_background">
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/Users/milan/Desktop/TraceWave App/ChogadiyaApp/android/app/src/main/res/layout/fragment_settings.xml:7: Warning: Possible overdraw: Root element paints background @color/celestial_background with a theme that also paints a background (inferred theme is @style/Theme.ChoghadiyaApp) [Overdraw]
+    android:background="@color/celestial_background">
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/Users/milan/Desktop/TraceWave App/ChogadiyaApp/android/app/src/main/res/layout/fragment_sky.xml:7: Warning: Possible overdraw: Root element paints background @color/celestial_background with a theme that also paints a background (inferred theme is @style/Theme.ChoghadiyaApp) [Overdraw]
+    android:background="@color/celestial_background">
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/Users/milan/Desktop/TraceWave App/ChogadiyaApp/android/app/src/main/res/layout/page_location.xml:7: Warning: Possible overdraw: Root element paints background @color/celestial_background with a theme that also paints a background (inferred theme is @style/Theme.ChoghadiyaApp) [Overdraw]
+    android:background="@color/celestial_background"
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/Users/milan/Desktop/TraceWave App/ChogadiyaApp/android/app/src/main/res/layout/page_timeline.xml:7: Warning: Possible overdraw: Root element paints background @color/celestial_background with a theme that also paints a background (inferred theme is @style/Theme.ChoghadiyaApp) [Overdraw]
+    android:background="@color/celestial_background"
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/Users/milan/Desktop/TraceWave App/ChogadiyaApp/android/app/src/main/res/layout/page_welcome.xml:7: Warning: Possible overdraw: Root element paints background @color/celestial_background with a theme that also paints a background (inferred theme is @style/Theme.ChoghadiyaApp) [Overdraw]
+    android:background="@color/celestial_background"
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+   Explanation for issues of type "Overdraw":
+   If you set a background drawable on a root view, then you should use a
+   custom theme where the theme background is null. Otherwise, the theme
+   background will be painted first, only to have your custom background
+   completely cover it; this is called "overdraw".
+
+   NOTE: This detector relies on figuring out which layouts are associated
+   with which activities based on scanning the Java code, and it's currently
+   doing that using an inexact pattern matching algorithm. Therefore, it can
+   incorrectly conclude which activity the layout is associated with and then
+   wrongly complain that a background-theme is hidden.
+
+   If you want your custom background on multiple pages, then you should
+   consider making a custom theme with your custom background and just using
+   that theme instead of a root element background.
+
+   Of course it's possible that your custom drawable is translucent and you
+   want it to be mixed with the background. However, you will get better
+   performance if you pre-mix the background with your drawable and use that
+   resulting image or color as a custom theme background instead.
+
+/Users/milan/Desktop/TraceWave App/ChogadiyaApp/android/app/src/main/res/drawable/bg_bottom_nav_item.xml:2: Warning: The resource R.drawable.bg_bottom_nav_item appears to be unused [UnusedResources]
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+^
+/Users/milan/Desktop/TraceWave App/ChogadiyaApp/android/app/src/main/res/values/colors.xml:5: Warning: The resource R.color.celestial_background_secondary appears to be unused [UnusedResources]
+    <color name="celestial_background_secondary">#F2EBDB</color>
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/Users/milan/Desktop/TraceWave App/ChogadiyaApp/android/app/src/main/res/values/colors.xml:9: Warning: The resource R.color.celestial_surface_glass appears to be unused [UnusedResources]
+    <color name="celestial_surface_glass">#B3FFFFFF</color>
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/Users/milan/Desktop/TraceWave App/ChogadiyaApp/android/app/src/main/res/values/colors.xml:30: Warning: The resource R.color.celestial_transparent appears to be unused [UnusedResources]
+    <color name="celestial_transparent">#00000000</color>
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/Users/milan/Desktop/TraceWave App/ChogadiyaApp/android/app/src/main/res/values/colors.xml:38: Warning: The resource R.color.choghadiya_shubh_start appears to be unused [UnusedResources]
+    <color name="choghadiya_shubh_start">#D4A72E</color>
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/Users/milan/Desktop/TraceWave App/ChogadiyaApp/android/app/src/main/res/values/colors.xml:39: Warning: The resource R.color.choghadiya_shubh_end appears to be unused [UnusedResources]
+    <color name="choghadiya_shubh_end">#B88E1B</color>
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/Users/milan/Desktop/TraceWave App/ChogadiyaApp/android/app/src/main/res/values/colors.xml:43: Warning: The resource R.color.choghadiya_labh_dark appears to be unused [UnusedResources]
+    <color name="choghadiya_labh_dark">#B36F1C</color>
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/Users/milan/Desktop/TraceWave App/ChogadiyaApp/android/app/src/main/res/values/colors.xml:46: Warning: The resource R.color.choghadiya_amrit_dark appears to be unused [UnusedResources]
+    <color name="choghadiya_amrit_dark">#24614A</color>
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/Users/milan/Desktop/TraceWave App/ChogadiyaApp/android/app/src/main/res/values/colors.xml:49: Warning: The resource R.color.choghadiya_chal_dark appears to be unused [UnusedResources]
+    <color name="choghadiya_chal_dark">#4F5770</color>
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/Users/milan/Desktop/TraceWave App/ChogadiyaApp/android/app/src/main/res/values/colors.xml:52: Warning: The resource R.color.choghadiya_rog_dark appears to be unused [UnusedResources]
+    <color name="choghadiya_rog_dark">#9C2E37</color>
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~
+/Users/milan/Desktop/TraceWave App/ChogadiyaApp/android/app/src/main/res/values/colors.xml:55: Warning: The resource R.color.choghadiya_kal_dark appears to be unused [UnusedResources]
+    <color name="choghadiya_kal_dark">#9C2E37</color>
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~
+/Users/milan/Desktop/TraceWave App/ChogadiyaApp/android/app/src/main/res/values/colors.xml:58: Warning: The resource R.color.choghadiya_udveg_dark appears to be unused [UnusedResources]
+    <color name="choghadiya_udveg_dark">#9C2E37</color>
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/Users/milan/Desktop/TraceWave App/ChogadiyaApp/android/app/src/main/res/values/colors.xml:62: Warning: The resource R.color.celestial_success appears to be unused [UnusedResources]
+    <color name="celestial_success">#338566</color>
+           ~~~~~~~~~~~~~~~~~~~~~~~~
+/Users/milan/Desktop/TraceWave App/ChogadiyaApp/android/app/src/main/res/values/colors.xml:63: Warning: The resource R.color.celestial_danger appears to be unused [UnusedResources]
+    <color name="celestial_danger">#C43D49</color>
+           ~~~~~~~~~~~~~~~~~~~~~~~
+
+   Explanation for issues of type "UnusedResources":
+   Unused resources make applications larger and slow down builds.
+
+
+   The unused resource check can ignore tests. If you want to include
+   resources that are only referenced from tests, consider packaging them in a
+   test source set instead.
+
+   You can include test sources in the unused resource check by setting the
+   system property lint.unused-resources.include-tests =true, and to exclude
+   them (usually for performance reasons), use
+   lint.unused-resources.exclude-tests =true.
+   ,
+
+/Users/milan/Desktop/TraceWave App/ChogadiyaApp/android/app/src/main/res/layout/fragment_home.xml:205: Warning: This LinearLayout layout or its LinearLayout parent is unnecessary; transfer the background attribute to the other view [UselessParent]
+                <LinearLayout
+                 ~~~~~~~~~~~~
+
+   Explanation for issues of type "UselessParent":
+   A layout with children that has no siblings, is not a scrollview or a root
+   layout, and does not have a background, can be removed and have its
+   children moved directly into the parent for a flatter and more efficient
+   layout hierarchy.
+
+/Users/milan/Desktop/TraceWave App/ChogadiyaApp/android/app/src/main/res/drawable/ic_launcher.jpg: Warning: Launcher icons should not fill every pixel of their square region; see the design guide for details [IconLauncherShape]
+
+   Explanation for issues of type "IconLauncherShape":
+   According to the Android Design Guide
+   (https://d.android.com/r/studio-ui/designer/material/iconography) your
+   launcher icons should "use a distinct silhouette", a "three-dimensional,
+   front view, with a slight perspective as if viewed from above, so that
+   users perceive some depth."
+
+   The unique silhouette implies that your launcher icon should not be a
+   filled square.
+
+/Users/milan/Desktop/TraceWave App/ChogadiyaApp/android/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml:2: Warning: The application adaptive icon is missing a monochrome tag [MonochromeLauncherIcon]
+<adaptive-icon xmlns:android="http://schemas.android.com/apk/res/android">
+^
+
+   Explanation for issues of type "MonochromeLauncherIcon":
+   If android:roundIcon and android:icon are both in your manifest, you must
+   either remove the reference to android:roundIcon if it is not needed; or,
+   supply the monochrome icon in the drawable defined by the android:roundIcon
+   and android:icon attribute.
+
+   For example, if android:roundIcon and android:icon are both in the
+   manifest, a launcher might choose to use android:roundIcon over
+   android:icon to display the adaptive app icon. Therefore, your themed
+   application iconwill not show if your monochrome attribute is not also
+   specified in android:roundIcon.
+
+/Users/milan/Desktop/TraceWave App/ChogadiyaApp/android/app/src/main/res/drawable/ic_launcher.jpg: Warning: Found bitmap drawable res/drawable/ic_launcher.jpg in densityless folder [IconLocation]
+/Users/milan/Desktop/TraceWave App/ChogadiyaApp/android/app/src/main/res/drawable/inapp_logo.jpg: Warning: Found bitmap drawable res/drawable/inapp_logo.jpg in densityless folder [IconLocation]
+/Users/milan/Desktop/TraceWave App/ChogadiyaApp/android/app/src/main/res/drawable/splash_logo.jpg: Warning: Found bitmap drawable res/drawable/splash_logo.jpg in densityless folder [IconLocation]
+
+   Explanation for issues of type "IconLocation":
+   The res/drawable folder is intended for density-independent graphics such
+   as shapes defined in XML. For bitmaps, move it to drawable-mdpi and
+   consider providing higher and lower resolution versions in drawable-ldpi,
+   drawable-hdpi and drawable-xhdpi. If the icon really is density independent
+   (for example a solid color) you can place it in drawable-nodpi.
+
+   https://developer.android.com/guide/practices/screens_support.html
+
+/Users/milan/Desktop/TraceWave App/ChogadiyaApp/android/app/src/main/res/drawable/splash_logo.jpg: Warning: The following unrelated icon files have identical contents: inapp_logo.jpg, splash_logo.jpg, ic_launcher.jpg, inapp_logo.jpg, splash_logo.jpg [IconDuplicates]
+
+   Explanation for issues of type "IconDuplicates":
+   If an icon is repeated under different names, you can consolidate and just
+   use one of the icons and delete the others to make your application
+   smaller. However, duplicated icons usually are not intentional and can
+   sometimes point to icons that were accidentally overwritten or accidentally
+   not updated.
+
+/Users/milan/Desktop/TraceWave App/ChogadiyaApp/android/app/src/main/res/layout/fragment_sky.xml:241: Warning: Avoid using sizes smaller than 11sp: 9sp [SmallSp]
+                            android:textSize="9sp"
+                            ~~~~~~~~~~~~~~~~~~~~~~
+/Users/milan/Desktop/TraceWave App/ChogadiyaApp/android/app/src/main/res/layout/fragment_sky.xml:260: Warning: Avoid using sizes smaller than 11sp: 9sp [SmallSp]
+                            android:textSize="9sp"
+                            ~~~~~~~~~~~~~~~~~~~~~~
+/Users/milan/Desktop/TraceWave App/ChogadiyaApp/android/app/src/main/res/layout/fragment_sky.xml:292: Warning: Avoid using sizes smaller than 11sp: 9sp [SmallSp]
+                            android:textSize="9sp"
+                            ~~~~~~~~~~~~~~~~~~~~~~
+/Users/milan/Desktop/TraceWave App/ChogadiyaApp/android/app/src/main/res/layout/fragment_sky.xml:311: Warning: Avoid using sizes smaller than 11sp: 9sp [SmallSp]
+                            android:textSize="9sp"
+                            ~~~~~~~~~~~~~~~~~~~~~~
+/Users/milan/Desktop/TraceWave App/ChogadiyaApp/android/app/src/main/res/layout/item_timeline_slot.xml:61: Warning: Avoid using sizes smaller than 11sp: 9sp [SmallSp]
+                android:textSize="9sp"
+                ~~~~~~~~~~~~~~~~~~~~~~
+/Users/milan/Desktop/TraceWave App/ChogadiyaApp/android/app/src/main/res/layout/page_timeline.xml:147: Warning: Avoid using sizes smaller than 11sp: 8sp [SmallSp]
+                        android:textSize="8sp"
+                        ~~~~~~~~~~~~~~~~~~~~~~
+/Users/milan/Desktop/TraceWave App/ChogadiyaApp/android/app/src/main/res/layout/page_timeline.xml:212: Warning: Avoid using sizes smaller than 11sp: 8sp [SmallSp]
+                        android:textSize="8sp"
+                        ~~~~~~~~~~~~~~~~~~~~~~
+/Users/milan/Desktop/TraceWave App/ChogadiyaApp/android/app/src/main/res/layout/widget_detail_card.xml:41: Warning: Avoid using sizes smaller than 11sp: 9sp [SmallSp]
+                    android:textSize="9sp"
+                    ~~~~~~~~~~~~~~~~~~~~~~
+/Users/milan/Desktop/TraceWave App/ChogadiyaApp/android/app/src/main/res/layout/widget_detail_card.xml:63: Warning: Avoid using sizes smaller than 11sp: 8sp [SmallSp]
+                    android:textSize="8sp"
+                    ~~~~~~~~~~~~~~~~~~~~~~
+/Users/milan/Desktop/TraceWave App/ChogadiyaApp/android/app/src/main/res/layout/widget_detail_card.xml:92: Warning: Avoid using sizes smaller than 11sp: 9sp [SmallSp]
+                    android:textSize="9sp"
+                    ~~~~~~~~~~~~~~~~~~~~~~
+/Users/milan/Desktop/TraceWave App/ChogadiyaApp/android/app/src/main/res/layout/widget_detail_card.xml:114: Warning: Avoid using sizes smaller than 11sp: 8sp [SmallSp]
+                    android:textSize="8sp"
+                    ~~~~~~~~~~~~~~~~~~~~~~
+/Users/milan/Desktop/TraceWave App/ChogadiyaApp/android/app/src/main/res/layout/widget_detail_card.xml:143: Warning: Avoid using sizes smaller than 11sp: 9sp [SmallSp]
+                    android:textSize="9sp"
+                    ~~~~~~~~~~~~~~~~~~~~~~
+/Users/milan/Desktop/TraceWave App/ChogadiyaApp/android/app/src/main/res/layout/widget_detail_card.xml:165: Warning: Avoid using sizes smaller than 11sp: 8sp [SmallSp]
+                    android:textSize="8sp"
+                    ~~~~~~~~~~~~~~~~~~~~~~
+/Users/milan/Desktop/TraceWave App/ChogadiyaApp/android/app/src/main/res/layout/widget_detail_card.xml:201: Warning: Avoid using sizes smaller than 11sp: 9sp [SmallSp]
+                    android:textSize="9sp"
+                    ~~~~~~~~~~~~~~~~~~~~~~
+/Users/milan/Desktop/TraceWave App/ChogadiyaApp/android/app/src/main/res/layout/widget_detail_card.xml:223: Warning: Avoid using sizes smaller than 11sp: 8sp [SmallSp]
+                    android:textSize="8sp"
+                    ~~~~~~~~~~~~~~~~~~~~~~
+/Users/milan/Desktop/TraceWave App/ChogadiyaApp/android/app/src/main/res/layout/widget_detail_card.xml:252: Warning: Avoid using sizes smaller than 11sp: 9sp [SmallSp]
+                    android:textSize="9sp"
+                    ~~~~~~~~~~~~~~~~~~~~~~
+/Users/milan/Desktop/TraceWave App/ChogadiyaApp/android/app/src/main/res/layout/widget_detail_card.xml:274: Warning: Avoid using sizes smaller than 11sp: 8sp [SmallSp]
+                    android:textSize="8sp"
+                    ~~~~~~~~~~~~~~~~~~~~~~
+/Users/milan/Desktop/TraceWave App/ChogadiyaApp/android/app/src/main/res/layout/widget_detail_card.xml:303: Warning: Avoid using sizes smaller than 11sp: 9sp [SmallSp]
+                    android:textSize="9sp"
+                    ~~~~~~~~~~~~~~~~~~~~~~
+/Users/milan/Desktop/TraceWave App/ChogadiyaApp/android/app/src/main/res/layout/widget_detail_card.xml:513: Warning: Avoid using sizes smaller than 11sp: 9sp [SmallSp]
+                    android:textSize="9sp"
+                    ~~~~~~~~~~~~~~~~~~~~~~
+/Users/milan/Desktop/TraceWave App/ChogadiyaApp/android/app/src/main/res/layout/widget_detail_card.xml:559: Warning: Avoid using sizes smaller than 11sp: 9sp [SmallSp]
+                    android:textSize="9sp"
+                    ~~~~~~~~~~~~~~~~~~~~~~
+/Users/milan/Desktop/TraceWave App/ChogadiyaApp/android/app/src/main/res/layout/widget_detail_card.xml:604: Warning: Avoid using sizes smaller than 11sp: 9sp [SmallSp]
+                    android:textSize="9sp"
+                    ~~~~~~~~~~~~~~~~~~~~~~
+/Users/milan/Desktop/TraceWave App/ChogadiyaApp/android/app/src/main/res/layout/widget_large.xml:163: Warning: Avoid using sizes smaller than 11sp: 10sp [SmallSp]
+                    android:textSize="10sp"
+                    ~~~~~~~~~~~~~~~~~~~~~~~
+/Users/milan/Desktop/TraceWave App/ChogadiyaApp/android/app/src/main/res/layout/widget_large.xml:185: Warning: Avoid using sizes smaller than 11sp: 8sp [SmallSp]
+                    android:textSize="8sp"
+                    ~~~~~~~~~~~~~~~~~~~~~~
+/Users/milan/Desktop/TraceWave App/ChogadiyaApp/android/app/src/main/res/layout/widget_large.xml:214: Warning: Avoid using sizes smaller than 11sp: 10sp [SmallSp]
+                    android:textSize="10sp"
+                    ~~~~~~~~~~~~~~~~~~~~~~~
+/Users/milan/Desktop/TraceWave App/ChogadiyaApp/android/app/src/main/res/layout/widget_large.xml:236: Warning: Avoid using sizes smaller than 11sp: 8sp [SmallSp]
+                    android:textSize="8sp"
+                    ~~~~~~~~~~~~~~~~~~~~~~
+/Users/milan/Desktop/TraceWave App/ChogadiyaApp/android/app/src/main/res/layout/widget_large.xml:265: Warning: Avoid using sizes smaller than 11sp: 10sp [SmallSp]
+                    android:textSize="10sp"
+                    ~~~~~~~~~~~~~~~~~~~~~~~
+/Users/milan/Desktop/TraceWave App/ChogadiyaApp/android/app/src/main/res/layout/widget_large.xml:287: Warning: Avoid using sizes smaller than 11sp: 8sp [SmallSp]
+                    android:textSize="8sp"
+                    ~~~~~~~~~~~~~~~~~~~~~~
+/Users/milan/Desktop/TraceWave App/ChogadiyaApp/android/app/src/main/res/layout/widget_large.xml:323: Warning: Avoid using sizes smaller than 11sp: 10sp [SmallSp]
+                    android:textSize="10sp"
+                    ~~~~~~~~~~~~~~~~~~~~~~~
+/Users/milan/Desktop/TraceWave App/ChogadiyaApp/android/app/src/main/res/layout/widget_large.xml:345: Warning: Avoid using sizes smaller than 11sp: 8sp [SmallSp]
+                    android:textSize="8sp"
+                    ~~~~~~~~~~~~~~~~~~~~~~
+/Users/milan/Desktop/TraceWave App/ChogadiyaApp/android/app/src/main/res/layout/widget_large.xml:374: Warning: Avoid using sizes smaller than 11sp: 10sp [SmallSp]
+                    android:textSize="10sp"
+                    ~~~~~~~~~~~~~~~~~~~~~~~
+/Users/milan/Desktop/TraceWave App/ChogadiyaApp/android/app/src/main/res/layout/widget_large.xml:396: Warning: Avoid using sizes smaller than 11sp: 8sp [SmallSp]
+                    android:textSize="8sp"
+                    ~~~~~~~~~~~~~~~~~~~~~~
+/Users/milan/Desktop/TraceWave App/ChogadiyaApp/android/app/src/main/res/layout/widget_large.xml:425: Warning: Avoid using sizes smaller than 11sp: 10sp [SmallSp]
+                    android:textSize="10sp"
+                    ~~~~~~~~~~~~~~~~~~~~~~~
+/Users/milan/Desktop/TraceWave App/ChogadiyaApp/android/app/src/main/res/layout/widget_timeline.xml:152: Warning: Avoid using sizes smaller than 11sp: 10sp [SmallSp]
+                android:textSize="10sp"
+                ~~~~~~~~~~~~~~~~~~~~~~~
+/Users/milan/Desktop/TraceWave App/ChogadiyaApp/android/app/src/main/res/layout/widget_timeline.xml:190: Warning: Avoid using sizes smaller than 11sp: 10sp [SmallSp]
+                android:textSize="10sp"
+                ~~~~~~~~~~~~~~~~~~~~~~~
+/Users/milan/Desktop/TraceWave App/ChogadiyaApp/android/app/src/main/res/layout/widget_timeline.xml:228: Warning: Avoid using sizes smaller than 11sp: 10sp [SmallSp]
+                android:textSize="10sp"
+                ~~~~~~~~~~~~~~~~~~~~~~~
+
+   Explanation for issues of type "SmallSp":
+   Avoid using sizes smaller than 11sp.
+
+/Users/milan/Desktop/TraceWave App/ChogadiyaApp/android/app/src/main/res/layout/fragment_settings.xml:122: Warning: Missing contentDescription attribute on image [ContentDescription]
+                <ImageView
+                 ~~~~~~~~~
+/Users/milan/Desktop/TraceWave App/ChogadiyaApp/android/app/src/main/res/layout/fragment_settings.xml:154: Warning: Missing contentDescription attribute on image [ContentDescription]
+                <ImageView
+                 ~~~~~~~~~
+/Users/milan/Desktop/TraceWave App/ChogadiyaApp/android/app/src/main/res/layout/fragment_settings.xml:172: Warning: Missing contentDescription attribute on image [ContentDescription]
+                <ImageView
+                 ~~~~~~~~~
+/Users/milan/Desktop/TraceWave App/ChogadiyaApp/android/app/src/main/res/layout/fragment_settings.xml:204: Warning: Missing contentDescription attribute on image [ContentDescription]
+                <ImageView
+                 ~~~~~~~~~
+/Users/milan/Desktop/TraceWave App/ChogadiyaApp/android/app/src/main/res/layout/fragment_settings.xml:222: Warning: Missing contentDescription attribute on image [ContentDescription]
+                <ImageView
+                 ~~~~~~~~~
+/Users/milan/Desktop/TraceWave App/ChogadiyaApp/android/app/src/main/res/layout/fragment_settings.xml:254: Warning: Missing contentDescription attribute on image [ContentDescription]
+                <ImageView
+                 ~~~~~~~~~
+/Users/milan/Desktop/TraceWave App/ChogadiyaApp/android/app/src/main/res/layout/fragment_settings.xml:284: Warning: Missing contentDescription attribute on image [ContentDescription]
+                <ImageView
+                 ~~~~~~~~~
+/Users/milan/Desktop/TraceWave App/ChogadiyaApp/android/app/src/main/res/layout/fragment_settings.xml:316: Warning: Missing contentDescription attribute on image [ContentDescription]
+                <ImageView
+                 ~~~~~~~~~
+/Users/milan/Desktop/TraceWave App/ChogadiyaApp/android/app/src/main/res/layout/fragment_settings.xml:334: Warning: Missing contentDescription attribute on image [ContentDescription]
+                <ImageView
+                 ~~~~~~~~~
+/Users/milan/Desktop/TraceWave App/ChogadiyaApp/android/app/src/main/res/layout/fragment_settings.xml:366: Warning: Missing contentDescription attribute on image [ContentDescription]
+                <ImageView
+                 ~~~~~~~~~
+/Users/milan/Desktop/TraceWave App/ChogadiyaApp/android/app/src/main/res/layout/fragment_settings.xml:384: Warning: Missing contentDescription attribute on image [ContentDescription]
+                <ImageView
+                 ~~~~~~~~~
+/Users/milan/Desktop/TraceWave App/ChogadiyaApp/android/app/src/main/res/layout/fragment_settings.xml:416: Warning: Missing contentDescription attribute on image [ContentDescription]
+                <ImageView
+                 ~~~~~~~~~
+/Users/milan/Desktop/TraceWave App/ChogadiyaApp/android/app/src/main/res/layout/fragment_settings.xml:434: Warning: Missing contentDescription attribute on image [ContentDescription]
+                <ImageView
+                 ~~~~~~~~~
+/Users/milan/Desktop/TraceWave App/ChogadiyaApp/android/app/src/main/res/layout/fragment_settings.xml:466: Warning: Missing contentDescription attribute on image [ContentDescription]
+                <ImageView
+                 ~~~~~~~~~
+/Users/milan/Desktop/TraceWave App/ChogadiyaApp/android/app/src/main/res/layout/fragment_settings.xml:484: Warning: Missing contentDescription attribute on image [ContentDescription]
+                <ImageView
+                 ~~~~~~~~~
+/Users/milan/Desktop/TraceWave App/ChogadiyaApp/android/app/src/main/res/layout/fragment_settings.xml:516: Warning: Missing contentDescription attribute on image [ContentDescription]
+                <ImageView
+                 ~~~~~~~~~
+/Users/milan/Desktop/TraceWave App/ChogadiyaApp/android/app/src/main/res/layout/fragment_sky.xml:189: Warning: Missing contentDescription attribute on image [ContentDescription]
+                <ImageView
+                 ~~~~~~~~~
+/Users/milan/Desktop/TraceWave App/ChogadiyaApp/android/app/src/main/res/layout/item_city.xml:12: Warning: Missing contentDescription attribute on image [ContentDescription]
+    <ImageView
+     ~~~~~~~~~
+/Users/milan/Desktop/TraceWave App/ChogadiyaApp/android/app/src/main/res/layout/item_city.xml:44: Warning: Missing contentDescription attribute on image [ContentDescription]
+    <ImageView
+     ~~~~~~~~~
+/Users/milan/Desktop/TraceWave App/ChogadiyaApp/android/app/src/main/res/layout/page_location.xml:88: Warning: Missing contentDescription attribute on image [ContentDescription]
+                <ImageView
+                 ~~~~~~~~~
+/Users/milan/Desktop/TraceWave App/ChogadiyaApp/android/app/src/main/res/layout/page_location.xml:110: Warning: Missing contentDescription attribute on image [ContentDescription]
+                <ImageView
+                 ~~~~~~~~~
+/Users/milan/Desktop/TraceWave App/ChogadiyaApp/android/app/src/main/res/layout/page_timeline.xml:36: Warning: Missing contentDescription attribute on image [ContentDescription]
+        <ImageView
+         ~~~~~~~~~
+/Users/milan/Desktop/TraceWave App/ChogadiyaApp/android/app/src/main/res/layout/page_welcome.xml:102: Warning: Missing contentDescription attribute on image [ContentDescription]
+            <ImageView
+             ~~~~~~~~~
+/Users/milan/Desktop/TraceWave App/ChogadiyaApp/android/app/src/main/res/layout/page_welcome.xml:138: Warning: Missing contentDescription attribute on image [ContentDescription]
+            <ImageView
+             ~~~~~~~~~
+/Users/milan/Desktop/TraceWave App/ChogadiyaApp/android/app/src/main/res/layout/widget_detail_card.xml:29: Warning: Missing contentDescription attribute on image [ContentDescription]
+                <ImageView
+                 ~~~~~~~~~
+/Users/milan/Desktop/TraceWave App/ChogadiyaApp/android/app/src/main/res/layout/widget_detail_card.xml:80: Warning: Missing contentDescription attribute on image [ContentDescription]
+                <ImageView
+                 ~~~~~~~~~
+/Users/milan/Desktop/TraceWave App/ChogadiyaApp/android/app/src/main/res/layout/widget_detail_card.xml:131: Warning: Missing contentDescription attribute on image [ContentDescription]
+                <ImageView
+                 ~~~~~~~~~
+/Users/milan/Desktop/TraceWave App/ChogadiyaApp/android/app/src/main/res/layout/widget_detail_card.xml:189: Warning: Missing contentDescription attribute on image [ContentDescription]
+                <ImageView
+                 ~~~~~~~~~
+/Users/milan/Desktop/TraceWave App/ChogadiyaApp/android/app/src/main/res/layout/widget_detail_card.xml:240: Warning: Missing contentDescription attribute on image [ContentDescription]
+                <ImageView
+                 ~~~~~~~~~
+/Users/milan/Desktop/TraceWave App/ChogadiyaApp/android/app/src/main/res/layout/widget_detail_card.xml:291: Warning: Missing contentDescription attribute on image [ContentDescription]
+                <ImageView
+                 ~~~~~~~~~
+/Users/milan/Desktop/TraceWave App/ChogadiyaApp/android/app/src/main/res/layout/widget_detail_card.xml:347: Warning: Missing contentDescription attribute on image [ContentDescription]
+                <ImageView
+                 ~~~~~~~~~
+/Users/milan/Desktop/TraceWave App/ChogadiyaApp/android/app/src/main/res/layout/widget_detail_card.xml:485: Warning: Missing contentDescription attribute on image [ContentDescription]
+                    <ImageView
+                     ~~~~~~~~~
+/Users/milan/Desktop/TraceWave App/ChogadiyaApp/android/app/src/main/res/layout/widget_detail_card.xml:531: Warning: Missing contentDescription attribute on image [ContentDescription]
+                    <ImageView
+                     ~~~~~~~~~
+/Users/milan/Desktop/TraceWave App/ChogadiyaApp/android/app/src/main/res/layout/widget_detail_card.xml:576: Warning: Missing contentDescription attribute on image [ContentDescription]
+                    <ImageView
+                     ~~~~~~~~~
+/Users/milan/Desktop/TraceWave App/ChogadiyaApp/android/app/src/main/res/layout/widget_large.xml:52: Warning: Missing contentDescription attribute on image [ContentDescription]
+            <ImageView
+             ~~~~~~~~~
+/Users/milan/Desktop/TraceWave App/ChogadiyaApp/android/app/src/main/res/layout/widget_large.xml:151: Warning: Missing contentDescription attribute on image [ContentDescription]
+                <ImageView
+                 ~~~~~~~~~
+/Users/milan/Desktop/TraceWave App/ChogadiyaApp/android/app/src/main/res/layout/widget_large.xml:202: Warning: Missing contentDescription attribute on image [ContentDescription]
+                <ImageView
+                 ~~~~~~~~~
+/Users/milan/Desktop/TraceWave App/ChogadiyaApp/android/app/src/main/res/layout/widget_large.xml:253: Warning: Missing contentDescription attribute on image [ContentDescription]
+                <ImageView
+                 ~~~~~~~~~
+/Users/milan/Desktop/TraceWave App/ChogadiyaApp/android/app/src/main/res/layout/widget_large.xml:311: Warning: Missing contentDescription attribute on image [ContentDescription]
+                <ImageView
+                 ~~~~~~~~~
+/Users/milan/Desktop/TraceWave App/ChogadiyaApp/android/app/src/main/res/layout/widget_large.xml:362: Warning: Missing contentDescription attribute on image [ContentDescription]
+                <ImageView
+                 ~~~~~~~~~
+/Users/milan/Desktop/TraceWave App/ChogadiyaApp/android/app/src/main/res/layout/widget_large.xml:413: Warning: Missing contentDescription attribute on image [ContentDescription]
+                <ImageView
+                 ~~~~~~~~~
+/Users/milan/Desktop/TraceWave App/ChogadiyaApp/android/app/src/main/res/layout/widget_large.xml:473: Warning: Missing contentDescription attribute on image [ContentDescription]
+            <ImageView
+             ~~~~~~~~~
+/Users/milan/Desktop/TraceWave App/ChogadiyaApp/android/app/src/main/res/layout/widget_large.xml:509: Warning: Missing contentDescription attribute on image [ContentDescription]
+            <ImageView
+             ~~~~~~~~~
+/Users/milan/Desktop/TraceWave App/ChogadiyaApp/android/app/src/main/res/layout/widget_large.xml:545: Warning: Missing contentDescription attribute on image [ContentDescription]
+            <ImageView
+             ~~~~~~~~~
+/Users/milan/Desktop/TraceWave App/ChogadiyaApp/android/app/src/main/res/layout/widget_timeline.xml:25: Warning: Missing contentDescription attribute on image [ContentDescription]
+        <ImageView
+         ~~~~~~~~~
+/Users/milan/Desktop/TraceWave App/ChogadiyaApp/android/app/src/main/res/layout/widget_timeline.xml:125: Warning: Missing contentDescription attribute on image [ContentDescription]
+            <ImageView
+             ~~~~~~~~~
+/Users/milan/Desktop/TraceWave App/ChogadiyaApp/android/app/src/main/res/layout/widget_timeline.xml:163: Warning: Missing contentDescription attribute on image [ContentDescription]
+            <ImageView
+             ~~~~~~~~~
+/Users/milan/Desktop/TraceWave App/ChogadiyaApp/android/app/src/main/res/layout/widget_timeline.xml:201: Warning: Missing contentDescription attribute on image [ContentDescription]
+            <ImageView
+             ~~~~~~~~~
+
+   Explanation for issues of type "ContentDescription":
+   Non-textual widgets like ImageViews and ImageButtons should use the
+   contentDescription attribute to specify a textual description of the widget
+   such that screen readers and other accessibility tools can adequately
+   describe the user interface.
+
+   Note that elements in application screens that are purely decorative and do
+   not provide any content or enable a user action should not have
+   accessibility content descriptions. In this case, set their descriptions to
+   @null. If your app's minSdkVersion is 16 or higher, you can instead set
+   these graphical elements' android:importantForAccessibility attributes to
+   no.
+
+   Note that for text fields, you should not set both the hint and the
+   contentDescription attributes since the hint will never be shown. Just set
+   the hint.
+
+   https://developer.android.com/guide/topics/ui/accessibility/apps#special-cases
+
+/Users/milan/Desktop/TraceWave App/ChogadiyaApp/android/app/src/main/java/com/techmeeva/chogadiyawidgets/features/calendar/CalendarFragment.kt:302: Warning: Do not concatenate text displayed with setText. Use resource string with placeholders. [SetTextI18n]
+            tvSlotTimeRange.text = "${AppLocalizer.localizedTime(slot.startTime, language)} - ${AppLocalizer.localizedTime(slot.endTime, language)}"
+                                   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/Users/milan/Desktop/TraceWave App/ChogadiyaApp/android/app/src/main/java/com/techmeeva/chogadiyawidgets/features/calendar/CalendarFragment.kt:432: Warning: Number formatting does not take into account locale settings. Consider using String.format instead. [SetTextI18n]
+            tvDayNumber.text = cellCal.get(Calendar.DAY_OF_MONTH).toString()
+                               ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/Users/milan/Desktop/TraceWave App/ChogadiyaApp/android/app/src/main/java/com/techmeeva/chogadiyawidgets/features/home/HomeFragment.kt:67: Warning: String literal in setText can not be translated. Use Android resources instead. [SetTextI18n]
+        binding.tvHomeLoading.text = "Updating today’s flow"
+                                      ~~~~~~~~~~~~~~~~~~~~~
+/Users/milan/Desktop/TraceWave App/ChogadiyaApp/android/app/src/main/java/com/techmeeva/chogadiyawidgets/features/home/HomeFragment.kt:187: Warning: String literal in setText can not be translated. Use Android resources instead. [SetTextI18n]
+        binding.tvHomeTitle.text = "Shubh Muhurat"
+                                    ~~~~~~~~~~~~~
+/Users/milan/Desktop/TraceWave App/ChogadiyaApp/android/app/src/main/java/com/techmeeva/chogadiyawidgets/features/onboarding/OnboardingFragment.kt:257: Warning: Do not concatenate text displayed with setText. Use resource string with placeholders. [SetTextI18n]
+                        tvCityDetails.text = "${city.state}, ${city.country}"
+                                             ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/Users/milan/Desktop/TraceWave App/ChogadiyaApp/android/app/src/main/java/com/techmeeva/chogadiyawidgets/features/settings/SettingsFragment.kt:106: Warning: String literal in setText can not be translated. Use Android resources instead. [SetTextI18n]
+        binding.tvSettingsBrandTitle.text = "Shubh Muhurat"
+                                             ~~~~~~~~~~~~~
+/Users/milan/Desktop/TraceWave App/ChogadiyaApp/android/app/src/main/java/com/techmeeva/chogadiyawidgets/features/settings/SettingsFragment.kt:110: Warning: Do not concatenate text displayed with setText. Use resource string with placeholders. [SetTextI18n]
+        binding.tvSupportHeader.text = AppLocalizer.text(AppTextKey.SYSTEM, language).uppercase(Locale.US) + " & INFO"
+                                       ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/Users/milan/Desktop/TraceWave App/ChogadiyaApp/android/app/src/main/java/com/techmeeva/chogadiyawidgets/features/settings/SettingsFragment.kt:110: Warning: String literal in setText can not be translated. Use Android resources instead. [SetTextI18n]
+        binding.tvSupportHeader.text = AppLocalizer.text(AppTextKey.SYSTEM, language).uppercase(Locale.US) + " & INFO"
+                                                                                                              ~~~~~~~
+/Users/milan/Desktop/TraceWave App/ChogadiyaApp/android/app/src/main/java/com/techmeeva/chogadiyawidgets/features/sky/SkyFragment.kt:196: Warning: Do not concatenate text displayed with setText. Use resource string with placeholders. [SetTextI18n]
+            tvSlotTimeRange.text = "${AppLocalizer.localizedTime(window.startTime, language)} - ${AppLocalizer.localizedTime(window.endTime, language)}"
+                                   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+   Explanation for issues of type "SetTextI18n":
+   When calling TextView#setText
+   * Never call Number#toString() to format numbers; it will not handle
+   fraction separators and locale-specific digits properly. Consider using
+   String#format with proper format specifications (%d or %f) instead.
+   * Do not pass a string literal (e.g. "Hello") to display text. Hardcoded
+   text can not be properly translated to other languages. Consider using
+   Android resource strings instead.
+   * Do not build messages by concatenating text chunks. Such messages can not
+   be properly translated.
+
+   https://developer.android.com/guide/topics/resources/localization.html
+
+/Users/milan/Desktop/TraceWave App/ChogadiyaApp/android/app/src/main/res/menu/bottom_nav_menu.xml:7: Warning: Hardcoded string "Home", should use @string resource [HardcodedText]
+        android:title="Home" />
+        ~~~~~~~~~~~~~~~~~~~~
+/Users/milan/Desktop/TraceWave App/ChogadiyaApp/android/app/src/main/res/menu/bottom_nav_menu.xml:11: Warning: Hardcoded string "Calendar", should use @string resource [HardcodedText]
+        android:title="Calendar" />
+        ~~~~~~~~~~~~~~~~~~~~~~~~
+/Users/milan/Desktop/TraceWave App/ChogadiyaApp/android/app/src/main/res/menu/bottom_nav_menu.xml:15: Warning: Hardcoded string "Sky", should use @string resource [HardcodedText]
+        android:title="Sky" />
+        ~~~~~~~~~~~~~~~~~~~
+/Users/milan/Desktop/TraceWave App/ChogadiyaApp/android/app/src/main/res/menu/bottom_nav_menu.xml:19: Warning: Hardcoded string "Settings", should use @string resource [HardcodedText]
+        android:title="Settings" />
+        ~~~~~~~~~~~~~~~~~~~~~~~~
+/Users/milan/Desktop/TraceWave App/ChogadiyaApp/android/app/src/main/res/layout/fragment_calendar.xml:139: Warning: Hardcoded string "June 2026", should use @string resource [HardcodedText]
+                        android:text="June 2026"
+                        ~~~~~~~~~~~~~~~~~~~~~~~~
+/Users/milan/Desktop/TraceWave App/ChogadiyaApp/android/app/src/main/res/layout/fragment_calendar.xml:308: Warning: Hardcoded string "1 June 2026", should use @string resource [HardcodedText]
+                    android:text="1 June 2026"
+                    ~~~~~~~~~~~~~~~~~~~~~~~~~~
+/Users/milan/Desktop/TraceWave App/ChogadiyaApp/android/app/src/main/res/layout/fragment_calendar.xml:334: Warning: Hardcoded string "DAYTIME", should use @string resource [HardcodedText]
+                    android:text="DAYTIME"
+                    ~~~~~~~~~~~~~~~~~~~~~~
+/Users/milan/Desktop/TraceWave App/ChogadiyaApp/android/app/src/main/res/layout/fragment_calendar.xml:351: Warning: Hardcoded string "NIGHTTIME", should use @string resource [HardcodedText]
+                    android:text="NIGHTTIME"
+                    ~~~~~~~~~~~~~~~~~~~~~~~~
+/Users/milan/Desktop/TraceWave App/ChogadiyaApp/android/app/src/main/res/layout/fragment_calendar.xml:389: Warning: Hardcoded string "Celestial Premium", should use @string resource [HardcodedText]
+                    android:text="Celestial Premium"
+                    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/Users/milan/Desktop/TraceWave App/ChogadiyaApp/android/app/src/main/res/layout/fragment_home.xml:55: Warning: Hardcoded string "Shubh Muhurat", should use @string resource [HardcodedText]
+                android:text="Shubh Muhurat"
+                ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/Users/milan/Desktop/TraceWave App/ChogadiyaApp/android/app/src/main/res/layout/fragment_home.xml:156: Warning: Hardcoded string "Detecting...", should use @string resource [HardcodedText]
+                        android:text="Detecting..."
+                        ~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/Users/milan/Desktop/TraceWave App/ChogadiyaApp/android/app/src/main/res/layout/fragment_home.xml:317: Warning: Hardcoded string "ACTIVE NOW", should use @string resource [HardcodedText]
+                            android:text="ACTIVE NOW"
+                            ~~~~~~~~~~~~~~~~~~~~~~~~~
+/Users/milan/Desktop/TraceWave App/ChogadiyaApp/android/app/src/main/res/layout/fragment_home.xml:375: Warning: Hardcoded string "Amrit", should use @string resource [HardcodedText]
+                            android:text="Amrit"
+                            ~~~~~~~~~~~~~~~~~~~~
+/Users/milan/Desktop/TraceWave App/ChogadiyaApp/android/app/src/main/res/layout/fragment_home.xml:388: Warning: Hardcoded string "Best slot. Good for all auspicious works.", should use @string resource [HardcodedText]
+                        android:text="Best slot. Good for all auspicious works."
+                        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/Users/milan/Desktop/TraceWave App/ChogadiyaApp/android/app/src/main/res/layout/fragment_home.xml:401: Warning: Hardcoded string "00:00:00", should use @string resource [HardcodedText]
+                        android:text="00:00:00"
+                        ~~~~~~~~~~~~~~~~~~~~~~~
+/Users/milan/Desktop/TraceWave App/ChogadiyaApp/android/app/src/main/res/layout/fragment_home.xml:424: Warning: Hardcoded string "06:30 AM - 08:00 AM", should use @string resource [HardcodedText]
+                        android:text="06:30 AM - 08:00 AM"
+                        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/Users/milan/Desktop/TraceWave App/ChogadiyaApp/android/app/src/main/res/layout/fragment_home.xml:475: Warning: Hardcoded string "--:--", should use @string resource [HardcodedText]
+                            android:text="--:--"
+                            ~~~~~~~~~~~~~~~~~~~~
+/Users/milan/Desktop/TraceWave App/ChogadiyaApp/android/app/src/main/res/layout/fragment_home.xml:519: Warning: Hardcoded string "--:--", should use @string resource [HardcodedText]
+                            android:text="--:--"
+                            ~~~~~~~~~~~~~~~~~~~~
+/Users/milan/Desktop/TraceWave App/ChogadiyaApp/android/app/src/main/res/layout/fragment_home.xml:562: Warning: Hardcoded string "Offline Cache", should use @string resource [HardcodedText]
+                            android:text="Offline Cache"
+                            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/Users/milan/Desktop/TraceWave App/ChogadiyaApp/android/app/src/main/res/layout/fragment_settings.xml:24: Warning: Hardcoded string "Settings", should use @string resource [HardcodedText]
+            android:text="Settings"
+            ~~~~~~~~~~~~~~~~~~~~~~~
+/Users/milan/Desktop/TraceWave App/ChogadiyaApp/android/app/src/main/res/layout/fragment_settings.xml:82: Warning: Hardcoded string "Shubh Muhurat", should use @string resource [HardcodedText]
+                    android:text="Shubh Muhurat"
+                    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/Users/milan/Desktop/TraceWave App/ChogadiyaApp/android/app/src/main/res/layout/fragment_settings.xml:93: Warning: Hardcoded string "Auspicious Timings & Celestial Alignment", should use @string resource [HardcodedText]
+                    android:text="Auspicious Timings &amp; Celestial Alignment"
+                    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/Users/milan/Desktop/TraceWave App/ChogadiyaApp/android/app/src/main/res/layout/fragment_settings.xml:106: Warning: Hardcoded string "PREFERENCES", should use @string resource [HardcodedText]
+                android:text="PREFERENCES"
+                ~~~~~~~~~~~~~~~~~~~~~~~~~~
+/Users/milan/Desktop/TraceWave App/ChogadiyaApp/android/app/src/main/res/layout/fragment_settings.xml:139: Warning: Hardcoded string "Language", should use @string resource [HardcodedText]
+                        android:text="Language"
+                        ~~~~~~~~~~~~~~~~~~~~~~~
+/Users/milan/Desktop/TraceWave App/ChogadiyaApp/android/app/src/main/res/layout/fragment_settings.xml:149: Warning: Hardcoded string "English", should use @string resource [HardcodedText]
+                        android:text="English"
+                        ~~~~~~~~~~~~~~~~~~~~~~
+/Users/milan/Desktop/TraceWave App/ChogadiyaApp/android/app/src/main/res/layout/fragment_settings.xml:189: Warning: Hardcoded string "Location", should use @string resource [HardcodedText]
+                        android:text="Location"
+                        ~~~~~~~~~~~~~~~~~~~~~~~
+/Users/milan/Desktop/TraceWave App/ChogadiyaApp/android/app/src/main/res/layout/fragment_settings.xml:199: Warning: Hardcoded string "Ahmedabad", should use @string resource [HardcodedText]
+                        android:text="Ahmedabad"
+                        ~~~~~~~~~~~~~~~~~~~~~~~~
+/Users/milan/Desktop/TraceWave App/ChogadiyaApp/android/app/src/main/res/layout/fragment_settings.xml:239: Warning: Hardcoded string "Appearance", should use @string resource [HardcodedText]
+                        android:text="Appearance"
+                        ~~~~~~~~~~~~~~~~~~~~~~~~~
+/Users/milan/Desktop/TraceWave App/ChogadiyaApp/android/app/src/main/res/layout/fragment_settings.xml:249: Warning: Hardcoded string "System", should use @string resource [HardcodedText]
+                        android:text="System"
+                        ~~~~~~~~~~~~~~~~~~~~~
+/Users/milan/Desktop/TraceWave App/ChogadiyaApp/android/app/src/main/res/layout/fragment_settings.xml:268: Warning: Hardcoded string "SUPPORT & INFO", should use @string resource [HardcodedText]
+                android:text="SUPPORT &amp; INFO"
+                ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/Users/milan/Desktop/TraceWave App/ChogadiyaApp/android/app/src/main/res/layout/fragment_settings.xml:301: Warning: Hardcoded string "Replay Onboarding", should use @string resource [HardcodedText]
+                        android:text="Replay Onboarding"
+                        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/Users/milan/Desktop/TraceWave App/ChogadiyaApp/android/app/src/main/res/layout/fragment_settings.xml:311: Warning: Hardcoded string "See the introduction again", should use @string resource [HardcodedText]
+                        android:text="See the introduction again"
+                        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/Users/milan/Desktop/TraceWave App/ChogadiyaApp/android/app/src/main/res/layout/fragment_settings.xml:351: Warning: Hardcoded string "Share App", should use @string resource [HardcodedText]
+                        android:text="Share App"
+                        ~~~~~~~~~~~~~~~~~~~~~~~~
+/Users/milan/Desktop/TraceWave App/ChogadiyaApp/android/app/src/main/res/layout/fragment_settings.xml:361: Warning: Hardcoded string "Invite friends to Shubh Muhurat", should use @string resource [HardcodedText]
+                        android:text="Invite friends to Shubh Muhurat"
+                        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/Users/milan/Desktop/TraceWave App/ChogadiyaApp/android/app/src/main/res/layout/fragment_settings.xml:401: Warning: Hardcoded string "Rate App", should use @string resource [HardcodedText]
+                        android:text="Rate App"
+                        ~~~~~~~~~~~~~~~~~~~~~~~
+/Users/milan/Desktop/TraceWave App/ChogadiyaApp/android/app/src/main/res/layout/fragment_settings.xml:411: Warning: Hardcoded string "Support us on Play Store", should use @string resource [HardcodedText]
+                        android:text="Support us on Play Store"
+                        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/Users/milan/Desktop/TraceWave App/ChogadiyaApp/android/app/src/main/res/layout/fragment_settings.xml:451: Warning: Hardcoded string "Privacy Policy", should use @string resource [HardcodedText]
+                        android:text="Privacy Policy"
+                        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/Users/milan/Desktop/TraceWave App/ChogadiyaApp/android/app/src/main/res/layout/fragment_settings.xml:461: Warning: Hardcoded string "Read our terms and privacy", should use @string resource [HardcodedText]
+                        android:text="Read our terms and privacy"
+                        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/Users/milan/Desktop/TraceWave App/ChogadiyaApp/android/app/src/main/res/layout/fragment_settings.xml:501: Warning: Hardcoded string "Terms & Conditions", should use @string resource [HardcodedText]
+                        android:text="Terms &amp; Conditions"
+                        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/Users/milan/Desktop/TraceWave App/ChogadiyaApp/android/app/src/main/res/layout/fragment_settings.xml:511: Warning: Hardcoded string "Open legal page", should use @string resource [HardcodedText]
+                        android:text="Open legal page"
+                        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/Users/milan/Desktop/TraceWave App/ChogadiyaApp/android/app/src/main/res/layout/fragment_sky.xml:54: Warning: Hardcoded string "Solar & Lunar", should use @string resource [HardcodedText]
+                android:text="Solar &amp; Lunar"
+                ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/Users/milan/Desktop/TraceWave App/ChogadiyaApp/android/app/src/main/res/layout/fragment_sky.xml:201: Warning: Hardcoded string "Waxing Gibbous", should use @string resource [HardcodedText]
+                    android:text="Waxing Gibbous"
+                    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/Users/milan/Desktop/TraceWave App/ChogadiyaApp/android/app/src/main/res/layout/fragment_sky.xml:211: Warning: Hardcoded string "85% Illumination", should use @string resource [HardcodedText]
+                    android:text="85% Illumination"
+                    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/Users/milan/Desktop/TraceWave App/ChogadiyaApp/android/app/src/main/res/layout/fragment_sky.xml:239: Warning: Hardcoded string "SOLAR NOON", should use @string resource [HardcodedText]
+                            android:text="SOLAR NOON"
+                            ~~~~~~~~~~~~~~~~~~~~~~~~~
+/Users/milan/Desktop/TraceWave App/ChogadiyaApp/android/app/src/main/res/layout/fragment_sky.xml:249: Warning: Hardcoded string "--:--", should use @string resource [HardcodedText]
+                            android:text="--:--"
+                            ~~~~~~~~~~~~~~~~~~~~
+/Users/milan/Desktop/TraceWave App/ChogadiyaApp/android/app/src/main/res/layout/fragment_sky.xml:258: Warning: Hardcoded string "SUNRISE", should use @string resource [HardcodedText]
+                            android:text="SUNRISE"
+                            ~~~~~~~~~~~~~~~~~~~~~~
+/Users/milan/Desktop/TraceWave App/ChogadiyaApp/android/app/src/main/res/layout/fragment_sky.xml:268: Warning: Hardcoded string "--:--", should use @string resource [HardcodedText]
+                            android:text="--:--"
+                            ~~~~~~~~~~~~~~~~~~~~
+/Users/milan/Desktop/TraceWave App/ChogadiyaApp/android/app/src/main/res/layout/fragment_sky.xml:290: Warning: Hardcoded string "MOONRISE", should use @string resource [HardcodedText]
+                            android:text="MOONRISE"
+                            ~~~~~~~~~~~~~~~~~~~~~~~
+/Users/milan/Desktop/TraceWave App/ChogadiyaApp/android/app/src/main/res/layout/fragment_sky.xml:300: Warning: Hardcoded string "--:--", should use @string resource [HardcodedText]
+                            android:text="--:--"
+                            ~~~~~~~~~~~~~~~~~~~~
+/Users/milan/Desktop/TraceWave App/ChogadiyaApp/android/app/src/main/res/layout/fragment_sky.xml:309: Warning: Hardcoded string "MOONSET", should use @string resource [HardcodedText]
+                            android:text="MOONSET"
+                            ~~~~~~~~~~~~~~~~~~~~~~
+/Users/milan/Desktop/TraceWave App/ChogadiyaApp/android/app/src/main/res/layout/fragment_sky.xml:319: Warning: Hardcoded string "--:--", should use @string resource [HardcodedText]
+                            android:text="--:--"
+                            ~~~~~~~~~~~~~~~~~~~~
+/Users/milan/Desktop/TraceWave App/ChogadiyaApp/android/app/src/main/res/layout/fragment_sky.xml:335: Warning: Hardcoded string "AUSPICIOUS MUHURAT WINDOWS", should use @string resource [HardcodedText]
+                android:text="AUSPICIOUS MUHURAT WINDOWS"
+                ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/Users/milan/Desktop/TraceWave App/ChogadiyaApp/android/app/src/main/res/layout/fragment_sky.xml:357: Warning: Hardcoded string "IN-AUSPICIOUS OBSTACLES", should use @string resource [HardcodedText]
+                android:text="IN-AUSPICIOUS OBSTACLES"
+                ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/Users/milan/Desktop/TraceWave App/ChogadiyaApp/android/app/src/main/res/layout/page_location.xml:44: Warning: Hardcoded string "Choose your timingnzone", should use @string resource [HardcodedText]
+        android:text="Choose your timing\nzone"
+        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/Users/milan/Desktop/TraceWave App/ChogadiyaApp/android/app/src/main/res/layout/page_location.xml:128: Warning: Hardcoded string "Use Current Location", should use @string resource [HardcodedText]
+                        android:text="Use Current Location"
+                        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/Users/milan/Desktop/TraceWave App/ChogadiyaApp/android/app/src/main/res/layout/page_location.xml:138: Warning: Hardcoded string "Detect accurate timings for your exact location", should use @string resource [HardcodedText]
+                        android:text="Detect accurate timings for your exact location"
+                        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/Users/milan/Desktop/TraceWave App/ChogadiyaApp/android/app/src/main/res/layout/page_location.xml:163: Warning: Hardcoded string "SELECT LOCATION", should use @string resource [HardcodedText]
+                    android:text="SELECT LOCATION"
+                    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/Users/milan/Desktop/TraceWave App/ChogadiyaApp/android/app/src/main/res/layout/page_location.xml:209: Warning: Hardcoded string "START EXPLORING", should use @string resource [HardcodedText]
+            android:text="START EXPLORING"
+            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/Users/milan/Desktop/TraceWave App/ChogadiyaApp/android/app/src/main/res/layout/page_timeline.xml:55: Warning: Hardcoded string "Follow the real flow, not a static table", should use @string resource [HardcodedText]
+        android:text="Follow the real flow, not a static table"
+        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/Users/milan/Desktop/TraceWave App/ChogadiyaApp/android/app/src/main/res/layout/page_timeline.xml:69: Warning: Hardcoded string "The app shows the current slot plus the next six chronological slots, including night Choghadiya after midnight.", should use @string resource [HardcodedText]
+        android:text="The app shows the current slot plus the next six chronological slots, including night Choghadiya after midnight."
+        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/Users/milan/Desktop/TraceWave App/ChogadiyaApp/android/app/src/main/res/layout/page_timeline.xml:132: Warning: Hardcoded string "Amrit", should use @string resource [HardcodedText]
+                        android:text="Amrit"
+                        ~~~~~~~~~~~~~~~~~~~~
+/Users/milan/Desktop/TraceWave App/ChogadiyaApp/android/app/src/main/res/layout/page_timeline.xml:145: Warning: Hardcoded string "ACTIVE NOW", should use @string resource [HardcodedText]
+                        android:text="ACTIVE NOW"
+                        ~~~~~~~~~~~~~~~~~~~~~~~~~
+/Users/milan/Desktop/TraceWave App/ChogadiyaApp/android/app/src/main/res/layout/page_timeline.xml:155: Warning: Hardcoded string "06:30 AM - 08:00 AM", should use @string resource [HardcodedText]
+                    android:text="06:30 AM - 08:00 AM"
+                    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/Users/milan/Desktop/TraceWave App/ChogadiyaApp/android/app/src/main/res/layout/page_timeline.xml:198: Warning: Hardcoded string "Shubh", should use @string resource [HardcodedText]
+                        android:text="Shubh"
+                        ~~~~~~~~~~~~~~~~~~~~
+/Users/milan/Desktop/TraceWave App/ChogadiyaApp/android/app/src/main/res/layout/page_timeline.xml:210: Warning: Hardcoded string "NEXT", should use @string resource [HardcodedText]
+                        android:text="NEXT"
+                        ~~~~~~~~~~~~~~~~~~~
+/Users/milan/Desktop/TraceWave App/ChogadiyaApp/android/app/src/main/res/layout/page_timeline.xml:220: Warning: Hardcoded string "08:00 AM - 09:30 AM", should use @string resource [HardcodedText]
+                    android:text="08:00 AM - 09:30 AM"
+                    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/Users/milan/Desktop/TraceWave App/ChogadiyaApp/android/app/src/main/res/layout/page_timeline.xml:258: Warning: Hardcoded string "Labh", should use @string resource [HardcodedText]
+                    android:text="Labh"
+                    ~~~~~~~~~~~~~~~~~~~
+/Users/milan/Desktop/TraceWave App/ChogadiyaApp/android/app/src/main/res/layout/page_timeline.xml:266: Warning: Hardcoded string "09:30 AM - 11:00 AM", should use @string resource [HardcodedText]
+                    android:text="09:30 AM - 11:00 AM"
+                    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/Users/milan/Desktop/TraceWave App/ChogadiyaApp/android/app/src/main/res/layout/page_timeline.xml:320: Warning: Hardcoded string "NEXT", should use @string resource [HardcodedText]
+            android:text="NEXT"
+            ~~~~~~~~~~~~~~~~~~~
+/Users/milan/Desktop/TraceWave App/ChogadiyaApp/android/app/src/main/res/layout/page_welcome.xml:59: Warning: Hardcoded string "Know the right time", should use @string resource [HardcodedText]
+        android:text="Know the right time"
+        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/Users/milan/Desktop/TraceWave App/ChogadiyaApp/android/app/src/main/res/layout/page_welcome.xml:73: Warning: Hardcoded string "Align your daily actions with cosmic rhythms effortlessly.", should use @string resource [HardcodedText]
+        android:text="Align your daily actions with cosmic rhythms effortlessly."
+        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/Users/milan/Desktop/TraceWave App/ChogadiyaApp/android/app/src/main/res/layout/page_welcome.xml:112: Warning: Hardcoded string "LOCK WIDGETS", should use @string resource [HardcodedText]
+                android:text="LOCK WIDGETS"
+                ~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/Users/milan/Desktop/TraceWave App/ChogadiyaApp/android/app/src/main/res/layout/page_welcome.xml:122: Warning: Hardcoded string "Lock screen and home widgets display timings instantly.", should use @string resource [HardcodedText]
+                android:text="Lock screen and home widgets display timings instantly."
+                ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/Users/milan/Desktop/TraceWave App/ChogadiyaApp/android/app/src/main/res/layout/page_welcome.xml:148: Warning: Hardcoded string "OFFLINE ACCESS", should use @string resource [HardcodedText]
+                android:text="OFFLINE ACCESS"
+                ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/Users/milan/Desktop/TraceWave App/ChogadiyaApp/android/app/src/main/res/layout/page_welcome.xml:158: Warning: Hardcoded string "Robust offline cache keeps you guided without network.", should use @string resource [HardcodedText]
+                android:text="Robust offline cache keeps you guided without network."
+                ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/Users/milan/Desktop/TraceWave App/ChogadiyaApp/android/app/src/main/res/layout/page_welcome.xml:210: Warning: Hardcoded string "CONTINUE", should use @string resource [HardcodedText]
+            android:text="CONTINUE"
+            ~~~~~~~~~~~~~~~~~~~~~~~
+/Users/milan/Desktop/TraceWave App/ChogadiyaApp/android/app/src/main/res/layout/widget_detail_card.xml:39: Warning: Hardcoded string "Sunrise", should use @string resource [HardcodedText]
+                    android:text="Sunrise"
+                    ~~~~~~~~~~~~~~~~~~~~~~
+/Users/milan/Desktop/TraceWave App/ChogadiyaApp/android/app/src/main/res/layout/widget_detail_card.xml:50: Warning: Hardcoded string "5:55", should use @string resource [HardcodedText]
+                    android:text="5:55"
+                    ~~~~~~~~~~~~~~~~~~~
+/Users/milan/Desktop/TraceWave App/ChogadiyaApp/android/app/src/main/res/layout/widget_detail_card.xml:61: Warning: Hardcoded string "AM", should use @string resource [HardcodedText]
+                    android:text="AM"
+                    ~~~~~~~~~~~~~~~~~
+/Users/milan/Desktop/TraceWave App/ChogadiyaApp/android/app/src/main/res/layout/widget_detail_card.xml:90: Warning: Hardcoded string "Sunset", should use @string resource [HardcodedText]
+                    android:text="Sunset"
+                    ~~~~~~~~~~~~~~~~~~~~~
+/Users/milan/Desktop/TraceWave App/ChogadiyaApp/android/app/src/main/res/layout/widget_detail_card.xml:101: Warning: Hardcoded string "7:28", should use @string resource [HardcodedText]
+                    android:text="7:28"
+                    ~~~~~~~~~~~~~~~~~~~
+/Users/milan/Desktop/TraceWave App/ChogadiyaApp/android/app/src/main/res/layout/widget_detail_card.xml:112: Warning: Hardcoded string "PM", should use @string resource [HardcodedText]
+                    android:text="PM"
+                    ~~~~~~~~~~~~~~~~~
+/Users/milan/Desktop/TraceWave App/ChogadiyaApp/android/app/src/main/res/layout/widget_detail_card.xml:141: Warning: Hardcoded string "Moonrise", should use @string resource [HardcodedText]
+                    android:text="Moonrise"
+                    ~~~~~~~~~~~~~~~~~~~~~~~
+/Users/milan/Desktop/TraceWave App/ChogadiyaApp/android/app/src/main/res/layout/widget_detail_card.xml:152: Warning: Hardcoded string "4:35", should use @string resource [HardcodedText]
+                    android:text="4:35"
+                    ~~~~~~~~~~~~~~~~~~~
+/Users/milan/Desktop/TraceWave App/ChogadiyaApp/android/app/src/main/res/layout/widget_detail_card.xml:163: Warning: Hardcoded string "PM", should use @string resource [HardcodedText]
+                    android:text="PM"
+                    ~~~~~~~~~~~~~~~~~
+/Users/milan/Desktop/TraceWave App/ChogadiyaApp/android/app/src/main/res/layout/widget_detail_card.xml:199: Warning: Hardcoded string "Moonset", should use @string resource [HardcodedText]
+                    android:text="Moonset"
+                    ~~~~~~~~~~~~~~~~~~~~~~
+/Users/milan/Desktop/TraceWave App/ChogadiyaApp/android/app/src/main/res/layout/widget_detail_card.xml:210: Warning: Hardcoded string "2:44", should use @string resource [HardcodedText]
+                    android:text="2:44"
+                    ~~~~~~~~~~~~~~~~~~~
+/Users/milan/Desktop/TraceWave App/ChogadiyaApp/android/app/src/main/res/layout/widget_detail_card.xml:221: Warning: Hardcoded string "AM", should use @string resource [HardcodedText]
+                    android:text="AM"
+                    ~~~~~~~~~~~~~~~~~
+/Users/milan/Desktop/TraceWave App/ChogadiyaApp/android/app/src/main/res/layout/widget_detail_card.xml:250: Warning: Hardcoded string "Solar Noon", should use @string resource [HardcodedText]
+                    android:text="Solar Noon"
+                    ~~~~~~~~~~~~~~~~~~~~~~~~~
+/Users/milan/Desktop/TraceWave App/ChogadiyaApp/android/app/src/main/res/layout/widget_detail_card.xml:261: Warning: Hardcoded string "12:41", should use @string resource [HardcodedText]
+                    android:text="12:41"
+                    ~~~~~~~~~~~~~~~~~~~~
+/Users/milan/Desktop/TraceWave App/ChogadiyaApp/android/app/src/main/res/layout/widget_detail_card.xml:272: Warning: Hardcoded string "PM", should use @string resource [HardcodedText]
+                    android:text="PM"
+                    ~~~~~~~~~~~~~~~~~
+/Users/milan/Desktop/TraceWave App/ChogadiyaApp/android/app/src/main/res/layout/widget_detail_card.xml:301: Warning: Hardcoded string "Illumination", should use @string resource [HardcodedText]
+                    android:text="Illumination"
+                    ~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/Users/milan/Desktop/TraceWave App/ChogadiyaApp/android/app/src/main/res/layout/widget_detail_card.xml:312: Warning: Hardcoded string "88%", should use @string resource [HardcodedText]
+                    android:text="88%"
+                    ~~~~~~~~~~~~~~~~~~
+/Users/milan/Desktop/TraceWave App/ChogadiyaApp/android/app/src/main/res/layout/widget_detail_card.xml:360: Warning: Hardcoded string "Char", should use @string resource [HardcodedText]
+                    android:text="Char"
+                    ~~~~~~~~~~~~~~~~~~~
+/Users/milan/Desktop/TraceWave App/ChogadiyaApp/android/app/src/main/res/layout/widget_detail_card.xml:377: Warning: Hardcoded string "Current", should use @string resource [HardcodedText]
+                    android:text="Current"
+                    ~~~~~~~~~~~~~~~~~~~~~~
+/Users/milan/Desktop/TraceWave App/ChogadiyaApp/android/app/src/main/res/layout/widget_detail_card.xml:387: Warning: Hardcoded string "Normal", should use @string resource [HardcodedText]
+                    android:text="Normal"
+                    ~~~~~~~~~~~~~~~~~~~~~
+/Users/milan/Desktop/TraceWave App/ChogadiyaApp/android/app/src/main/res/layout/widget_detail_card.xml:407: Warning: Hardcoded string "00:54", should use @string resource [HardcodedText]
+                android:text="00:54"
+                ~~~~~~~~~~~~~~~~~~~~
+/Users/milan/Desktop/TraceWave App/ChogadiyaApp/android/app/src/main/res/layout/widget_detail_card.xml:418: Warning: Hardcoded string "Left", should use @string resource [HardcodedText]
+                android:text="Left"
+                ~~~~~~~~~~~~~~~~~~~
+/Users/milan/Desktop/TraceWave App/ChogadiyaApp/android/app/src/main/res/layout/widget_detail_card.xml:442: Warning: Hardcoded string "5:46 PM - 7:28 PM", should use @string resource [HardcodedText]
+            android:text="5:46 PM - 7:28 PM"
+            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/Users/milan/Desktop/TraceWave App/ChogadiyaApp/android/app/src/main/res/layout/widget_detail_card.xml:459: Warning: Hardcoded string "Next 3", should use @string resource [HardcodedText]
+            android:text="Next 3"
+            ~~~~~~~~~~~~~~~~~~~~~
+/Users/milan/Desktop/TraceWave App/ChogadiyaApp/android/app/src/main/res/layout/widget_detail_card.xml:498: Warning: Hardcoded string "Rog", should use @string resource [HardcodedText]
+                        android:text="Rog"
+                        ~~~~~~~~~~~~~~~~~~
+/Users/milan/Desktop/TraceWave App/ChogadiyaApp/android/app/src/main/res/layout/widget_detail_card.xml:511: Warning: Hardcoded string "7:28 PM", should use @string resource [HardcodedText]
+                    android:text="7:28 PM"
+                    ~~~~~~~~~~~~~~~~~~~~~~
+/Users/milan/Desktop/TraceWave App/ChogadiyaApp/android/app/src/main/res/layout/widget_detail_card.xml:544: Warning: Hardcoded string "Kaal", should use @string resource [HardcodedText]
+                        android:text="Kaal"
+                        ~~~~~~~~~~~~~~~~~~~
+/Users/milan/Desktop/TraceWave App/ChogadiyaApp/android/app/src/main/res/layout/widget_detail_card.xml:557: Warning: Hardcoded string "8:46 PM", should use @string resource [HardcodedText]
+                    android:text="8:46 PM"
+                    ~~~~~~~~~~~~~~~~~~~~~~
+/Users/milan/Desktop/TraceWave App/ChogadiyaApp/android/app/src/main/res/layout/widget_detail_card.xml:589: Warning: Hardcoded string "Labh", should use @string resource [HardcodedText]
+                        android:text="Labh"
+                        ~~~~~~~~~~~~~~~~~~~
+/Users/milan/Desktop/TraceWave App/ChogadiyaApp/android/app/src/main/res/layout/widget_detail_card.xml:602: Warning: Hardcoded string "10:05 PM", should use @string resource [HardcodedText]
+                    android:text="10:05 PM"
+                    ~~~~~~~~~~~~~~~~~~~~~~~
+/Users/milan/Desktop/TraceWave App/ChogadiyaApp/android/app/src/main/res/layout/widget_large.xml:21: Warning: Hardcoded string "Current", should use @string resource [HardcodedText]
+            android:text="Current"
+            ~~~~~~~~~~~~~~~~~~~~~~
+/Users/milan/Desktop/TraceWave App/ChogadiyaApp/android/app/src/main/res/layout/widget_large.xml:31: Warning: Hardcoded string "5:46 PM - 7:28 PM", should use @string resource [HardcodedText]
+            android:text="5:46 PM - 7:28 PM"
+            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/Users/milan/Desktop/TraceWave App/ChogadiyaApp/android/app/src/main/res/layout/widget_large.xml:65: Warning: Hardcoded string "Char", should use @string resource [HardcodedText]
+                android:text="Char"
+                ~~~~~~~~~~~~~~~~~~~
+/Users/milan/Desktop/TraceWave App/ChogadiyaApp/android/app/src/main/res/layout/widget_large.xml:83: Warning: Hardcoded string "00:54", should use @string resource [HardcodedText]
+                android:text="00:54"
+                ~~~~~~~~~~~~~~~~~~~~
+/Users/milan/Desktop/TraceWave App/ChogadiyaApp/android/app/src/main/res/layout/widget_large.xml:94: Warning: Hardcoded string "Left", should use @string resource [HardcodedText]
+                android:text="Left"
+                ~~~~~~~~~~~~~~~~~~~
+/Users/milan/Desktop/TraceWave App/ChogadiyaApp/android/app/src/main/res/layout/widget_large.xml:108: Warning: Hardcoded string "Normal", should use @string resource [HardcodedText]
+        android:text="Normal"
+        ~~~~~~~~~~~~~~~~~~~~~
+/Users/milan/Desktop/TraceWave App/ChogadiyaApp/android/app/src/main/res/layout/widget_large.xml:161: Warning: Hardcoded string "Sunrise", should use @string resource [HardcodedText]
+                    android:text="Sunrise"
+                    ~~~~~~~~~~~~~~~~~~~~~~
+/Users/milan/Desktop/TraceWave App/ChogadiyaApp/android/app/src/main/res/layout/widget_large.xml:172: Warning: Hardcoded string "5:55", should use @string resource [HardcodedText]
+                    android:text="5:55"
+                    ~~~~~~~~~~~~~~~~~~~
+/Users/milan/Desktop/TraceWave App/ChogadiyaApp/android/app/src/main/res/layout/widget_large.xml:183: Warning: Hardcoded string "AM", should use @string resource [HardcodedText]
+                    android:text="AM"
+                    ~~~~~~~~~~~~~~~~~
+/Users/milan/Desktop/TraceWave App/ChogadiyaApp/android/app/src/main/res/layout/widget_large.xml:212: Warning: Hardcoded string "Sunset", should use @string resource [HardcodedText]
+                    android:text="Sunset"
+                    ~~~~~~~~~~~~~~~~~~~~~
+/Users/milan/Desktop/TraceWave App/ChogadiyaApp/android/app/src/main/res/layout/widget_large.xml:223: Warning: Hardcoded string "7:28", should use @string resource [HardcodedText]
+                    android:text="7:28"
+                    ~~~~~~~~~~~~~~~~~~~
+/Users/milan/Desktop/TraceWave App/ChogadiyaApp/android/app/src/main/res/layout/widget_large.xml:234: Warning: Hardcoded string "PM", should use @string resource [HardcodedText]
+                    android:text="PM"
+                    ~~~~~~~~~~~~~~~~~
+/Users/milan/Desktop/TraceWave App/ChogadiyaApp/android/app/src/main/res/layout/widget_large.xml:263: Warning: Hardcoded string "Solar Noon", should use @string resource [HardcodedText]
+                    android:text="Solar Noon"
+                    ~~~~~~~~~~~~~~~~~~~~~~~~~
+/Users/milan/Desktop/TraceWave App/ChogadiyaApp/android/app/src/main/res/layout/widget_large.xml:274: Warning: Hardcoded string "12:41", should use @string resource [HardcodedText]
+                    android:text="12:41"
+                    ~~~~~~~~~~~~~~~~~~~~
+/Users/milan/Desktop/TraceWave App/ChogadiyaApp/android/app/src/main/res/layout/widget_large.xml:285: Warning: Hardcoded string "PM", should use @string resource [HardcodedText]
+                    android:text="PM"
+                    ~~~~~~~~~~~~~~~~~
+/Users/milan/Desktop/TraceWave App/ChogadiyaApp/android/app/src/main/res/layout/widget_large.xml:321: Warning: Hardcoded string "Moonrise", should use @string resource [HardcodedText]
+                    android:text="Moonrise"
+                    ~~~~~~~~~~~~~~~~~~~~~~~
+/Users/milan/Desktop/TraceWave App/ChogadiyaApp/android/app/src/main/res/layout/widget_large.xml:332: Warning: Hardcoded string "4:35", should use @string resource [HardcodedText]
+                    android:text="4:35"
+                    ~~~~~~~~~~~~~~~~~~~
+/Users/milan/Desktop/TraceWave App/ChogadiyaApp/android/app/src/main/res/layout/widget_large.xml:343: Warning: Hardcoded string "PM", should use @string resource [HardcodedText]
+                    android:text="PM"
+                    ~~~~~~~~~~~~~~~~~
+/Users/milan/Desktop/TraceWave App/ChogadiyaApp/android/app/src/main/res/layout/widget_large.xml:372: Warning: Hardcoded string "Moonset", should use @string resource [HardcodedText]
+                    android:text="Moonset"
+                    ~~~~~~~~~~~~~~~~~~~~~~
+/Users/milan/Desktop/TraceWave App/ChogadiyaApp/android/app/src/main/res/layout/widget_large.xml:383: Warning: Hardcoded string "2:44", should use @string resource [HardcodedText]
+                    android:text="2:44"
+                    ~~~~~~~~~~~~~~~~~~~
+/Users/milan/Desktop/TraceWave App/ChogadiyaApp/android/app/src/main/res/layout/widget_large.xml:394: Warning: Hardcoded string "AM", should use @string resource [HardcodedText]
+                    android:text="AM"
+                    ~~~~~~~~~~~~~~~~~
+/Users/milan/Desktop/TraceWave App/ChogadiyaApp/android/app/src/main/res/layout/widget_large.xml:423: Warning: Hardcoded string "Illumination", should use @string resource [HardcodedText]
+                    android:text="Illumination"
+                    ~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/Users/milan/Desktop/TraceWave App/ChogadiyaApp/android/app/src/main/res/layout/widget_large.xml:434: Warning: Hardcoded string "88%", should use @string resource [HardcodedText]
+                    android:text="88%"
+                    ~~~~~~~~~~~~~~~~~~
+/Users/milan/Desktop/TraceWave App/ChogadiyaApp/android/app/src/main/res/layout/widget_large.xml:454: Warning: Hardcoded string "Next 3", should use @string resource [HardcodedText]
+        android:text="Next 3"
+        ~~~~~~~~~~~~~~~~~~~~~
+/Users/milan/Desktop/TraceWave App/ChogadiyaApp/android/app/src/main/res/layout/widget_large.xml:486: Warning: Hardcoded string "Rog", should use @string resource [HardcodedText]
+                android:text="Rog"
+                ~~~~~~~~~~~~~~~~~~
+/Users/milan/Desktop/TraceWave App/ChogadiyaApp/android/app/src/main/res/layout/widget_large.xml:496: Warning: Hardcoded string "7:28 PM", should use @string resource [HardcodedText]
+                android:text="7:28 PM"
+                ~~~~~~~~~~~~~~~~~~~~~~
+/Users/milan/Desktop/TraceWave App/ChogadiyaApp/android/app/src/main/res/layout/widget_large.xml:522: Warning: Hardcoded string "Kaal", should use @string resource [HardcodedText]
+                android:text="Kaal"
+                ~~~~~~~~~~~~~~~~~~~
+/Users/milan/Desktop/TraceWave App/ChogadiyaApp/android/app/src/main/res/layout/widget_large.xml:532: Warning: Hardcoded string "8:46 PM", should use @string resource [HardcodedText]
+                android:text="8:46 PM"
+                ~~~~~~~~~~~~~~~~~~~~~~
+/Users/milan/Desktop/TraceWave App/ChogadiyaApp/android/app/src/main/res/layout/widget_large.xml:558: Warning: Hardcoded string "Labh", should use @string resource [HardcodedText]
+                android:text="Labh"
+                ~~~~~~~~~~~~~~~~~~~
+/Users/milan/Desktop/TraceWave App/ChogadiyaApp/android/app/src/main/res/layout/widget_large.xml:568: Warning: Hardcoded string "10:05 PM", should use @string resource [HardcodedText]
+                android:text="10:05 PM"
+                ~~~~~~~~~~~~~~~~~~~~~~~
+/Users/milan/Desktop/TraceWave App/ChogadiyaApp/android/app/src/main/res/layout/widget_timeline.xml:20: Warning: Hardcoded string "Current", should use @string resource [HardcodedText]
+            android:text="Current"
+            ~~~~~~~~~~~~~~~~~~~~~~
+/Users/milan/Desktop/TraceWave App/ChogadiyaApp/android/app/src/main/res/layout/widget_timeline.xml:39: Warning: Hardcoded string "Char", should use @string resource [HardcodedText]
+            android:text="Char"
+            ~~~~~~~~~~~~~~~~~~~
+/Users/milan/Desktop/TraceWave App/ChogadiyaApp/android/app/src/main/res/layout/widget_timeline.xml:64: Warning: Hardcoded string "00:54", should use @string resource [HardcodedText]
+            android:text="00:54"
+            ~~~~~~~~~~~~~~~~~~~~
+/Users/milan/Desktop/TraceWave App/ChogadiyaApp/android/app/src/main/res/layout/widget_timeline.xml:75: Warning: Hardcoded string "Left", should use @string resource [HardcodedText]
+            android:text="Left"
+            ~~~~~~~~~~~~~~~~~~~
+/Users/milan/Desktop/TraceWave App/ChogadiyaApp/android/app/src/main/res/layout/widget_timeline.xml:99: Warning: Hardcoded string "5:46 PM - 7:28 PM", should use @string resource [HardcodedText]
+        android:text="5:46 PM - 7:28 PM"
+        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/Users/milan/Desktop/TraceWave App/ChogadiyaApp/android/app/src/main/res/layout/widget_timeline.xml:138: Warning: Hardcoded string "Rog", should use @string resource [HardcodedText]
+                android:text="Rog"
+                ~~~~~~~~~~~~~~~~~~
+/Users/milan/Desktop/TraceWave App/ChogadiyaApp/android/app/src/main/res/layout/widget_timeline.xml:150: Warning: Hardcoded string "7:28 PM", should use @string resource [HardcodedText]
+                android:text="7:28 PM"
+                ~~~~~~~~~~~~~~~~~~~~~~
+/Users/milan/Desktop/TraceWave App/ChogadiyaApp/android/app/src/main/res/layout/widget_timeline.xml:176: Warning: Hardcoded string "Kaal", should use @string resource [HardcodedText]
+                android:text="Kaal"
+                ~~~~~~~~~~~~~~~~~~~
+/Users/milan/Desktop/TraceWave App/ChogadiyaApp/android/app/src/main/res/layout/widget_timeline.xml:188: Warning: Hardcoded string "8:46 PM", should use @string resource [HardcodedText]
+                android:text="8:46 PM"
+                ~~~~~~~~~~~~~~~~~~~~~~
+/Users/milan/Desktop/TraceWave App/ChogadiyaApp/android/app/src/main/res/layout/widget_timeline.xml:214: Warning: Hardcoded string "Labh", should use @string resource [HardcodedText]
+                android:text="Labh"
+                ~~~~~~~~~~~~~~~~~~~
+/Users/milan/Desktop/TraceWave App/ChogadiyaApp/android/app/src/main/res/layout/widget_timeline.xml:226: Warning: Hardcoded string "10:05 PM", should use @string resource [HardcodedText]
+                android:text="10:05 PM"
+                ~~~~~~~~~~~~~~~~~~~~~~~
+
+   Explanation for issues of type "HardcodedText":
+   Hardcoding text attributes directly in layout files is bad for several
+   reasons:
+
+   * When creating configuration variations (for example for landscape or
+   portrait) you have to repeat the actual text (and keep it up to date when
+   making changes)
+
+   * The application cannot be translated to other languages by just adding
+   new translations for existing string resources.
+
+   There are quickfixes to automatically extract this hardcoded string into a
+   resource lookup.
+
+/Users/milan/Desktop/TraceWave App/ChogadiyaApp/android/app/src/main/res/layout/widget_detail_card.xml:477: Warning: When you define paddingEnd you should probably also define paddingStart for right-to-left symmetry [RtlSymmetry]
+                android:paddingEnd="2dp">
+                ~~~~~~~~~~~~~~~~~~
+/Users/milan/Desktop/TraceWave App/ChogadiyaApp/android/app/src/main/res/layout/widget_detail_card.xml:568: Warning: When you define paddingStart you should probably also define paddingEnd for right-to-left symmetry [RtlSymmetry]
+                android:paddingStart="2dp">
+                ~~~~~~~~~~~~~~~~~~~~
+
+   Explanation for issues of type "RtlSymmetry":
+   If you specify padding or margin on the left side of a layout, you should
+   probably also specify padding on the right side (and vice versa) for
+   right-to-left layout symmetry.
+
+0 errors, 319 warnings

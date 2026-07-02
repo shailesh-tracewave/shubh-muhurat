@@ -14,6 +14,8 @@
         <!-- Status bar color. -->
         <item name="android:statusBarColor">@color/celestial_surface</item>
         <item name="android:windowLightStatusBar">true</item>
+        <item name="android:navigationBarColor">@color/celestial_surface</item>
+        <item name="android:windowLightNavigationBar">true</item>
         
         <!-- Background and surface. -->
         <item name="android:windowBackground">@color/celestial_background</item>

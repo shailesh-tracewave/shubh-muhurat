@@ -75,6 +75,7 @@ public final class ChoghadiyaDataStore {
         return null;
     }
     
+    @kotlin.Suppress(names = {"UNUSED_PARAMETER"})
     @org.jetbrains.annotations.Nullable()
     public final java.lang.Object loadHome(@org.jetbrains.annotations.NotNull()
     java.lang.String baseURL, @org.jetbrains.annotations.NotNull()
@@ -94,6 +95,7 @@ public final class ChoghadiyaDataStore {
         return null;
     }
     
+    @kotlin.Suppress(names = {"UNUSED_PARAMETER"})
     @org.jetbrains.annotations.Nullable()
     public final java.lang.Object loadAstronomy(@org.jetbrains.annotations.NotNull()
     java.lang.String baseURL, @org.jetbrains.annotations.NotNull()

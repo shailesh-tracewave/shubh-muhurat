@@ -1,27 +1,39 @@
 [
     {
-        "merged": "/Users/milan/.gradle/daemon/8.14.2/com.techmeeva.chogadiyawidgets.app-debug-67:/menu_bottom_nav_menu.xml.flat",
-        "source": "/Users/milan/.gradle/daemon/8.14.2/com.techmeeva.chogadiyawidgets.app-main-69:/menu/bottom_nav_menu.xml"
-    },
-    {
-        "merged": "/Users/milan/.gradle/daemon/8.14.2/com.techmeeva.chogadiyawidgets.app-debug-67:/drawable_bg_city_row.xml.flat",
-        "source": "/Users/milan/.gradle/daemon/8.14.2/com.techmeeva.chogadiyawidgets.app-main-69:/drawable/bg_city_row.xml"
+        "merged": "/Users/milan/.gradle/daemon/8.14.2/com.techmeeva.chogadiyawidgets.app-debug-67:/xml_widget_detail_card_info.xml.flat",
+        "source": "/Users/milan/.gradle/daemon/8.14.2/com.techmeeva.chogadiyawidgets.app-main-69:/xml/widget_detail_card_info.xml"
     },
     {
         "merged": "/Users/milan/.gradle/daemon/8.14.2/com.techmeeva.chogadiyawidgets.app-debug-67:/drawable_ic_widget.xml.flat",
         "source": "/Users/milan/.gradle/daemon/8.14.2/com.techmeeva.chogadiyawidgets.app-main-69:/drawable/ic_widget.xml"
     },
     {
-        "merged": "/Users/milan/.gradle/daemon/8.14.2/com.techmeeva.chogadiyawidgets.app-debug-67:/xml_widget_detail_card_info.xml.flat",
-        "source": "/Users/milan/.gradle/daemon/8.14.2/com.techmeeva.chogadiyawidgets.app-main-69:/xml/widget_detail_card_info.xml"
+        "merged": "/Users/milan/.gradle/daemon/8.14.2/com.techmeeva.chogadiyawidgets.app-debug-67:/drawable_bg_city_row.xml.flat",
+        "source": "/Users/milan/.gradle/daemon/8.14.2/com.techmeeva.chogadiyawidgets.app-main-69:/drawable/bg_city_row.xml"
+    },
+    {
+        "merged": "/Users/milan/.gradle/daemon/8.14.2/com.techmeeva.chogadiyawidgets.app-debug-67:/menu_bottom_nav_menu.xml.flat",
+        "source": "/Users/milan/.gradle/daemon/8.14.2/com.techmeeva.chogadiyawidgets.app-main-69:/menu/bottom_nav_menu.xml"
     },
     {
         "merged": "/Users/milan/.gradle/daemon/8.14.2/com.techmeeva.chogadiyawidgets.app-debug-67:/drawable_splash_logo.jpg.flat",
         "source": "/Users/milan/.gradle/daemon/8.14.2/com.techmeeva.chogadiyawidgets.app-main-69:/drawable/splash_logo.jpg"
     },
     {
+        "merged": "/Users/milan/.gradle/daemon/8.14.2/com.techmeeva.chogadiyawidgets.app-debug-67:/drawable_ic_chevron_left.xml.flat",
+        "source": "/Users/milan/.gradle/daemon/8.14.2/com.techmeeva.chogadiyawidgets.app-main-69:/drawable/ic_chevron_left.xml"
+    },
+    {
+        "merged": "/Users/milan/.gradle/daemon/8.14.2/com.techmeeva.chogadiyawidgets.app-debug-67:/drawable_ic_widget_sunrise.xml.flat",
+        "source": "/Users/milan/.gradle/daemon/8.14.2/com.techmeeva.chogadiyawidgets.app-main-69:/drawable/ic_widget_sunrise.xml"
+    },
+    {
         "merged": "/Users/milan/.gradle/daemon/8.14.2/com.techmeeva.chogadiyawidgets.app-debug-67:/drawable_bg_capsule_inactive.xml.flat",
         "source": "/Users/milan/.gradle/daemon/8.14.2/com.techmeeva.chogadiyawidgets.app-main-69:/drawable/bg_capsule_inactive.xml"
+    },
+    {
+        "merged": "/Users/milan/.gradle/daemon/8.14.2/com.techmeeva.chogadiyawidgets.app-debug-67:/drawable_ic_widget_illumination.xml.flat",
+        "source": "/Users/milan/.gradle/daemon/8.14.2/com.techmeeva.chogadiyawidgets.app-main-69:/drawable/ic_widget_illumination.xml"
     },
     {
         "merged": "/Users/milan/.gradle/daemon/8.14.2/com.techmeeva.chogadiyawidgets.app-debug-67:/layout_widget_large.xml.flat",
@@ -30,6 +42,10 @@
     {
         "merged": "/Users/milan/.gradle/daemon/8.14.2/com.techmeeva.chogadiyawidgets.app-debug-67:/drawable_bg_capsule_active.xml.flat",
         "source": "/Users/milan/.gradle/daemon/8.14.2/com.techmeeva.chogadiyawidgets.app-main-69:/drawable/bg_capsule_active.xml"
+    },
+    {
+        "merged": "/Users/milan/.gradle/daemon/8.14.2/com.techmeeva.chogadiyawidgets.app-debug-67:/drawable_bg_inline_notice.xml.flat",
+        "source": "/Users/milan/.gradle/daemon/8.14.2/com.techmeeva.chogadiyawidgets.app-main-69:/drawable/bg_inline_notice.xml"
     },
     {
         "merged": "/Users/milan/.gradle/daemon/8.14.2/com.techmeeva.chogadiyawidgets.app-debug-67:/drawable_ic_settings.xml.flat",
@@ -68,6 +84,10 @@
         "source": "/Users/milan/.gradle/daemon/8.14.2/com.techmeeva.chogadiyawidgets.app-main-69:/layout/item_city.xml"
     },
     {
+        "merged": "/Users/milan/.gradle/daemon/8.14.2/com.techmeeva.chogadiyawidgets.app-debug-67:/drawable_bg_onboarding_disc.xml.flat",
+        "source": "/Users/milan/.gradle/daemon/8.14.2/com.techmeeva.chogadiyawidgets.app-main-69:/drawable/bg_onboarding_disc.xml"
+    },
+    {
         "merged": "/Users/milan/.gradle/daemon/8.14.2/com.techmeeva.chogadiyawidgets.app-debug-67:/drawable_ic_clock.xml.flat",
         "source": "/Users/milan/.gradle/daemon/8.14.2/com.techmeeva.chogadiyawidgets.app-main-69:/drawable/ic_clock.xml"
     },
@@ -96,8 +116,20 @@
         "source": "/Users/milan/.gradle/daemon/8.14.2/com.techmeeva.chogadiyawidgets.app-main-69:/drawable/bg_splash.xml"
     },
     {
+        "merged": "/Users/milan/.gradle/daemon/8.14.2/com.techmeeva.chogadiyawidgets.app-debug-67:/drawable_ic_widget_moonrise.xml.flat",
+        "source": "/Users/milan/.gradle/daemon/8.14.2/com.techmeeva.chogadiyawidgets.app-main-69:/drawable/ic_widget_moonrise.xml"
+    },
+    {
+        "merged": "/Users/milan/.gradle/daemon/8.14.2/com.techmeeva.chogadiyawidgets.app-debug-67:/drawable_ic_widget_sunset.xml.flat",
+        "source": "/Users/milan/.gradle/daemon/8.14.2/com.techmeeva.chogadiyawidgets.app-main-69:/drawable/ic_widget_sunset.xml"
+    },
+    {
         "merged": "/Users/milan/.gradle/daemon/8.14.2/com.techmeeva.chogadiyawidgets.app-debug-67:/layout_page_location.xml.flat",
         "source": "/Users/milan/.gradle/daemon/8.14.2/com.techmeeva.chogadiyawidgets.app-main-69:/layout/page_location.xml"
+    },
+    {
+        "merged": "/Users/milan/.gradle/daemon/8.14.2/com.techmeeva.chogadiyawidgets.app-debug-67:/drawable_bg_calendar_day_selected.xml.flat",
+        "source": "/Users/milan/.gradle/daemon/8.14.2/com.techmeeva.chogadiyawidgets.app-main-69:/drawable/bg_calendar_day_selected.xml"
     },
     {
         "merged": "/Users/milan/.gradle/daemon/8.14.2/com.techmeeva.chogadiyawidgets.app-debug-67:/layout_widget_timeline.xml.flat",
@@ -110,6 +142,10 @@
     {
         "merged": "/Users/milan/.gradle/daemon/8.14.2/com.techmeeva.chogadiyawidgets.app-debug-67:/drawable_ic_sky.xml.flat",
         "source": "/Users/milan/.gradle/daemon/8.14.2/com.techmeeva.chogadiyawidgets.app-main-69:/drawable/ic_sky.xml"
+    },
+    {
+        "merged": "com.techmeeva.chogadiyawidgets.app-debug-67:/layout_widget_detail_card.xml.flat",
+        "source": "com.techmeeva.chogadiyawidgets.app-main-69:/layout/widget_detail_card.xml"
     },
     {
         "merged": "/Users/milan/.gradle/daemon/8.14.2/com.techmeeva.chogadiyawidgets.app-debug-67:/drawable_ic_launcher.jpg.flat",
@@ -148,16 +184,36 @@
         "source": "/Users/milan/.gradle/daemon/8.14.2/com.techmeeva.chogadiyawidgets.app-main-69:/drawable-night/inapp_logo.jpg"
     },
     {
+        "merged": "/Users/milan/.gradle/daemon/8.14.2/com.techmeeva.chogadiyawidgets.app-debug-67:/drawable_ic_chevron_right.xml.flat",
+        "source": "/Users/milan/.gradle/daemon/8.14.2/com.techmeeva.chogadiyawidgets.app-main-69:/drawable/ic_chevron_right.xml"
+    },
+    {
+        "merged": "com.techmeeva.chogadiyawidgets.app-debug-67:/layout_widget_large.xml.flat",
+        "source": "com.techmeeva.chogadiyawidgets.app-main-69:/layout/widget_large.xml"
+    },
+    {
         "merged": "/Users/milan/.gradle/daemon/8.14.2/com.techmeeva.chogadiyawidgets.app-debug-67:/drawable_ic_home.xml.flat",
         "source": "/Users/milan/.gradle/daemon/8.14.2/com.techmeeva.chogadiyawidgets.app-main-69:/drawable/ic_home.xml"
+    },
+    {
+        "merged": "com.techmeeva.chogadiyawidgets.app-debug-67:/drawable_bg_widget_card_light.xml.flat",
+        "source": "com.techmeeva.chogadiyawidgets.app-main-69:/drawable/bg_widget_card_light.xml"
     },
     {
         "merged": "/Users/milan/.gradle/daemon/8.14.2/com.techmeeva.chogadiyawidgets.app-debug-67:/drawable_bg_bottom_nav_item.xml.flat",
         "source": "/Users/milan/.gradle/daemon/8.14.2/com.techmeeva.chogadiyawidgets.app-main-69:/drawable/bg_bottom_nav_item.xml"
     },
     {
-        "merged": "com.techmeeva.chogadiyawidgets.app-debug-67:/layout_fragment_settings.xml.flat",
-        "source": "com.techmeeva.chogadiyawidgets.app-main-69:/layout/fragment_settings.xml"
+        "merged": "/Users/milan/.gradle/daemon/8.14.2/com.techmeeva.chogadiyawidgets.app-debug-67:/drawable_bg_widget_card.xml.flat",
+        "source": "/Users/milan/.gradle/daemon/8.14.2/com.techmeeva.chogadiyawidgets.app-main-69:/drawable/bg_widget_card.xml"
+    },
+    {
+        "merged": "/Users/milan/.gradle/daemon/8.14.2/com.techmeeva.chogadiyawidgets.app-debug-67:/drawable_bg_icon_circle.xml.flat",
+        "source": "/Users/milan/.gradle/daemon/8.14.2/com.techmeeva.chogadiyawidgets.app-main-69:/drawable/bg_icon_circle.xml"
+    },
+    {
+        "merged": "/Users/milan/.gradle/daemon/8.14.2/com.techmeeva.chogadiyawidgets.app-debug-67:/drawable_ic_widget_noon.xml.flat",
+        "source": "/Users/milan/.gradle/daemon/8.14.2/com.techmeeva.chogadiyawidgets.app-main-69:/drawable/ic_widget_noon.xml"
     },
     {
         "merged": "/Users/milan/.gradle/daemon/8.14.2/com.techmeeva.chogadiyawidgets.app-debug-67:/layout_fragment_settings.xml.flat",
@@ -174,6 +230,14 @@
     {
         "merged": "/Users/milan/.gradle/daemon/8.14.2/com.techmeeva.chogadiyawidgets.app-debug-67:/drawable_bg_city_row_selected.xml.flat",
         "source": "/Users/milan/.gradle/daemon/8.14.2/com.techmeeva.chogadiyawidgets.app-main-69:/drawable/bg_city_row_selected.xml"
+    },
+    {
+        "merged": "/Users/milan/.gradle/daemon/8.14.2/com.techmeeva.chogadiyawidgets.app-debug-67:/drawable_ic_widget_moonset.xml.flat",
+        "source": "/Users/milan/.gradle/daemon/8.14.2/com.techmeeva.chogadiyawidgets.app-main-69:/drawable/ic_widget_moonset.xml"
+    },
+    {
+        "merged": "/Users/milan/.gradle/daemon/8.14.2/com.techmeeva.chogadiyawidgets.app-debug-67:/drawable_bg_hero_card.xml.flat",
+        "source": "/Users/milan/.gradle/daemon/8.14.2/com.techmeeva.chogadiyawidgets.app-main-69:/drawable/bg_hero_card.xml"
     },
     {
         "merged": "/Users/milan/.gradle/daemon/8.14.2/com.techmeeva.chogadiyawidgets.app-debug-67:/drawable_ic_alert.xml.flat",
@@ -196,7 +260,15 @@
         "source": "/Users/milan/.gradle/daemon/8.14.2/com.techmeeva.chogadiyawidgets.app-main-69:/navigation/nav_graph.xml"
     },
     {
+        "merged": "com.techmeeva.chogadiyawidgets.app-debug-67:/drawable_bg_widget_card_dark.xml.flat",
+        "source": "com.techmeeva.chogadiyawidgets.app-main-69:/drawable/bg_widget_card_dark.xml"
+    },
+    {
         "merged": "/Users/milan/.gradle/daemon/8.14.2/com.techmeeva.chogadiyawidgets.app-debug-67:/layout_item_calendar_day.xml.flat",
         "source": "/Users/milan/.gradle/daemon/8.14.2/com.techmeeva.chogadiyawidgets.app-main-69:/layout/item_calendar_day.xml"
+    },
+    {
+        "merged": "com.techmeeva.chogadiyawidgets.app-debug-67:/layout_widget_timeline.xml.flat",
+        "source": "com.techmeeva.chogadiyawidgets.app-main-69:/layout/widget_timeline.xml"
     }
 ]

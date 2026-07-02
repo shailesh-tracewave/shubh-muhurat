@@ -4,7 +4,7 @@ import com.techmeeva.chogadiyawidgets.models.SubscriptionPlan
 
 object AppConfiguration {
     const val premiumServicesEnabled = false
-    val forcedSubscriptionPlanForQA: SubscriptionPlan? = if (premiumServicesEnabled) null else SubscriptionPlan.PREMIUM_YEARLY
+    val defaultSubscriptionPlan: SubscriptionPlan? = if (premiumServicesEnabled) null else SubscriptionPlan.PREMIUM_YEARLY
 
     const val apiBaseURL = "https://choghadiya.ipotrending.com"
     const val remoteConfigURL = "https://chogadiya-divine.web.app/app_config.json"

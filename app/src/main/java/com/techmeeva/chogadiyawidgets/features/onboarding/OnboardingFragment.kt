@@ -7,6 +7,7 @@ import android.location.Location
 import android.location.LocationListener
 import android.location.LocationManager
 import android.os.Bundle
+import android.os.Looper
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -106,18 +107,17 @@ class OnboardingFragment : Fragment() {
                 updateLocationPageVisuals()
             } else {
                 val provider = if (hasGps) LocationManager.GPS_PROVIDER else LocationManager.NETWORK_PROVIDER
-                locationManager.requestSingleUpdate(provider, object : LocationListener {
+                val listener = object : LocationListener {
                     override fun onLocationChanged(location: Location) {
+                        locationManager.removeUpdates(this)
                         if (isAdded) {
                             val matchedCity = matchLocationToCity(location.latitude, location.longitude)
                             appState.applyCurrentLocation(matchedCity)
                             updateLocationPageVisuals()
                         }
                     }
-                    override fun onStatusChanged(provider: String?, status: Int, extras: Bundle?) {}
-                    override fun onProviderEnabled(provider: String) {}
-                    override fun onProviderDisabled(provider: String) {}
-                }, null)
+                }
+                locationManager.requestLocationUpdates(provider, 0L, 0f, listener, Looper.getMainLooper())
             }
         } catch (e: SecurityException) {
             Toast.makeText(requireContext(), "Location permission required.", Toast.LENGTH_SHORT).show()
@@ -172,9 +172,9 @@ class OnboardingFragment : Fragment() {
 
         if (isCurrentMode) {
             btnGps.setBackgroundResource(R.drawable.bg_gold_button)
-            ivGpsIcon.imageTintList = ContextCompat.getColorStateList(requireContext(), R.color.celestial_white)
-            tvGpsTitle.setTextColor(ContextCompat.getColor(requireContext(), R.color.celestial_white))
-            tvGpsSubtitle.setTextColor(ContextCompat.getColor(requireContext(), R.color.celestial_surface_glass))
+            ivGpsIcon.imageTintList = ContextCompat.getColorStateList(requireContext(), R.color.celestial_on_gold)
+            tvGpsTitle.setTextColor(ContextCompat.getColor(requireContext(), R.color.celestial_on_gold))
+            tvGpsSubtitle.setTextColor(ContextCompat.getColor(requireContext(), R.color.celestial_on_gold))
         } else {
             btnGps.setBackgroundResource(R.drawable.bg_city_row)
             ivGpsIcon.imageTintList = ContextCompat.getColorStateList(requireContext(), R.color.celestial_primary)

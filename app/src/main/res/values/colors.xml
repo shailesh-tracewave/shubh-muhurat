@@ -1,31 +1,38 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <!-- Celestial Ethereal Color System -->
-    <color name="celestial_background">#FAF9F5</color>
-    <color name="celestial_surface">#FAF9F5</color>
-    <color name="celestial_surface_strong">#EFEEEA</color>
-    <color name="celestial_surface_glass">#80FFFFFF</color> <!-- 50% opacity white -->
-    
-    <color name="celestial_primary">#735C00</color> <!-- Golden Primary -->
-    <color name="celestial_primary_strong">#554300</color>
-    <color name="celestial_primary_container">#D4AF37</color> <!-- Spiritual Gold -->
-    
-    <color name="celestial_secondary">#8F4E00</color> <!-- Saffron Primary -->
-    <color name="celestial_secondary_container">#FE9832</color> <!-- Saffron Glow -->
-    
-    <color name="celestial_outline">#7F7663</color>
-    <color name="celestial_border">#D0C5AF</color>
-    
-    <color name="celestial_text">#1B1C1A</color>
-    <color name="celestial_text_muted">#757575</color>
+    <!-- Celestial Ethereal Color System, matched to the iOS palette -->
+    <color name="celestial_background">#FAF7F2</color>
+    <color name="celestial_background_secondary">#F2EBDB</color>
+    <color name="celestial_surface">#FAF7F2</color>
+    <color name="celestial_surface_strong">#EBFFFFFF</color>
+    <color name="celestial_surface_muted">#F5F2E8</color>
+    <color name="celestial_surface_glass">#B3FFFFFF</color>
+
+    <color name="celestial_primary">#684C08</color>
+    <color name="celestial_primary_strong">#D4AB2E</color>
+    <color name="celestial_primary_container">#D4AF37</color>
+    <color name="celestial_on_gold">#342404</color>
+    <color name="celestial_icon_circle">#24D4AF37</color>
+    <color name="onboarding_visual_background">#FFF3D6</color>
+    <color name="onboarding_visual_border">#73D4AF37</color>
+
+    <color name="celestial_secondary">#99631C</color>
+    <color name="celestial_secondary_container">#D98C29</color>
+
+    <color name="celestial_outline">#857A66</color>
+    <color name="celestial_border">#47D6BD78</color>
+    <color name="celestial_border_strong">#8CCCAA38</color>
+
+    <color name="celestial_text">#1A1C1F</color>
+    <color name="celestial_text_muted">#5F5A50</color>
     
     <color name="celestial_white">#FFFFFF</color>
     <color name="celestial_transparent">#00000000</color>
-    <color name="celestial_card_background">#FFFFFF</color>
-    <color name="celestial_row_background">#7CFFFFFF</color>
-    <color name="celestial_row_border">#1A706656</color>
-    <color name="celestial_row_selected_background">#C2FFFFFF</color>
-    <color name="celestial_row_selected_border">#6BD4AF37</color>
+    <color name="celestial_card_background">#EFFFFFFF</color>
+    <color name="celestial_row_background">#EFFFFFFF</color>
+    <color name="celestial_row_border">#47D6BD78</color>
+    <color name="celestial_row_selected_background">#2ED4AF37</color>
+    <color name="celestial_row_selected_border">#8CCCAA38</color>
 
     <!-- Choghadiya Specific Palette -->
     <color name="choghadiya_shubh_start">#D4A72E</color>
@@ -51,8 +58,18 @@
     <color name="choghadiya_udveg_dark">#9C2E37</color>
     
     <!-- State colors -->
-    <color name="celestial_warning">#FFC107</color>
-    <color name="celestial_success">#4CAF50</color>
-    <color name="celestial_danger">#BA1A1A</color>
-    <color name="celestial_moon">#90A4AE</color>
+    <color name="celestial_warning">#D98C29</color>
+    <color name="celestial_success">#338566</color>
+    <color name="celestial_danger">#C43D49</color>
+    <color name="celestial_moon">#66708F</color>
+
+    <!-- iOS-style widget palette -->
+    <color name="widget_card_background">#FCF5DF</color>
+    <color name="widget_card_border">#66E5D9B6</color>
+    <color name="widget_divider">#30CFC5A7</color>
+    <color name="widget_progress_track">#E9E0C9</color>
+    <color name="widget_accent_blue">#6676A1</color>
+    <color name="widget_metric_orange">#D98C29</color>
+    <color name="widget_metric_red">#D84C5C</color>
+    <color name="widget_metric_yellow">#D7A917</color>
 </resources>

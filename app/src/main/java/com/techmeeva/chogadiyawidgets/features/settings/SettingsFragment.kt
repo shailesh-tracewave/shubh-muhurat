@@ -16,12 +16,13 @@ import com.techmeeva.chogadiyawidgets.core.localization.AppLanguage
 import com.techmeeva.chogadiyawidgets.core.localization.AppThemeMode
 import com.techmeeva.chogadiyawidgets.core.localization.AppLocalizer
 import com.techmeeva.chogadiyawidgets.core.localization.AppTextKey
+import com.techmeeva.chogadiyawidgets.core.state.AppConfiguration
 import com.techmeeva.chogadiyawidgets.core.state.AppState
+import com.techmeeva.chogadiyawidgets.core.state.WidgetUpdateWorker
 import com.techmeeva.chogadiyawidgets.databinding.FragmentSettingsBinding
 import com.techmeeva.chogadiyawidgets.models.SeedCity
 import java.util.Locale
 import com.techmeeva.chogadiyawidgets.models.LocationMode
-import com.techmeeva.chogadiyawidgets.models.SubscriptionPlan
 
 class SettingsFragment : Fragment() {
 
@@ -71,24 +72,24 @@ class SettingsFragment : Fragment() {
             val shareIntent = Intent(Intent.ACTION_SEND).apply {
                 type = "text/plain"
                 putExtra(Intent.EXTRA_SUBJECT, AppLocalizer.text(AppTextKey.SPLASH_TITLE, appState.selectedLanguage))
-                putExtra(Intent.EXTRA_TEXT, "${AppLocalizer.text(AppTextKey.BRAND_TAGLINE, appState.selectedLanguage)}\nDownload now to explore auspicious timings!")
+                putExtra(
+                    Intent.EXTRA_TEXT,
+                    "Shubh Muhurat\n${AppLocalizer.text(AppTextKey.BRAND_TAGLINE, appState.selectedLanguage)}\n${AppConfiguration.websiteURL}"
+                )
             }
             startActivity(Intent.createChooser(shareIntent, "Share via"))
         }
 
         binding.rowRateApp.setOnClickListener {
-            val intent = Intent(Intent.ACTION_VIEW, android.net.Uri.parse("market://details?id=${requireContext().packageName}"))
-            try {
-                startActivity(intent)
-            } catch (e: Exception) {
-                startActivity(Intent(Intent.ACTION_VIEW, android.net.Uri.parse("https://play.google.com/store/apps/details?id=${requireContext().packageName}")))
-            }
+            openExternalUrl("market://details?id=${requireContext().packageName}", AppConfiguration.playStoreURL)
         }
 
         binding.rowPrivacyPolicy.setOnClickListener {
-            val url = "https://techmeeva.com/privacy-policy" // Standard fallback privacy URL
-            val intent = Intent(Intent.ACTION_VIEW, android.net.Uri.parse(url))
-            startActivity(intent)
+            openExternalUrl(AppConfiguration.privacyPolicyURL)
+        }
+
+        binding.rowTermsConditions.setOnClickListener {
+            openExternalUrl(AppConfiguration.termsURL)
         }
     }
 
@@ -102,7 +103,7 @@ class SettingsFragment : Fragment() {
 
         // 1. Static Text & Brand Localization
         binding.tvSettingsTitle.text = AppLocalizer.text(AppTextKey.SETTINGS, language)
-        binding.tvSettingsBrandTitle.text = "Divine Choghadiya"
+        binding.tvSettingsBrandTitle.text = "Shubh Muhurat"
         binding.tvSettingsBrandTagline.text = AppLocalizer.text(AppTextKey.BRAND_TAGLINE, language)
 
         binding.tvPrefHeader.text = AppLocalizer.text(AppTextKey.PREFERENCES, language).uppercase(Locale.US)
@@ -117,6 +118,12 @@ class SettingsFragment : Fragment() {
 
         binding.tvShareTitle.text = AppLocalizer.text(AppTextKey.SHARE_APP, language)
         binding.tvShareValue.text = AppLocalizer.text(AppTextKey.SHARE_APP_SUBTITLE, language)
+        binding.tvRateTitle.text = AppLocalizer.text(AppTextKey.RATE_APP, language)
+        binding.tvRateValue.text = AppLocalizer.text(AppTextKey.OPEN_LEGAL_PAGE, language)
+        binding.tvPrivacyTitle.text = AppLocalizer.text(AppTextKey.PRIVACY_POLICY, language)
+        binding.tvPrivacyValue.text = AppLocalizer.text(AppTextKey.OPEN_LEGAL_PAGE, language)
+        binding.tvTermsTitle.text = AppLocalizer.text(AppTextKey.TERMS_CONDITIONS, language)
+        binding.tvTermsValue.text = AppLocalizer.text(AppTextKey.OPEN_LEGAL_PAGE, language)
 
         // 2. Preferences dynamic values
         binding.tvLangValue.text = appState.selectedLanguage.displayName
@@ -142,6 +149,7 @@ class SettingsFragment : Fragment() {
             .setSingleChoiceItems(items, checkedItem) { dialog, which ->
                 appState.selectedLanguage = languages[which]
                 dialog.dismiss()
+                refreshWidgets()
                 requireActivity().recreate() // Enforces instant UI reload in new language
             }
             .setNegativeButton(AppLocalizer.text(AppTextKey.CLOSE, appState.selectedLanguage), null)
@@ -173,6 +181,7 @@ class SettingsFragment : Fragment() {
                 }
                 dialog.dismiss()
                 updateSettingsUI()
+                refreshWidgets()
                 Toast.makeText(requireContext(), "Location updated successfully!", Toast.LENGTH_SHORT).show()
             }
             .setNegativeButton(AppLocalizer.text(AppTextKey.CLOSE, appState.selectedLanguage), null)
@@ -201,8 +210,21 @@ class SettingsFragment : Fragment() {
                     AppThemeMode.DARK -> AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
                     AppThemeMode.SYSTEM -> AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM)
                 }
+                refreshWidgets()
             }
             .setNegativeButton(AppLocalizer.text(AppTextKey.CLOSE, appState.selectedLanguage), null)
             .show()
+    }
+
+    private fun refreshWidgets() {
+        WidgetUpdateWorker.enqueueInitial(requireContext().applicationContext)
+    }
+
+    private fun openExternalUrl(primaryURL: String, fallbackURL: String = primaryURL) {
+        try {
+            startActivity(Intent(Intent.ACTION_VIEW, android.net.Uri.parse(primaryURL)))
+        } catch (e: Exception) {
+            startActivity(Intent(Intent.ACTION_VIEW, android.net.Uri.parse(fallbackURL)))
+        }
     }
 }

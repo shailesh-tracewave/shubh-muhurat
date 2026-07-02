@@ -7,12 +7,13 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.LinearLayout
 import android.widget.TextView
-import android.widget.Toast
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
 import com.techmeeva.chogadiyawidgets.R
+import com.techmeeva.chogadiyawidgets.core.localization.AppLanguage
 import com.techmeeva.chogadiyawidgets.core.localization.AppLocalizer
+import com.techmeeva.chogadiyawidgets.core.localization.AppTextKey
 import com.techmeeva.chogadiyawidgets.core.state.AppState
 import com.techmeeva.chogadiyawidgets.core.state.ChoghadiyaDataStore
 import com.techmeeva.chogadiyawidgets.core.state.AstronomyState
@@ -48,6 +49,11 @@ class SkyFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        setupStaticText()
+
+        binding.btnSkyRetry.setOnClickListener {
+            refreshAstronomyData(force = true)
+        }
 
         dataStore.astronomyStates.observe(viewLifecycleOwner) { states ->
             val dateStr = SimpleDateFormat("yyyy-MM-dd", Locale.US).apply {
@@ -87,20 +93,61 @@ class SkyFragment : Fragment() {
         }
     }
 
+    private fun setupStaticText() {
+        val language = appState.selectedLanguage
+        binding.tvSkyTitle.text = skyTitle(language)
+        binding.tvSkySubtitle.text = AppLocalizer.localizedShortDate(Date(), language, appState.selectedCity.timezone)
+        binding.tvSkyLoading.text = when (language) {
+            AppLanguage.ENGLISH -> "Updating sky data"
+            AppLanguage.HINDI -> "आकाश डेटा अपडेट हो रहा है"
+            AppLanguage.GUJARATI -> "આકાશ ડેટા અપડેટ થઈ રહ્યું છે"
+        }
+        binding.btnSkyRetry.text = AppLocalizer.text(AppTextKey.TRY_AGAIN, language).uppercase(Locale.US)
+    }
+
     private fun bindAstronomyState(state: AstronomyState) {
         if (state.errorMessage != null && !state.hasContent) {
-            Toast.makeText(requireContext(), state.errorMessage, Toast.LENGTH_SHORT).show()
+            binding.skyLoadingState.visibility = View.GONE
+            binding.skyErrorState.visibility = View.VISIBLE
+            binding.cardMoonHero.visibility = View.GONE
+            binding.tvMuhuratHeader.visibility = View.GONE
+            binding.auspiciousWindowsContainer.visibility = View.GONE
+            binding.tvObstaclesHeader.visibility = View.GONE
+            binding.inauspiciousWindowsContainer.visibility = View.GONE
+            binding.tvSkyErrorTitle.text = when (appState.selectedLanguage) {
+                AppLanguage.ENGLISH -> "Could not update"
+                AppLanguage.HINDI -> "अपडेट नहीं हो सका"
+                AppLanguage.GUJARATI -> "અપડેટ થઈ શક્યું નહીં"
+            }
+            binding.tvSkyErrorMessage.text = state.errorMessage
             return
         }
 
-        if (!state.hasContent) return
+        if (!state.hasContent) {
+            binding.skyErrorState.visibility = View.GONE
+            binding.skyLoadingState.visibility = if (state.isLoading) View.VISIBLE else View.GONE
+            binding.cardMoonHero.visibility = View.GONE
+            binding.tvMuhuratHeader.visibility = View.GONE
+            binding.auspiciousWindowsContainer.visibility = View.GONE
+            binding.tvObstaclesHeader.visibility = View.GONE
+            binding.inauspiciousWindowsContainer.visibility = View.GONE
+            return
+        }
+
+        binding.skyErrorState.visibility = View.GONE
+        binding.skyLoadingState.visibility = if (state.isRefreshing) View.VISIBLE else View.GONE
+        binding.cardMoonHero.visibility = View.VISIBLE
+        binding.tvMuhuratHeader.visibility = View.VISIBLE
+        binding.auspiciousWindowsContainer.visibility = View.VISIBLE
+        binding.tvObstaclesHeader.visibility = View.VISIBLE
+        binding.inauspiciousWindowsContainer.visibility = View.VISIBLE
 
         val day = state.day ?: return
         val language = appState.selectedLanguage
 
         // 1. Lunar Hero Details
         binding.tvMoonPhaseTitle.text = AppLocalizer.moonPhaseName(day.moonPhaseKey, language)
-        binding.tvMoonIllumination.text = String.format(Locale.US, "%.0f%% Illumination", day.illuminationFraction * 100)
+        binding.tvMoonIllumination.text = String.format(Locale.US, "%.0f%% %s", day.illuminationFraction * 100, illuminationTitle(language))
 
         binding.tvSolarNoon.text = AppLocalizer.localizedTime(day.solarNoon, language)
         binding.tvSkySunrise.text = AppLocalizer.localizedTime(day.sunrise, language)
@@ -122,7 +169,11 @@ class SkyFragment : Fragment() {
 
         if (windows.isEmpty()) {
             val emptyTv = TextView(requireContext()).apply {
-                text = "None active for today."
+                text = when (language) {
+                    AppLanguage.ENGLISH -> "None active for today."
+                    AppLanguage.HINDI -> "आज के लिए कोई सक्रिय नहीं."
+                    AppLanguage.GUJARATI -> "આજે માટે કંઈ સક્રિય નથી."
+                }
                 setTextColor(ContextCompat.getColor(requireContext(), R.color.celestial_text_muted))
                 textSize = 13f
                 setPadding(12, 12, 12, 12)
@@ -139,7 +190,7 @@ class SkyFragment : Fragment() {
             val viewColorDot = windowRow.findViewById<View>(R.id.view_slot_color_dot)
 
             tvSlotName.text = AppLocalizer.astronomyWindowTitle(window.key, language)
-            tvSlotName.setTextColor(colorInt)
+            tvSlotName.setTextColor(ContextCompat.getColor(requireContext(), R.color.celestial_text))
             viewColorDot.backgroundTintList = ColorStateList.valueOf(colorInt)
 
             tvSlotTimeRange.text = "${AppLocalizer.localizedTime(window.startTime, language)} - ${AppLocalizer.localizedTime(window.endTime, language)}"
@@ -150,6 +201,22 @@ class SkyFragment : Fragment() {
             tvSlotBadge.setTextColor(ContextCompat.getColor(requireContext(), R.color.celestial_outline))
 
             container.addView(windowRow)
+        }
+    }
+
+    private fun skyTitle(language: AppLanguage): String {
+        return when (language) {
+            AppLanguage.ENGLISH -> "Solar & Lunar"
+            AppLanguage.HINDI -> "सौर और चंद्र"
+            AppLanguage.GUJARATI -> "સૌર અને ચંદ્ર"
+        }
+    }
+
+    private fun illuminationTitle(language: AppLanguage): String {
+        return when (language) {
+            AppLanguage.ENGLISH -> "Illumination"
+            AppLanguage.HINDI -> "प्रकाश"
+            AppLanguage.GUJARATI -> "પ્રકાશ"
         }
     }
 }

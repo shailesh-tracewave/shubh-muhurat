@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:state_checked="true">
+        <inset
+            android:insetLeft="8dp"
+            android:insetTop="6dp"
+            android:insetRight="8dp"
+            android:insetBottom="6dp">
+            <shape android:shape="rectangle">
+                <gradient
+                    android:startColor="@color/celestial_primary"
+                    android:endColor="@color/celestial_secondary_container"
+                    android:angle="45" />
+                <corners android:radius="18dp" />
+            </shape>
+        </inset>
+    </item>
+    <item android:state_checked="false" android:drawable="@android:color/transparent" />
+</selector>

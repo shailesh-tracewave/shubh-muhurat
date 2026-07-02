@@ -1,21 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <!-- Celestial Ethereal Color System (Night/Dark Mode) -->
-    <color name="celestial_background">#12141A</color>
-    <color name="celestial_surface">#1C1E26</color>
+    <color name="celestial_background">#121419</color>
+    <color name="celestial_background_secondary">#1C1F26</color>
+    <color name="celestial_surface">#1C1F26</color>
     <color name="celestial_surface_strong">#2B2E38</color>
+    <color name="celestial_surface_muted">#20232B</color>
     <color name="celestial_surface_glass">#E624262E</color>
-    <color name="celestial_card_background">#1C1E26</color>
+    <color name="celestial_card_background">#EA24262E</color>
     
     <color name="celestial_primary">#F5E6BD</color> <!-- Golden Primary -->
     <color name="celestial_primary_strong">#EDC754</color>
     <color name="celestial_primary_container">#EDC754</color> <!-- Spiritual Gold -->
+    <color name="celestial_on_gold">#211600</color>
+    <color name="celestial_icon_circle">#30EDC754</color>
+    <color name="onboarding_visual_background">#292718</color>
+    <color name="onboarding_visual_border">#66EDC754</color>
     
     <color name="celestial_secondary">#E8D499</color> <!-- Saffron Primary -->
     <color name="celestial_secondary_container">#EDC754</color> <!-- Saffron Glow -->
     
     <color name="celestial_outline">#949499</color>
     <color name="celestial_border">#2EDC7540</color> <!-- 18% opacity gold -->
+    <color name="celestial_border_strong">#59EDC754</color>
     
     <color name="celestial_text">#F2EDE8</color>
     <color name="celestial_text_muted">#B7B5AB</color>
@@ -55,4 +62,14 @@
     <color name="celestial_success">#88D4A5</color>
     <color name="celestial_danger">#F89C98</color>
     <color name="celestial_moon">#BCC2D0</color>
+
+    <!-- iOS-style widget palette -->
+    <color name="widget_card_background">#171A22</color>
+    <color name="widget_card_border">#52383C48</color>
+    <color name="widget_divider">#2EFFFFFF</color>
+    <color name="widget_progress_track">#333641</color>
+    <color name="widget_accent_blue">#C9D4FF</color>
+    <color name="widget_metric_orange">#F0B95A</color>
+    <color name="widget_metric_red">#FF8C93</color>
+    <color name="widget_metric_yellow">#F4C945</color>
 </resources>

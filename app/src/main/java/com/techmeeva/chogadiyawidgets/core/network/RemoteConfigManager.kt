@@ -10,7 +10,7 @@ class RemoteConfigManager(private val context: Context) {
 
     private val prefs: SharedPreferences = context.getSharedPreferences("remote_config_prefs", Context.MODE_PRIVATE)
     private val gson = Gson()
-    private val service = RemoteConfigService(context)
+    private val service = RemoteConfigService()
 
     var currentConfig: RemoteAppConfig
         get() {

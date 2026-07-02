@@ -5,9 +5,11 @@ import android.content.SharedPreferences
 import com.google.gson.Gson
 import com.techmeeva.chogadiyawidgets.core.localization.AppLanguage
 import com.techmeeva.chogadiyawidgets.core.localization.AppThemeMode
+import com.techmeeva.chogadiyawidgets.core.network.RemoteAppConfig
 import com.techmeeva.chogadiyawidgets.models.LocationMode
 import com.techmeeva.chogadiyawidgets.models.SeedCity
 import com.techmeeva.chogadiyawidgets.models.SubscriptionPlan
+import java.net.URL
 
 class AppState(context: Context) {
 
@@ -26,7 +28,7 @@ class AppState(context: Context) {
         set(value) = defaults.edit().putString(Keys.language, value.rawValue).apply()
 
     var subscriptionPlan: SubscriptionPlan
-        get() = AppConfiguration.forcedSubscriptionPlanForQA
+        get() = AppConfiguration.defaultSubscriptionPlan
             ?: SubscriptionPlan.fromRawValue(defaults.getString(Keys.subscriptionPlan, SubscriptionPlan.FREE.rawValue) ?: "")
         set(value) = defaults.edit().putString(Keys.subscriptionPlan, value.rawValue).apply()
 
@@ -57,7 +59,7 @@ class AppState(context: Context) {
         set(value) = defaults.edit().putString(Keys.apiBaseURL, value).apply()
 
     val isPremium: Boolean
-        get() = true
+        get() = if (!AppConfiguration.premiumServicesEnabled) true else subscriptionPlan.isPremium
 
     fun selectCity(city: SeedCity) {
         selectedCity = city
@@ -69,6 +71,28 @@ class AppState(context: Context) {
         selectedCity = city
         locationMode = LocationMode.CURRENT
         defaults.edit().putString(Keys.locationMode, locationMode.rawValue).apply()
+    }
+
+    fun applyRemoteConfig(config: RemoteAppConfig) {
+        val remoteURL = validatedAPIBaseURL(config.apiBaseURL) ?: return
+        if (remoteURL != apiBaseURL) {
+            apiBaseURL = remoteURL
+        }
+    }
+
+    private fun validatedAPIBaseURL(value: String?): String? {
+        val trimmed = value?.trim().orEmpty()
+        if (trimmed.isEmpty()) return null
+        return try {
+            val url = URL(trimmed)
+            if (url.protocol.equals("https", ignoreCase = true) && !url.host.isNullOrBlank()) {
+                trimmed.trimEnd('/')
+            } else {
+                null
+            }
+        } catch (e: Exception) {
+            null
+        }
     }
 
     private object Keys {

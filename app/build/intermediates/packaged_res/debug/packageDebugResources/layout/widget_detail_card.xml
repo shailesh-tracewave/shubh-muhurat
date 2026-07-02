@@ -1,245 +1,319 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/widget_detail_root"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/bg_glass_card"
+    android:background="@drawable/bg_widget_card"
     android:orientation="horizontal"
-    android:padding="12dp">
+    android:padding="10dp">
 
-    <!-- LEFT HALF: Astro Grid 3x2 -->
     <LinearLayout
         android:layout_width="0dp"
         android:layout_height="match_parent"
-        android:layout_weight="1.1"
+        android:layout_weight="1"
         android:orientation="vertical">
 
-        <!-- Top Row -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="1"
             android:orientation="horizontal">
 
-            <!-- Sunrise -->
             <LinearLayout
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:gravity="center"
                 android:orientation="vertical">
+
                 <ImageView
                     android:layout_width="24dp"
                     android:layout_height="24dp"
-                    android:src="@drawable/ic_sky"
-                    android:layout_marginBottom="4dp" />
+                    android:src="@drawable/ic_widget_sunrise" />
+
                 <TextView
-                    android:layout_width="wrap_content"
+                    android:id="@+id/widget_metric_sunrise_label"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:gravity="center"
                     android:text="Sunrise"
                     android:textColor="@color/celestial_text_muted"
-                    android:textSize="10sp"
-                    android:textStyle="bold" />
+                    android:textSize="9sp"
+                    android:textStyle="bold"
+                    android:singleLine="true" />
+
                 <TextView
                     android:id="@+id/widget_metric_sunrise_time"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="5:55 AM"
+                    android:gravity="center"
+                    android:text="5:55"
                     android:textColor="@color/celestial_text"
-                    android:textSize="12sp"
-                    android:textStyle="bold" />
+                    android:textSize="15sp"
+                    android:textStyle="bold"
+                    android:singleLine="true" />
+
+                <TextView
+                    android:id="@+id/widget_metric_sunrise_meridiem"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="AM"
+                    android:textColor="@color/widget_metric_orange"
+                    android:textSize="8sp"
+                    android:textStyle="bold"
+                    android:singleLine="true" />
             </LinearLayout>
 
             <FrameLayout
                 android:layout_width="1dp"
                 android:layout_height="match_parent"
-                android:layout_marginTop="8dp"
-                android:layout_marginBottom="8dp"
-                android:background="@color/celestial_border"
-                android:alpha="0.3" />
+                android:background="@color/widget_divider" />
 
-            <!-- Sunset -->
             <LinearLayout
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:gravity="center"
                 android:orientation="vertical">
+
                 <ImageView
                     android:layout_width="24dp"
                     android:layout_height="24dp"
-                    android:src="@drawable/ic_sky"
-                    android:layout_marginBottom="4dp" />
+                    android:src="@drawable/ic_widget_sunset" />
+
                 <TextView
-                    android:layout_width="wrap_content"
+                    android:id="@+id/widget_metric_sunset_label"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:gravity="center"
                     android:text="Sunset"
                     android:textColor="@color/celestial_text_muted"
-                    android:textSize="10sp"
-                    android:textStyle="bold" />
+                    android:textSize="9sp"
+                    android:textStyle="bold"
+                    android:singleLine="true" />
+
                 <TextView
                     android:id="@+id/widget_metric_sunset_time"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="7:18 PM"
+                    android:gravity="center"
+                    android:text="7:28"
                     android:textColor="@color/celestial_text"
-                    android:textSize="12sp"
-                    android:textStyle="bold" />
+                    android:textSize="15sp"
+                    android:textStyle="bold"
+                    android:singleLine="true" />
+
+                <TextView
+                    android:id="@+id/widget_metric_sunset_meridiem"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="PM"
+                    android:textColor="@color/widget_metric_red"
+                    android:textSize="8sp"
+                    android:textStyle="bold"
+                    android:singleLine="true" />
             </LinearLayout>
 
             <FrameLayout
                 android:layout_width="1dp"
                 android:layout_height="match_parent"
-                android:layout_marginTop="8dp"
-                android:layout_marginBottom="8dp"
-                android:background="@color/celestial_border"
-                android:alpha="0.3" />
+                android:background="@color/widget_divider" />
 
-            <!-- Moonrise -->
             <LinearLayout
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:gravity="center"
                 android:orientation="vertical">
+
                 <ImageView
                     android:layout_width="24dp"
                     android:layout_height="24dp"
-                    android:src="@drawable/ic_clock"
-                    android:layout_marginBottom="4dp" />
+                    android:src="@drawable/ic_widget_moonrise" />
+
                 <TextView
-                    android:layout_width="wrap_content"
+                    android:id="@+id/widget_metric_moonrise_label"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:gravity="center"
                     android:text="Moonrise"
                     android:textColor="@color/celestial_text_muted"
-                    android:textSize="10sp"
-                    android:textStyle="bold" />
+                    android:textSize="9sp"
+                    android:textStyle="bold"
+                    android:singleLine="true" />
+
                 <TextView
                     android:id="@+id/widget_metric_moonrise_time"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="3:07 PM"
+                    android:gravity="center"
+                    android:text="4:35"
                     android:textColor="@color/celestial_text"
-                    android:textSize="12sp"
-                    android:textStyle="bold" />
+                    android:textSize="15sp"
+                    android:textStyle="bold"
+                    android:singleLine="true" />
+
+                <TextView
+                    android:id="@+id/widget_metric_moonrise_meridiem"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="PM"
+                    android:textColor="@color/celestial_moon"
+                    android:textSize="8sp"
+                    android:textStyle="bold"
+                    android:singleLine="true" />
             </LinearLayout>
         </LinearLayout>
 
         <FrameLayout
             android:layout_width="match_parent"
             android:layout_height="1dp"
-            android:layout_marginStart="8dp"
-            android:layout_marginEnd="8dp"
-            android:background="@color/celestial_border"
-            android:alpha="0.3" />
+            android:background="@color/widget_divider" />
 
-        <!-- Bottom Row -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="1"
             android:orientation="horizontal">
 
-            <!-- Moonset -->
             <LinearLayout
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:gravity="center"
                 android:orientation="vertical">
+
                 <ImageView
                     android:layout_width="24dp"
                     android:layout_height="24dp"
-                    android:src="@drawable/ic_clock"
-                    android:layout_marginBottom="4dp" />
+                    android:src="@drawable/ic_widget_moonset" />
+
                 <TextView
-                    android:layout_width="wrap_content"
+                    android:id="@+id/widget_metric_moonset_label"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:gravity="center"
                     android:text="Moonset"
                     android:textColor="@color/celestial_text_muted"
-                    android:textSize="10sp"
-                    android:textStyle="bold" />
+                    android:textSize="9sp"
+                    android:textStyle="bold"
+                    android:singleLine="true" />
+
                 <TextView
                     android:id="@+id/widget_metric_moonset_time"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="2:27 AM"
+                    android:gravity="center"
+                    android:text="2:44"
                     android:textColor="@color/celestial_text"
-                    android:textSize="12sp"
-                    android:textStyle="bold" />
+                    android:textSize="15sp"
+                    android:textStyle="bold"
+                    android:singleLine="true" />
+
+                <TextView
+                    android:id="@+id/widget_metric_moonset_meridiem"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="AM"
+                    android:textColor="@color/celestial_moon"
+                    android:textSize="8sp"
+                    android:textStyle="bold"
+                    android:singleLine="true" />
             </LinearLayout>
 
             <FrameLayout
                 android:layout_width="1dp"
                 android:layout_height="match_parent"
-                android:layout_marginTop="8dp"
-                android:layout_marginBottom="8dp"
-                android:background="@color/celestial_border"
-                android:alpha="0.3" />
+                android:background="@color/widget_divider" />
 
-            <!-- Solar Noon -->
             <LinearLayout
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:gravity="center"
                 android:orientation="vertical">
+
                 <ImageView
                     android:layout_width="24dp"
                     android:layout_height="24dp"
-                    android:src="@drawable/ic_sky"
-                    android:layout_marginBottom="4dp" />
+                    android:src="@drawable/ic_widget_noon" />
+
                 <TextView
-                    android:layout_width="wrap_content"
+                    android:id="@+id/widget_metric_noon_label"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:gravity="center"
                     android:text="Solar Noon"
                     android:textColor="@color/celestial_text_muted"
-                    android:textSize="10sp"
-                    android:textStyle="bold" />
+                    android:textSize="9sp"
+                    android:textStyle="bold"
+                    android:singleLine="true" />
+
                 <TextView
                     android:id="@+id/widget_metric_noon_time"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="12:36 PM"
+                    android:gravity="center"
+                    android:text="12:41"
                     android:textColor="@color/celestial_text"
-                    android:textSize="12sp"
-                    android:textStyle="bold" />
+                    android:textSize="15sp"
+                    android:textStyle="bold"
+                    android:singleLine="true" />
+
+                <TextView
+                    android:id="@+id/widget_metric_noon_meridiem"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="PM"
+                    android:textColor="@color/widget_metric_yellow"
+                    android:textSize="8sp"
+                    android:textStyle="bold"
+                    android:singleLine="true" />
             </LinearLayout>
 
             <FrameLayout
                 android:layout_width="1dp"
                 android:layout_height="match_parent"
-                android:layout_marginTop="8dp"
-                android:layout_marginBottom="8dp"
-                android:background="@color/celestial_border"
-                android:alpha="0.3" />
+                android:background="@color/widget_divider" />
 
-            <!-- Illumination -->
             <LinearLayout
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:gravity="center"
                 android:orientation="vertical">
+
                 <ImageView
                     android:layout_width="24dp"
                     android:layout_height="24dp"
-                    android:src="@drawable/ic_sparkles"
-                    android:layout_marginBottom="4dp" />
+                    android:src="@drawable/ic_widget_illumination" />
+
                 <TextView
-                    android:layout_width="wrap_content"
+                    android:id="@+id/widget_metric_illumination_label"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:gravity="center"
                     android:text="Illumination"
                     android:textColor="@color/celestial_text_muted"
-                    android:textSize="10sp"
-                    android:textStyle="bold" />
+                    android:textSize="9sp"
+                    android:textStyle="bold"
+                    android:singleLine="true" />
+
                 <TextView
                     android:id="@+id/widget_metric_illumination_value"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="77%"
+                    android:gravity="center"
+                    android:text="88%"
                     android:textColor="@color/celestial_text"
-                    android:textSize="14sp"
-                    android:textStyle="bold" />
+                    android:textSize="15sp"
+                    android:textStyle="bold"
+                    android:singleLine="true" />
             </LinearLayout>
         </LinearLayout>
     </LinearLayout>
@@ -247,29 +321,53 @@
     <FrameLayout
         android:layout_width="1dp"
         android:layout_height="match_parent"
-        android:layout_marginStart="6dp"
-        android:layout_marginEnd="8dp"
-        android:background="@color/celestial_border"
-        android:alpha="0.3" />
+        android:layout_marginStart="7dp"
+        android:layout_marginEnd="7dp"
+        android:background="@color/widget_divider" />
 
-    <!-- RIGHT HALF -->
     <LinearLayout
         android:layout_width="0dp"
         android:layout_height="match_parent"
-        android:layout_weight="1"
+        android:layout_weight="1.18"
         android:orientation="vertical">
 
-        <!-- Top Section -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_marginBottom="2dp">
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
 
             <LinearLayout
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:id="@+id/widget_detail_dot"
+                    android:layout_width="9dp"
+                    android:layout_height="9dp"
+                    android:layout_marginEnd="7dp"
+                    android:src="@drawable/bg_circle_solid" />
+
+                <TextView
+                    android:id="@+id/widget_detail_active_name"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:ellipsize="end"
+                    android:text="Char"
+                    android:textColor="@color/celestial_text"
+                    android:textSize="24sp"
+                    android:textStyle="bold"
+                    android:singleLine="true" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="end"
                 android:orientation="vertical">
 
                 <TextView
@@ -280,259 +378,232 @@
                     android:textColor="@color/celestial_text_muted"
                     android:textSize="11sp"
                     android:textStyle="bold"
-                    android:layout_marginBottom="2dp"
                     android:singleLine="true" />
-
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:gravity="center_vertical">
-
-                    <ImageView
-                        android:id="@+id/widget_detail_dot"
-                        android:layout_width="8dp"
-                        android:layout_height="8dp"
-                        android:layout_marginEnd="6dp"
-                        android:src="@drawable/bg_circle_solid" />
-
-                    <TextView
-                        android:id="@+id/widget_detail_active_name"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Udveg"
-                        android:textColor="@color/celestial_text"
-                        android:textSize="22sp"
-                        android:textStyle="bold"
-                        android:singleLine="true" />
-                </LinearLayout>
 
                 <TextView
                     android:id="@+id/widget_detail_active_meaning"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="14dp"
-                    android:text="Tense"
+                    android:text="Normal"
                     android:textColor="@color/celestial_text_muted"
                     android:textSize="11sp"
-                    android:textStyle="bold" />
+                    android:textStyle="bold"
+                    android:singleLine="true" />
             </LinearLayout>
-
-
         </LinearLayout>
 
-        <FrameLayout
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1" />
-
-        <!-- Countdown -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
             android:gravity="bottom"
-            android:orientation="horizontal"
-            android:layout_marginBottom="2dp">
+            android:orientation="horizontal">
 
-            <TextView
+            <Chronometer
                 android:id="@+id/widget_detail_countdown"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="01:18"
-                android:textColor="@color/choghadiya_udveg"
-                android:textSize="28sp"
+                android:includeFontPadding="false"
+                android:text="00:54"
+                android:textColor="@color/widget_accent_blue"
+                android:textSize="30sp"
                 android:textStyle="bold" />
 
             <TextView
                 android:id="@+id/widget_detail_label_left"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="4dp"
-                android:layout_marginBottom="4dp"
+                android:layout_marginStart="6dp"
+                android:layout_marginBottom="5dp"
                 android:text="Left"
                 android:textColor="@color/celestial_text_muted"
-                android:textSize="10sp"
+                android:textSize="11sp"
                 android:textStyle="bold"
                 android:singleLine="true" />
         </LinearLayout>
 
-        <!-- Progress Bar -->
         <ProgressBar
             android:id="@+id/widget_detail_progress"
             style="?android:attr/progressBarStyleHorizontal"
             android:layout_width="match_parent"
-            android:layout_height="4dp"
-            android:layout_marginBottom="4dp"
+            android:layout_height="6dp"
+            android:layout_marginTop="5dp"
             android:max="100"
-            android:progress="60"
-            android:progressTint="@color/choghadiya_udveg"
-            android:progressBackgroundTint="@color/celestial_border" />
+            android:progress="55"
+            android:progressBackgroundTint="@color/widget_progress_track"
+            android:progressTint="@color/widget_accent_blue" />
 
-        <!-- Range -->
         <TextView
             android:id="@+id/widget_detail_active_range"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="9:57 PM - 11:17 PM"
+            android:layout_marginTop="6dp"
+            android:ellipsize="end"
+            android:text="5:46 PM - 7:28 PM"
             android:textColor="@color/celestial_text_muted"
-            android:textSize="9sp"
-            android:layout_marginBottom="4dp"
+            android:textSize="11sp"
+            android:textStyle="bold"
             android:singleLine="true" />
 
         <FrameLayout
             android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1" />
-
-        <FrameLayout
-            android:layout_width="match_parent"
             android:layout_height="1dp"
-            android:background="@color/celestial_border"
-            android:alpha="0.3"
-            android:layout_marginBottom="4dp" />
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="6dp"
+            android:background="@color/widget_divider" />
 
-        <!-- Next 3 Section -->
         <TextView
-            android:layout_width="wrap_content"
+            android:id="@+id/widget_detail_next_label"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Next 3"
-            android:textColor="@color/celestial_text_muted"
-            android:textSize="10sp"
+            android:textColor="@color/widget_metric_yellow"
+            android:textSize="11sp"
             android:textStyle="bold"
-            android:layout_marginBottom="4dp" />
+            android:singleLine="true" />
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:gravity="center_vertical">
+            android:layout_marginTop="5dp"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
 
-            <!-- Col 1 -->
             <LinearLayout
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:orientation="vertical">
+                android:orientation="vertical"
+                android:paddingEnd="2dp">
+
                 <LinearLayout
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:gravity="center_vertical">
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
                     <ImageView
                         android:id="@+id/widget_detail_next_1_dot"
-                        android:layout_width="5dp"
-                        android:layout_height="5dp"
-                        android:src="@drawable/bg_circle_solid"
-                        android:layout_marginEnd="4dp" />
+                        android:layout_width="6dp"
+                        android:layout_height="6dp"
+                        android:layout_marginEnd="5dp"
+                        android:src="@drawable/bg_circle_solid" />
+
                     <TextView
                         android:id="@+id/widget_detail_next_1_name"
-                        android:layout_width="wrap_content"
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:text="Shubh"
+                        android:layout_weight="1"
+                        android:ellipsize="end"
+                        android:text="Rog"
                         android:textColor="@color/celestial_text"
-                        android:textSize="9sp"
+                        android:textSize="11sp"
                         android:textStyle="bold"
                         android:singleLine="true" />
                 </LinearLayout>
+
                 <TextView
                     android:id="@+id/widget_detail_next_1_time"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="12:36 AM"
+                    android:layout_marginStart="9dp"
+                    android:ellipsize="end"
+                    android:text="7:28 PM"
                     android:textColor="@color/celestial_text_muted"
-                    android:textSize="8sp"
+                    android:textSize="9sp"
                     android:singleLine="true" />
             </LinearLayout>
 
-            <FrameLayout
-                android:layout_width="1dp"
-                android:layout_height="match_parent"
-                android:background="@color/celestial_border"
-                android:alpha="0.3" />
-
-            <!-- Col 2 -->
             <LinearLayout
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:paddingStart="4dp"
-                android:orientation="vertical">
+                android:orientation="vertical"
+                android:paddingStart="2dp"
+                android:paddingEnd="2dp">
+
                 <LinearLayout
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:gravity="center_vertical">
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
                     <ImageView
                         android:id="@+id/widget_detail_next_2_dot"
-                        android:layout_width="5dp"
-                        android:layout_height="5dp"
-                        android:src="@drawable/bg_circle_solid"
-                        android:layout_marginEnd="4dp" />
+                        android:layout_width="6dp"
+                        android:layout_height="6dp"
+                        android:layout_marginEnd="5dp"
+                        android:src="@drawable/bg_circle_solid" />
+
                     <TextView
                         android:id="@+id/widget_detail_next_2_name"
-                        android:layout_width="wrap_content"
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:text="Amrit"
+                        android:layout_weight="1"
+                        android:ellipsize="end"
+                        android:text="Kaal"
                         android:textColor="@color/celestial_text"
-                        android:textSize="9sp"
+                        android:textSize="11sp"
                         android:textStyle="bold"
                         android:singleLine="true" />
                 </LinearLayout>
+
                 <TextView
                     android:id="@+id/widget_detail_next_2_time"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="1:56 AM"
+                    android:layout_marginStart="9dp"
+                    android:ellipsize="end"
+                    android:text="8:46 PM"
                     android:textColor="@color/celestial_text_muted"
-                    android:textSize="8sp"
+                    android:textSize="9sp"
                     android:singleLine="true" />
             </LinearLayout>
 
-            <FrameLayout
-                android:layout_width="1dp"
-                android:layout_height="match_parent"
-                android:background="@color/celestial_border"
-                android:alpha="0.3" />
-
-            <!-- Col 3 -->
             <LinearLayout
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:paddingStart="4dp"
-                android:orientation="vertical">
+                android:orientation="vertical"
+                android:paddingStart="2dp">
+
                 <LinearLayout
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:gravity="center_vertical">
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
                     <ImageView
                         android:id="@+id/widget_detail_next_3_dot"
-                        android:layout_width="5dp"
-                        android:layout_height="5dp"
-                        android:src="@drawable/bg_circle_solid"
-                        android:layout_marginEnd="4dp" />
+                        android:layout_width="6dp"
+                        android:layout_height="6dp"
+                        android:layout_marginEnd="5dp"
+                        android:src="@drawable/bg_circle_solid" />
+
                     <TextView
                         android:id="@+id/widget_detail_next_3_name"
-                        android:layout_width="wrap_content"
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:text="Chal"
+                        android:layout_weight="1"
+                        android:ellipsize="end"
+                        android:text="Labh"
                         android:textColor="@color/celestial_text"
-                        android:textSize="9sp"
+                        android:textSize="11sp"
                         android:textStyle="bold"
                         android:singleLine="true" />
                 </LinearLayout>
+
                 <TextView
                     android:id="@+id/widget_detail_next_3_time"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="3:15 AM"
+                    android:layout_marginStart="9dp"
+                    android:ellipsize="end"
+                    android:text="10:05 PM"
                     android:textColor="@color/celestial_text_muted"
-                    android:textSize="8sp"
+                    android:textSize="9sp"
                     android:singleLine="true" />
             </LinearLayout>
-
         </LinearLayout>
     </LinearLayout>
-
 </LinearLayout>

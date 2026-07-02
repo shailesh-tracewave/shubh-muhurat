@@ -7,34 +7,35 @@ plugins {
 }
 
 android {
-    namespace 'com.techmeeva.chogadiyawidgets'
-    compileSdk 34
+    namespace = 'com.techmeeva.chogadiyawidgets'
+    compileSdk = 35
 
     defaultConfig {
-        applicationId "com.techmeeva.chogadiyawidgets"
-        minSdk 31
-        targetSdk 34
-        versionCode 1
-        versionName "1.0.0"
+        applicationId = "com.techmeeva.chogadiyawidgets"
+        minSdk = 31
+        targetSdk = 35
+        versionCode = 1
+        versionName = "1.0.0"
 
-        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
 
     buildTypes {
         release {
-            minifyEnabled false
+            minifyEnabled = false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
     compileOptions {
-        sourceCompatibility JavaVersion.VERSION_17
-        targetCompatibility JavaVersion.VERSION_17
+        sourceCompatibility = JavaVersion.VERSION_17
+        targetCompatibility = JavaVersion.VERSION_17
     }
     kotlinOptions {
         jvmTarget = '17'
     }
     buildFeatures {
-        viewBinding true
+        viewBinding = true
+        buildConfig = true
     }
 }
 

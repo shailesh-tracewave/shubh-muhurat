@@ -5,7 +5,6 @@ import android.app.NotificationManager
 import android.app.PendingIntent
 import android.content.Context
 import android.content.Intent
-import android.os.Build
 import androidx.core.app.NotificationCompat
 import androidx.work.OneTimeWorkRequestBuilder
 import androidx.work.WorkManager
@@ -22,7 +21,7 @@ class EngagementNotificationWorker(
 ) : Worker(context, workerParams) {
 
     override fun doWork(): Result {
-        val title = inputData.getString("title") ?: "Divine Choghadiya"
+        val title = inputData.getString("title") ?: "Shubh Muhurat"
         val body = inputData.getString("body") ?: "A gentle reminder: your daily Choghadiya path is ready."
         val notificationId = inputData.getInt("id", 0)
 
@@ -34,14 +33,12 @@ class EngagementNotificationWorker(
         val channelId = "engagement_channel"
         val notificationManager = context.getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
 
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            val channel = NotificationChannel(
-                channelId,
-                "Daily Reminders",
-                NotificationManager.IMPORTANCE_DEFAULT
-            )
-            notificationManager.createNotificationChannel(channel)
-        }
+        val channel = NotificationChannel(
+            channelId,
+            "Daily Reminders",
+            NotificationManager.IMPORTANCE_DEFAULT
+        )
+        notificationManager.createNotificationChannel(channel)
 
         val intent = Intent(context, MainActivity::class.java).apply {
             flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
@@ -74,14 +71,14 @@ class EngagementNotificationWorker(
                 Pair(21.0, "Check the solar and lunar rhythm before important work today."),
                 Pair(30.0, "A new rhythm begins. See today’s best timing window."),
                 Pair(45.0, "Your auspicious timing guide is waiting for today’s flow."),
-                Pair(60.0, "Pause for a moment and align your day with Divine Choghadiya."),
+                Pair(60.0, "Pause for a moment and align your day with Shubh Muhurat."),
                 Pair(75.0, "Fresh Choghadiya, sunrise, sunset, and moon timing are ready."),
                 Pair(90.0, "Return to your daily rhythm with today’s Choghadiya guidance.")
             )
 
             reminders.forEachIndexed { index, reminder ->
                 val data = Data.Builder()
-                    .putString("title", "Divine Choghadiya")
+                    .putString("title", "Shubh Muhurat")
                     .putString("body", reminder.second)
                     .putInt("id", index + 100)
                     .build()

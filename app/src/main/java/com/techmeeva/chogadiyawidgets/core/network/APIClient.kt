@@ -2,11 +2,13 @@ package com.techmeeva.chogadiyawidgets.core.network
 
 import com.google.gson.GsonBuilder
 import com.google.gson.JsonDeserializer
+import com.techmeeva.chogadiyawidgets.BuildConfig
 import com.techmeeva.chogadiyawidgets.models.ChoghadiyaDayResponse
 import com.techmeeva.chogadiyawidgets.models.ChoghadiyaRangeResponse
 import com.techmeeva.chogadiyawidgets.models.SeedCity
 import com.techmeeva.chogadiyawidgets.models.SolarLunarDayResponse
 import kotlinx.coroutines.delay
+import okhttp3.HttpUrl.Companion.toHttpUrlOrNull
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
@@ -45,12 +47,20 @@ class APIClient {
         .readTimeout(60, TimeUnit.SECONDS)
         .writeTimeout(60, TimeUnit.SECONDS)
         .addInterceptor(HttpLoggingInterceptor().apply {
-            level = HttpLoggingInterceptor.Level.BODY
+            level = if (BuildConfig.DEBUG) {
+                HttpLoggingInterceptor.Level.BASIC
+            } else {
+                HttpLoggingInterceptor.Level.NONE
+            }
         })
         .build()
 
     private fun getApi(baseURL: String): ChoghadiyaApi {
         val sanitizedURL = if (baseURL.endsWith("/")) baseURL else "$baseURL/"
+        val parsed = sanitizedURL.toHttpUrlOrNull()
+        if (parsed == null || !parsed.isHttps) {
+            throw APIError.InvalidURL
+        }
         return Retrofit.Builder()
             .baseUrl(sanitizedURL)
             .client(okHttpClient)

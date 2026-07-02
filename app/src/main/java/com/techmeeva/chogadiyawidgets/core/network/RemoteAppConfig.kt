@@ -7,11 +7,12 @@ import com.google.gson.annotations.SerializedName
 data class RemoteAppConfig(
     @SerializedName("apiBaseURL") val apiBaseURL: String? = null,
     @SerializedName("appStoreURL") val appStoreURL: String? = null,
+    @SerializedName("playStoreURL") val playStoreURL: String? = null,
     @SerializedName("minimumSupportedVersion") val minimumSupportedVersion: String = "1.0",
     @SerializedName("latestVersion") val latestVersion: String = "1.0",
     @SerializedName("forceUpdate") val forceUpdate: Boolean = false,
     @SerializedName("updateTitle") val updateTitle: String = "Update available",
-    @SerializedName("updateMessage") val updateMessage: String = "A newer version of Divine Choghadiya is available with improvements.",
+    @SerializedName("updateMessage") val updateMessage: String = "A newer version of Shubh Muhurat is available with improvements.",
     @SerializedName("rating") val rating: RatingPromptConfig = RatingPromptConfig(),
     @SerializedName("notifications") val notifications: NotificationPromptConfig = NotificationPromptConfig(),
     @SerializedName("engagement") val engagement: EngagementPromptConfig = EngagementPromptConfig()
@@ -40,5 +41,5 @@ data class EngagementPromptConfig(
     @SerializedName("enabled") val enabled: Boolean = true,
     @SerializedName("milestoneDays") val milestoneDays: List<Int> = listOf(7, 30, 100),
     @SerializedName("title") val title: String = "A beautiful streak",
-    @SerializedName("message") val message: String = "You have been aligning your days with Divine Choghadiya."
+    @SerializedName("message") val message: String = "You have been aligning your days with Shubh Muhurat."
 )
