@@ -2,6 +2,7 @@ package com.techmeeva.chogadiyawidgets.core.network
 
 import com.techmeeva.chogadiyawidgets.models.ChoghadiyaDayResponse
 import com.techmeeva.chogadiyawidgets.models.ChoghadiyaRangeResponse
+import com.techmeeva.chogadiyawidgets.models.PanchangDayResponse
 import com.techmeeva.chogadiyawidgets.models.SolarLunarDayResponse
 import retrofit2.http.GET
 import retrofit2.http.Query
@@ -29,4 +30,11 @@ interface ChoghadiyaApi {
         @Query("lng") lng: Double,
         @Query("date") date: String
     ): SolarLunarDayResponse
+
+    @GET("v1/panchang/day")
+    suspend fun fetchPanchangDay(
+        @Query("lat") lat: Double,
+        @Query("lng") lng: Double,
+        @Query("date") date: String
+    ): PanchangDayResponse
 }

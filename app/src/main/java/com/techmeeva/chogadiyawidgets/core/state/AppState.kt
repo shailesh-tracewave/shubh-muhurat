@@ -24,7 +24,8 @@ class AppState(context: Context) {
         set(value) = defaults.edit().putBoolean(Keys.onboarding, value).apply()
 
     var selectedLanguage: AppLanguage
-        get() = AppLanguage.fromRawValue(defaults.getString(Keys.language, AppLanguage.ENGLISH.rawValue) ?: "")
+        get() = defaults.getString(Keys.language, null)?.let { AppLanguage.fromRawValue(it) }
+            ?: AppLanguage.defaultFromDevice()
         set(value) = defaults.edit().putString(Keys.language, value.rawValue).apply()
 
     var subscriptionPlan: SubscriptionPlan

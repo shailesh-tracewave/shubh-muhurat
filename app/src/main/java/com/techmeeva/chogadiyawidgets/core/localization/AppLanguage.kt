@@ -1,36 +1,66 @@
 package com.techmeeva.chogadiyawidgets.core.localization
 
-enum class AppLanguage(val rawValue: String) {
-    ENGLISH("en"),
-    HINDI("hi"),
-    GUJARATI("gu");
+import java.util.Locale
 
-    val displayName: String
-        get() = when (this) {
-            ENGLISH -> "English"
-            HINDI -> "हिंदी"
-            GUJARATI -> "ગુજરાતી"
-        }
-
+enum class AppLanguage(
+    val rawValue: String,
+    val displayName: String,
     val localeIdentifier: String
+) {
+    ENGLISH("en", "English", "en_IN"),
+    ASSAMESE("as", "অসমীয়া", "as_IN"),
+    BENGALI("bn", "বাংলা", "bn_IN"),
+    BODO("brx", "बड़ो", "brx_IN"),
+    DOGRI("doi", "डोगरी", "doi_IN"),
+    GUJARATI("gu", "ગુજરાતી", "gu_IN"),
+    HINDI("hi", "हिंदी", "hi_IN"),
+    KANNADA("kn", "ಕನ್ನಡ", "kn_IN"),
+    KASHMIRI("ks", "کٲشُر", "ks_IN"),
+    KONKANI("kok", "कोंकणी", "kok_IN"),
+    MAITHILI("mai", "मैथिली", "mai_IN"),
+    MALAYALAM("ml", "മലയാളം", "ml_IN"),
+    MANIPURI("mni", "মৈতৈলোন্", "mni_IN"),
+    MARATHI("mr", "मराठी", "mr_IN"),
+    NEPALI("ne", "नेपाली", "ne_IN"),
+    ODIA("or", "ଓଡ଼ିଆ", "or_IN"),
+    PUNJABI("pa", "ਪੰਜਾਬੀ", "pa_IN"),
+    SANSKRIT("sa", "संस्कृतम्", "sa_IN"),
+    SANTALI("sat", "ᱥᱟᱱᱛᱟᱲᱤ", "sat_IN"),
+    SINDHI("sd", "سنڌي", "sd_IN"),
+    TAMIL("ta", "தமிழ்", "ta_IN"),
+    TELUGU("te", "తెలుగు", "te_IN"),
+    URDU("ur", "اردو", "ur_IN");
+
+    val localizedContentLanguage: LocalizedContentLanguage
         get() = when (this) {
-            ENGLISH -> "en_IN"
-            HINDI -> "hi_IN"
-            GUJARATI -> "gu_IN"
+            HINDI -> LocalizedContentLanguage.HINDI
+            GUJARATI -> LocalizedContentLanguage.GUJARATI
+            else -> LocalizedContentLanguage.ENGLISH
         }
 
     val locale: java.util.Locale
-        get() = when (this) {
-            ENGLISH -> java.util.Locale("en", "IN")
-            HINDI -> java.util.Locale("hi", "IN")
-            GUJARATI -> java.util.Locale("gu", "IN")
-        }
+        get() = Locale.forLanguageTag(localeIdentifier.replace('_', '-'))
 
     companion object {
         fun fromRawValue(value: String): AppLanguage {
             return entries.firstOrNull { it.rawValue == value } ?: ENGLISH
         }
+
+        fun defaultFromDevice(): AppLanguage {
+            return fromLocale(Locale.getDefault())
+        }
+
+        fun fromLocale(locale: Locale): AppLanguage {
+            val languageCode = locale.language.lowercase(Locale.US)
+            return entries.firstOrNull { it.rawValue == languageCode } ?: ENGLISH
+        }
     }
+}
+
+enum class LocalizedContentLanguage {
+    ENGLISH,
+    HINDI,
+    GUJARATI
 }
 
 enum class AppThemeMode(val rawValue: String) {
@@ -39,18 +69,18 @@ enum class AppThemeMode(val rawValue: String) {
     DARK("dark");
 
     fun displayName(language: AppLanguage): String {
-        return when (language) {
-            AppLanguage.ENGLISH -> when (this) {
+        return when (language.localizedContentLanguage) {
+            LocalizedContentLanguage.ENGLISH -> when (this) {
                 SYSTEM -> "System"
                 LIGHT -> "Light"
                 DARK -> "Dark"
             }
-            AppLanguage.HINDI -> when (this) {
+            LocalizedContentLanguage.HINDI -> when (this) {
                 SYSTEM -> "सिस्टम"
                 LIGHT -> "लाइट"
                 DARK -> "डार्क"
             }
-            AppLanguage.GUJARATI -> when (this) {
+            LocalizedContentLanguage.GUJARATI -> when (this) {
                 SYSTEM -> "સિસ્ટમ"
                 LIGHT -> "લાઇટ"
                 DARK -> "ડાર્ક"
@@ -59,18 +89,18 @@ enum class AppThemeMode(val rawValue: String) {
     }
 
     fun subtitle(language: AppLanguage): String {
-        return when (language) {
-            AppLanguage.ENGLISH -> when (this) {
+        return when (language.localizedContentLanguage) {
+            LocalizedContentLanguage.ENGLISH -> when (this) {
                 SYSTEM -> "Follow your device setting"
                 LIGHT -> "Warm, bright, and airy"
                 DARK -> "Soft contrast for night viewing"
             }
-            AppLanguage.HINDI -> when (this) {
+            LocalizedContentLanguage.HINDI -> when (this) {
                 SYSTEM -> "डिवाइस सेटिंग के अनुसार"
                 LIGHT -> "उज्ज्वल और हल्का दृश्य"
                 DARK -> "रात में आरामदायक कंट्रास्ट"
             }
-            AppLanguage.GUJARATI -> when (this) {
+            LocalizedContentLanguage.GUJARATI -> when (this) {
                 SYSTEM -> "ડિવાઇસ સેટિંગ મુજબ"
                 LIGHT -> "ઉજાસભર્યું અને હળવું દેખાવ"
                 DARK -> "રાત માટે આરામદાયક કોન્ટ્રાસ્ટ"

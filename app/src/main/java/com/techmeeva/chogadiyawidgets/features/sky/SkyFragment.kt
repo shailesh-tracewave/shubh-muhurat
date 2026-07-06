@@ -14,6 +14,7 @@ import com.techmeeva.chogadiyawidgets.R
 import com.techmeeva.chogadiyawidgets.core.localization.AppLanguage
 import com.techmeeva.chogadiyawidgets.core.localization.AppLocalizer
 import com.techmeeva.chogadiyawidgets.core.localization.AppTextKey
+import com.techmeeva.chogadiyawidgets.core.localization.LocalizedContentLanguage
 import com.techmeeva.chogadiyawidgets.core.state.AppState
 import com.techmeeva.chogadiyawidgets.core.state.ChoghadiyaDataStore
 import com.techmeeva.chogadiyawidgets.core.state.AstronomyState
@@ -97,10 +98,10 @@ class SkyFragment : Fragment() {
         val language = appState.selectedLanguage
         binding.tvSkyTitle.text = skyTitle(language)
         binding.tvSkySubtitle.text = AppLocalizer.localizedShortDate(Date(), language, appState.selectedCity.timezone)
-        binding.tvSkyLoading.text = when (language) {
-            AppLanguage.ENGLISH -> "Updating sky data"
-            AppLanguage.HINDI -> "आकाश डेटा अपडेट हो रहा है"
-            AppLanguage.GUJARATI -> "આકાશ ડેટા અપડેટ થઈ રહ્યું છે"
+        binding.tvSkyLoading.text = when (language.localizedContentLanguage) {
+            LocalizedContentLanguage.ENGLISH -> "Updating sky data"
+            LocalizedContentLanguage.HINDI -> "आकाश डेटा अपडेट हो रहा है"
+            LocalizedContentLanguage.GUJARATI -> "આકાશ ડેટા અપડેટ થઈ રહ્યું છે"
         }
         binding.btnSkyRetry.text = AppLocalizer.text(AppTextKey.TRY_AGAIN, language).uppercase(Locale.US)
     }
@@ -114,10 +115,10 @@ class SkyFragment : Fragment() {
             binding.auspiciousWindowsContainer.visibility = View.GONE
             binding.tvObstaclesHeader.visibility = View.GONE
             binding.inauspiciousWindowsContainer.visibility = View.GONE
-            binding.tvSkyErrorTitle.text = when (appState.selectedLanguage) {
-                AppLanguage.ENGLISH -> "Could not update"
-                AppLanguage.HINDI -> "अपडेट नहीं हो सका"
-                AppLanguage.GUJARATI -> "અપડેટ થઈ શક્યું નહીં"
+            binding.tvSkyErrorTitle.text = when (appState.selectedLanguage.localizedContentLanguage) {
+                LocalizedContentLanguage.ENGLISH -> "Could not update"
+                LocalizedContentLanguage.HINDI -> "अपडेट नहीं हो सका"
+                LocalizedContentLanguage.GUJARATI -> "અપડેટ થઈ શક્યું નહીં"
             }
             binding.tvSkyErrorMessage.text = state.errorMessage
             return
@@ -169,10 +170,10 @@ class SkyFragment : Fragment() {
 
         if (windows.isEmpty()) {
             val emptyTv = TextView(requireContext()).apply {
-                text = when (language) {
-                    AppLanguage.ENGLISH -> "None active for today."
-                    AppLanguage.HINDI -> "आज के लिए कोई सक्रिय नहीं."
-                    AppLanguage.GUJARATI -> "આજે માટે કંઈ સક્રિય નથી."
+                text = when (language.localizedContentLanguage) {
+                    LocalizedContentLanguage.ENGLISH -> "None active for today."
+                    LocalizedContentLanguage.HINDI -> "आज के लिए कोई सक्रिय नहीं."
+                    LocalizedContentLanguage.GUJARATI -> "આજે માટે કંઈ સક્રિય નથી."
                 }
                 setTextColor(ContextCompat.getColor(requireContext(), R.color.celestial_text_muted))
                 textSize = 13f
@@ -205,18 +206,18 @@ class SkyFragment : Fragment() {
     }
 
     private fun skyTitle(language: AppLanguage): String {
-        return when (language) {
-            AppLanguage.ENGLISH -> "Solar & Lunar"
-            AppLanguage.HINDI -> "सौर और चंद्र"
-            AppLanguage.GUJARATI -> "સૌર અને ચંદ્ર"
+        return when (language.localizedContentLanguage) {
+            LocalizedContentLanguage.ENGLISH -> "Solar & Lunar"
+            LocalizedContentLanguage.HINDI -> "सौर और चंद्र"
+            LocalizedContentLanguage.GUJARATI -> "સૌર અને ચંદ્ર"
         }
     }
 
     private fun illuminationTitle(language: AppLanguage): String {
-        return when (language) {
-            AppLanguage.ENGLISH -> "Illumination"
-            AppLanguage.HINDI -> "प्रकाश"
-            AppLanguage.GUJARATI -> "પ્રકાશ"
+        return when (language.localizedContentLanguage) {
+            LocalizedContentLanguage.ENGLISH -> "Illumination"
+            LocalizedContentLanguage.HINDI -> "प्रकाश"
+            LocalizedContentLanguage.GUJARATI -> "પ્રકાશ"
         }
     }
 }

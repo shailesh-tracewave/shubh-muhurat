@@ -9,8 +9,8 @@ import java.util.TimeZone
 object AppLocalizer {
 
     fun text(key: AppTextKey, language: AppLanguage): String {
-        return when (language) {
-            AppLanguage.ENGLISH -> when (key) {
+        return when (language.localizedContentLanguage) {
+            LocalizedContentLanguage.ENGLISH -> when (key) {
                 AppTextKey.ACTIVE_NOW -> "Active Now"
                 AppTextKey.FULL_SCHEDULE -> "Full Schedule"
                 AppTextKey.TODAYS_PATH -> "Today's Path"
@@ -82,7 +82,7 @@ object AppLocalizer {
                 AppTextKey.NIGHTTIME -> "Nighttime"
                 AppTextKey.UPGRADE_IN_APP -> "Upgrade in app"
             }
-            AppLanguage.HINDI -> when (key) {
+            LocalizedContentLanguage.HINDI -> when (key) {
                 AppTextKey.ACTIVE_NOW -> "अभी सक्रिय"
                 AppTextKey.FULL_SCHEDULE -> "पूरा शेड्यूल"
                 AppTextKey.TODAYS_PATH -> "आज का क्रम"
@@ -154,7 +154,7 @@ object AppLocalizer {
                 AppTextKey.NIGHTTIME -> "रात"
                 AppTextKey.UPGRADE_IN_APP -> "ऐप में अपग्रेड करें"
             }
-            AppLanguage.GUJARATI -> when (key) {
+            LocalizedContentLanguage.GUJARATI -> when (key) {
                 AppTextKey.ACTIVE_NOW -> "હમણાં સક્રિય"
                 AppTextKey.FULL_SCHEDULE -> "પૂર્ણ સમયપત્રક"
                 AppTextKey.TODAYS_PATH -> "આજનો ક્રમ"
@@ -212,7 +212,7 @@ object AppLocalizer {
                 AppTextKey.NEXT -> "આગળ"
                 AppTextKey.CONTINUE_ACTION -> "ચાલુ રાખો"
                 AppTextKey.START_EXPLORING -> "શરૂ કરો"
-                AppTextKey.ONBOARDING_WELCOME_TITLE -> "योग્ય સમય જાણો"
+                AppTextKey.ONBOARDING_WELCOME_TITLE -> "યોગ્ય સમય જાણો"
                 AppTextKey.ONBOARDING_WELCOME_BODY -> "તમારા દૈનિક કાર્યને દૈવી લય સાથે સહેલાઈથી જોડો."
                 AppTextKey.ONBOARDING_WIDGETS_TITLE -> "લોક સ્ક્રીન વિજેટ્સ"
                 AppTextKey.ONBOARDING_WIDGETS_BODY -> "લોક સ્ક્રીન અને હોમ વિજેટ્સ માટે બનાવેલું, જેથી આજનું ચોઘડિયા એપ ખોલ્યા વગર પણ દેખાય."
@@ -230,9 +230,9 @@ object AppLocalizer {
     }
 
     fun slotName(type: String, language: AppLanguage): String {
-        return when (language) {
-            AppLanguage.ENGLISH -> englishSlotName(type)
-            AppLanguage.HINDI -> when (type.lowercase(Locale.US)) {
+        return when (language.localizedContentLanguage) {
+            LocalizedContentLanguage.ENGLISH -> englishSlotName(type)
+            LocalizedContentLanguage.HINDI -> when (type.lowercase(Locale.US)) {
                 "shubh" -> "शुभ"
                 "labh" -> "लाभ"
                 "amrit" -> "अमृत"
@@ -242,7 +242,7 @@ object AppLocalizer {
                 "udveg" -> "उद्वेग"
                 else -> type.replaceFirstChar { if (it.isLowerCase()) it.titlecase(Locale.US) else it.toString() }
             }
-            AppLanguage.GUJARATI -> when (type.lowercase(Locale.US)) {
+            LocalizedContentLanguage.GUJARATI -> when (type.lowercase(Locale.US)) {
                 "shubh" -> "શુભ"
                 "labh" -> "લાભ"
                 "amrit" -> "અમૃત"
@@ -256,8 +256,8 @@ object AppLocalizer {
     }
 
     fun slotMeaning(type: String, language: AppLanguage): String {
-        return when (language) {
-            AppLanguage.ENGLISH -> when (type.lowercase(Locale.US)) {
+        return when (language.localizedContentLanguage) {
+            LocalizedContentLanguage.ENGLISH -> when (type.lowercase(Locale.US)) {
                 "amrit" -> "Highly auspicious"
                 "shubh" -> "Auspicious"
                 "labh" -> "Gain"
@@ -267,7 +267,7 @@ object AppLocalizer {
                 "kal" -> "Avoid major starts"
                 else -> "Timing slot"
             }
-            AppLanguage.HINDI -> when (type.lowercase(Locale.US)) {
+            LocalizedContentLanguage.HINDI -> when (type.lowercase(Locale.US)) {
                 "amrit" -> "अत्यंत शुभ"
                 "shubh" -> "शुभ"
                 "labh" -> "लाभ"
@@ -277,7 +277,7 @@ object AppLocalizer {
                 "kal" -> "बड़े आरंभ टालें"
                 else -> "समय खंड"
             }
-            AppLanguage.GUJARATI -> when (type.lowercase(Locale.US)) {
+            LocalizedContentLanguage.GUJARATI -> when (type.lowercase(Locale.US)) {
                 "amrit" -> "અતિ શુભ"
                 "shubh" -> "શુભ"
                 "labh" -> "લાભ"
@@ -291,8 +291,8 @@ object AppLocalizer {
     }
 
     fun slotDescription(type: String, language: AppLanguage): String {
-        return when (language) {
-            AppLanguage.ENGLISH -> when (type.lowercase(Locale.US)) {
+        return when (language.localizedContentLanguage) {
+            LocalizedContentLanguage.ENGLISH -> when (type.lowercase(Locale.US)) {
                 "amrit" -> "The most auspicious time. Ideal for new beginnings, important work, and spiritual practices."
                 "shubh" -> "A beautiful window for meaningful tasks, ceremonies, and peaceful progress."
                 "labh" -> "Supportive for growth, business decisions, purchases, and practical wins."
@@ -302,7 +302,7 @@ object AppLocalizer {
                 "kal" -> "Best handled cautiously. Delay important beginnings until a better slot arrives."
                 else -> "Live timing aligned to your location and today’s celestial rhythm."
             }
-            AppLanguage.HINDI -> when (type.lowercase(Locale.US)) {
+            LocalizedContentLanguage.HINDI -> when (type.lowercase(Locale.US)) {
                 "amrit" -> "सबसे शुभ समय। नए आरंभ, महत्वपूर्ण कार्य और आध्यात्मिक अभ्यास के लिए उत्तम।"
                 "shubh" -> "महत्वपूर्ण कार्यों, अनुष्ठानों और शांत प्रगति के लिए सुंदर समय।"
                 "labh" -> "विकास, व्यापारिक निर्णय, खरीदारी और व्यावहारिक लाभ के लिए सहायक।"
@@ -312,7 +312,7 @@ object AppLocalizer {
                 "kal" -> "सावधानी से संभालें। बेहतर समय आने तक महत्वपूर्ण शुरुआत टालें।"
                 else -> "आपके स्थान और आज की दिव्य लय के अनुरूप लाइव समय।"
             }
-            AppLanguage.GUJARATI -> when (type.lowercase(Locale.US)) {
+            LocalizedContentLanguage.GUJARATI -> when (type.lowercase(Locale.US)) {
                 "amrit" -> "સૌથી શુભ સમય. નવી શરૂઆત, મહત્વપૂર્ણ કામ અને આધ્યાત્મિક પ્રવૃત્તિ માટે ઉત્તમ."
                 "shubh" -> "અર્થપૂર્ણ કાર્ય, વિધિ અને શાંતિપૂર્ણ પ્રગતિ માટે સુંદર અવકાશ."
                 "labh" -> "વિકાસ, વ્યવસાયિક નિર્ણય, ખરીદી અને પ્રાયોગિક લાભ માટે અનુકૂળ."
@@ -326,8 +326,8 @@ object AppLocalizer {
     }
 
     fun widgetHeadline(type: String, language: AppLanguage): String {
-        return when (language) {
-            AppLanguage.ENGLISH -> when (type.lowercase(Locale.US)) {
+        return when (language.localizedContentLanguage) {
+            LocalizedContentLanguage.ENGLISH -> when (type.lowercase(Locale.US)) {
                 "amrit" -> "HIGHLY\nAUSPICIOUS"
                 "shubh" -> "AUSPICIOUS\nTIMING"
                 "labh" -> "GAINFUL\nWINDOW"
@@ -337,7 +337,7 @@ object AppLocalizer {
                 "udveg" -> "RESTLESS\nPERIOD"
                 else -> "CURRENT\nSLOT"
             }
-            AppLanguage.HINDI -> when (type.lowercase(Locale.US)) {
+            LocalizedContentLanguage.HINDI -> when (type.lowercase(Locale.US)) {
                 "amrit" -> "अत्यंत\nशुभ"
                 "shubh" -> "शुभ\nसमय"
                 "labh" -> "लाभकारी\nसमय"
@@ -347,7 +347,7 @@ object AppLocalizer {
                 "udveg" -> "चिंताजनक\nअवधि"
                 else -> "वर्तमान\nस्लॉट"
             }
-            AppLanguage.GUJARATI -> when (type.lowercase(Locale.US)) {
+            LocalizedContentLanguage.GUJARATI -> when (type.lowercase(Locale.US)) {
                 "amrit" -> "અતિ\nશુભ"
                 "shubh" -> "શુભ\nસમય"
                 "labh" -> "લાભકારી\nસમય"
@@ -361,16 +361,16 @@ object AppLocalizer {
     }
 
     fun weekdayTitles(language: AppLanguage): List<String> {
-        return when (language) {
-            AppLanguage.ENGLISH -> listOf("SUN", "MON", "TUE", "WED", "THU", "FRI", "SAT")
-            AppLanguage.HINDI -> listOf("रवि", "सोम", "मंगल", "बुध", "गुरु", "शुक्र", "शनि")
-            AppLanguage.GUJARATI -> listOf("રવિ", "સોમ", "મંગળ", "બુધ", "ગુરુ", "શુક્ર", "શનિ")
+        return when (language.localizedContentLanguage) {
+            LocalizedContentLanguage.ENGLISH -> listOf("SUN", "MON", "TUE", "WED", "THU", "FRI", "SAT")
+            LocalizedContentLanguage.HINDI -> listOf("रवि", "सोम", "मंगल", "बुध", "गुरु", "शुक्र", "शनि")
+            LocalizedContentLanguage.GUJARATI -> listOf("રવિ", "સોમ", "મંગળ", "બુધ", "ગુરુ", "શુક્ર", "શનિ")
         }
     }
 
     private fun getLocalizedMonthName(monthIndex: Int, language: AppLanguage): String {
-        return when (language) {
-            AppLanguage.ENGLISH -> when (monthIndex) {
+        return when (language.localizedContentLanguage) {
+            LocalizedContentLanguage.ENGLISH -> when (monthIndex) {
                 0 -> "January"
                 1 -> "February"
                 2 -> "March"
@@ -385,7 +385,7 @@ object AppLocalizer {
                 11 -> "December"
                 else -> ""
             }
-            AppLanguage.HINDI -> when (monthIndex) {
+            LocalizedContentLanguage.HINDI -> when (monthIndex) {
                 0 -> "जनवरी"
                 1 -> "फ़रवरी"
                 2 -> "मार्च"
@@ -400,7 +400,7 @@ object AppLocalizer {
                 11 -> "दिसम्बर"
                 else -> ""
             }
-            AppLanguage.GUJARATI -> when (monthIndex) {
+            LocalizedContentLanguage.GUJARATI -> when (monthIndex) {
                 0 -> "જાન્યુઆરી"
                 1 -> "ફેબ્રુઆરી"
                 2 -> "માર્ચ"
@@ -419,8 +419,8 @@ object AppLocalizer {
     }
 
     private fun getLocalizedShortMonthName(monthIndex: Int, language: AppLanguage): String {
-        return when (language) {
-            AppLanguage.ENGLISH -> when (monthIndex) {
+        return when (language.localizedContentLanguage) {
+            LocalizedContentLanguage.ENGLISH -> when (monthIndex) {
                 0 -> "Jan"
                 1 -> "Feb"
                 2 -> "Mar"
@@ -435,7 +435,7 @@ object AppLocalizer {
                 11 -> "Dec"
                 else -> ""
             }
-            AppLanguage.HINDI -> when (monthIndex) {
+            LocalizedContentLanguage.HINDI -> when (monthIndex) {
                 0 -> "जन."
                 1 -> "फ़र."
                 2 -> "मार्च"
@@ -450,7 +450,7 @@ object AppLocalizer {
                 11 -> "दिस."
                 else -> ""
             }
-            AppLanguage.GUJARATI -> when (monthIndex) {
+            LocalizedContentLanguage.GUJARATI -> when (monthIndex) {
                 0 -> "જાન્યુ"
                 1 -> "ફેબ્રુ"
                 2 -> "માર્ચ"
@@ -537,8 +537,8 @@ object AppLocalizer {
     }
 
     fun astronomyWindowTitle(key: String, language: AppLanguage): String {
-        return when (language) {
-            AppLanguage.ENGLISH -> when (key.lowercase(Locale.US)) {
+        return when (language.localizedContentLanguage) {
+            LocalizedContentLanguage.ENGLISH -> when (key.lowercase(Locale.US)) {
                 "abhijit_muhurat" -> "Abhijit Muhurat"
                 "amrit_choghadiya" -> "Amrit Choghadiya"
                 "brahma_muhurta" -> "Brahma Muhurta"
@@ -547,7 +547,7 @@ object AppLocalizer {
                 "gulika_kaal" -> "Gulika Kaal"
                 else -> key.replace("_", " ").split(" ").joinToString(" ") { it.replaceFirstChar { char -> char.titlecase(Locale.US) } }
             }
-            AppLanguage.HINDI -> when (key.lowercase(Locale.US)) {
+            LocalizedContentLanguage.HINDI -> when (key.lowercase(Locale.US)) {
                 "abhijit_muhurat" -> "अभिजीत मुहूर्त"
                 "amrit_choghadiya" -> "अमृत चौघड़िया"
                 "brahma_muhurta" -> "ब्रह्म मुहूर्त"
@@ -556,7 +556,7 @@ object AppLocalizer {
                 "gulika_kaal" -> "गुलिक काल"
                 else -> key.replace("_", " ").split(" ").joinToString(" ") { it.replaceFirstChar { char -> char.titlecase(Locale.US) } }
             }
-            AppLanguage.GUJARATI -> when (key.lowercase(Locale.US)) {
+            LocalizedContentLanguage.GUJARATI -> when (key.lowercase(Locale.US)) {
                 "abhijit_muhurat" -> "અભિજિત મુહૂર્ત"
                 "amrit_choghadiya" -> "અમૃત ચોઘડિયા"
                 "brahma_muhurta" -> "બ્રહ્મ મુહૂર્ત"
@@ -569,8 +569,8 @@ object AppLocalizer {
     }
 
     fun moonPhaseName(key: String, language: AppLanguage): String {
-        return when (language) {
-            AppLanguage.ENGLISH -> when (key.lowercase(Locale.US)) {
+        return when (language.localizedContentLanguage) {
+            LocalizedContentLanguage.ENGLISH -> when (key.lowercase(Locale.US)) {
                 "new_moon" -> "New Moon"
                 "waxing_crescent" -> "Waxing Crescent"
                 "first_quarter" -> "First Quarter"
@@ -581,7 +581,7 @@ object AppLocalizer {
                 "waning_crescent" -> "Waning Crescent"
                 else -> key.replace("_", " ").split(" ").joinToString(" ") { it.replaceFirstChar { char -> char.titlecase(Locale.US) } }
             }
-            AppLanguage.HINDI -> when (key.lowercase(Locale.US)) {
+            LocalizedContentLanguage.HINDI -> when (key.lowercase(Locale.US)) {
                 "new_moon" -> "अमावस्या"
                 "waxing_crescent" -> "शुक्ल चंद्र"
                 "first_quarter" -> "प्रथम चरण"
@@ -592,7 +592,7 @@ object AppLocalizer {
                 "waning_crescent" -> "कृष्ण चंद्र"
                 else -> key.replace("_", " ").split(" ").joinToString(" ") { it.replaceFirstChar { char -> char.titlecase(Locale.US) } }
             }
-            AppLanguage.GUJARATI -> when (key.lowercase(Locale.US)) {
+            LocalizedContentLanguage.GUJARATI -> when (key.lowercase(Locale.US)) {
                 "new_moon" -> "અમાસ"
                 "waxing_crescent" -> "વધતો ચંદ્ર"
                 "first_quarter" -> "પ્રથમ ચરણ"

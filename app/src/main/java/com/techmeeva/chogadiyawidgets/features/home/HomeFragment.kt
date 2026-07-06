@@ -16,6 +16,7 @@ import com.techmeeva.chogadiyawidgets.R
 import com.techmeeva.chogadiyawidgets.core.localization.AppLanguage
 import com.techmeeva.chogadiyawidgets.core.localization.AppLocalizer
 import com.techmeeva.chogadiyawidgets.core.localization.AppTextKey
+import com.techmeeva.chogadiyawidgets.core.localization.LocalizedContentLanguage
 import com.techmeeva.chogadiyawidgets.core.state.AppState
 import com.techmeeva.chogadiyawidgets.core.state.AstronomyState
 import com.techmeeva.chogadiyawidgets.core.state.ChoghadiyaDataStore
@@ -308,10 +309,10 @@ class HomeFragment : Fragment() {
     }
 
     private fun moonLabel(language: AppLanguage): String {
-        return when (language) {
-            AppLanguage.ENGLISH -> "Moon"
-            AppLanguage.HINDI -> "चंद्र"
-            AppLanguage.GUJARATI -> "ચંદ્ર"
+        return when (language.localizedContentLanguage) {
+            LocalizedContentLanguage.ENGLISH -> "Moon"
+            LocalizedContentLanguage.HINDI -> "चंद्र"
+            LocalizedContentLanguage.GUJARATI -> "ચંદ્ર"
         }
     }
 

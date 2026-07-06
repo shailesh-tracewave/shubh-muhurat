@@ -61,9 +61,35 @@ class EngagementNotificationWorker(
     }
 
     companion object {
+        private const val SETTINGS_PREFS = "notification_settings"
+        private const val DAILY_REMINDERS_ENABLED = "daily_reminders_enabled"
+        private const val REMINDER_TAG = "engagement_reminders"
+
+        fun dailyRemindersEnabled(context: Context): Boolean {
+            return context.getSharedPreferences(SETTINGS_PREFS, Context.MODE_PRIVATE)
+                .getBoolean(DAILY_REMINDERS_ENABLED, false)
+        }
+
+        fun setDailyRemindersEnabled(context: Context, enabled: Boolean) {
+            context.getSharedPreferences(SETTINGS_PREFS, Context.MODE_PRIVATE)
+                .edit()
+                .putBoolean(DAILY_REMINDERS_ENABLED, enabled)
+                .apply()
+
+            if (enabled) {
+                scheduleEngagementReminders(context)
+            } else {
+                cancelEngagementReminders(context)
+            }
+        }
+
+        fun cancelEngagementReminders(context: Context) {
+            WorkManager.getInstance(context).cancelAllWorkByTag(REMINDER_TAG)
+        }
+
         fun scheduleEngagementReminders(context: Context) {
             val workManager = WorkManager.getInstance(context)
-            workManager.cancelAllWorkByTag("engagement_reminders")
+            workManager.cancelAllWorkByTag(REMINDER_TAG)
 
             val reminders = listOf(
                 Pair(7.0, "Plan your week with today’s auspicious Choghadiya timings."),
@@ -86,7 +112,7 @@ class EngagementNotificationWorker(
                 val request = OneTimeWorkRequestBuilder<EngagementNotificationWorker>()
                     .setInitialDelay(reminder.first.toLong(), TimeUnit.DAYS)
                     .setInputData(data)
-                    .addTag("engagement_reminders")
+                    .addTag(REMINDER_TAG)
                     .build()
 
                 workManager.enqueue(request)

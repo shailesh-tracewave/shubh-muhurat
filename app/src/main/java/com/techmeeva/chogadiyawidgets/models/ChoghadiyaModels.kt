@@ -76,6 +76,43 @@ data class SolarLunarDayResponse(
     val day: SolarLunarDay
 )
 
+data class PanchangItem(
+    val key: String,
+    val title: String,
+    val value: String,
+    @SerializedName("ends_at") val endsAt: String?,
+    val detail: String?
+)
+
+data class PanchangDay(
+    val date: String,
+    val weekday: String,
+    val sunrise: String,
+    val sunset: String,
+    @SerializedName("solar_noon") val solarNoon: String,
+    val moonrise: String?,
+    val moonset: String?,
+    @SerializedName("moon_phase_key") val moonPhaseKey: String,
+    @SerializedName("illumination_fraction") val illuminationFraction: Double,
+    val limbs: List<PanchangItem>,
+    val rashi: List<PanchangItem>,
+    @SerializedName("ritu_ayana") val rituAyana: List<PanchangItem>,
+    @SerializedName("auspicious_windows") val auspiciousWindows: List<TimingWindow>,
+    @SerializedName("inauspicious_windows") val inauspiciousWindows: List<TimingWindow>,
+    @SerializedName("nivas_shool") val nivasShool: List<PanchangItem>,
+    @SerializedName("calendar_epochs") val calendarEpochs: List<PanchangItem>,
+    val bala: List<PanchangItem>,
+    val lagna: List<TimingWindow>,
+    val notes: List<String>
+)
+
+data class PanchangDayResponse(
+    val location: ChoghadiyaLocation,
+    val provider: String,
+    @SerializedName("generated_at") val generatedAt: String, // ISO-8601 String
+    val day: PanchangDay
+)
+
 data class TimelineSlot(
     val id: String,
     val dayDate: String,

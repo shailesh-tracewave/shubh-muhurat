@@ -5,6 +5,7 @@ import com.google.gson.JsonDeserializer
 import com.techmeeva.chogadiyawidgets.BuildConfig
 import com.techmeeva.chogadiyawidgets.models.ChoghadiyaDayResponse
 import com.techmeeva.chogadiyawidgets.models.ChoghadiyaRangeResponse
+import com.techmeeva.chogadiyawidgets.models.PanchangDayResponse
 import com.techmeeva.chogadiyawidgets.models.SeedCity
 import com.techmeeva.chogadiyawidgets.models.SolarLunarDayResponse
 import kotlinx.coroutines.delay
@@ -93,6 +94,16 @@ class APIClient {
     suspend fun fetchAstronomyDay(baseURL: String, city: SeedCity, date: Date): SolarLunarDayResponse {
         return performWithRetry {
             getApi(baseURL).fetchAstronomyDay(
+                lat = city.lat,
+                lng = city.lng,
+                date = apiDateString(date, city.timezone)
+            )
+        }
+    }
+
+    suspend fun fetchPanchangDay(baseURL: String, city: SeedCity, date: Date): PanchangDayResponse {
+        return performWithRetry {
+            getApi(baseURL).fetchPanchangDay(
                 lat = city.lat,
                 lng = city.lng,
                 date = apiDateString(date, city.timezone)

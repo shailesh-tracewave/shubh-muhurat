@@ -1,23 +1,28 @@
 package com.techmeeva.chogadiyawidgets.features.settings
 
+import android.Manifest
 import android.app.AlertDialog
 import android.content.Intent
+import android.content.pm.PackageManager
+import android.os.Build
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
-import androidx.navigation.fragment.findNavController
 import com.techmeeva.chogadiyawidgets.R
 import com.techmeeva.chogadiyawidgets.core.localization.AppLanguage
 import com.techmeeva.chogadiyawidgets.core.localization.AppThemeMode
 import com.techmeeva.chogadiyawidgets.core.localization.AppLocalizer
 import com.techmeeva.chogadiyawidgets.core.localization.AppTextKey
+import com.techmeeva.chogadiyawidgets.core.localization.LocalizedContentLanguage
 import com.techmeeva.chogadiyawidgets.core.state.AppConfiguration
 import com.techmeeva.chogadiyawidgets.core.state.AppState
+import com.techmeeva.chogadiyawidgets.core.state.EngagementNotificationWorker
 import com.techmeeva.chogadiyawidgets.core.state.WidgetUpdateWorker
 import com.techmeeva.chogadiyawidgets.databinding.FragmentSettingsBinding
 import com.techmeeva.chogadiyawidgets.models.SeedCity
@@ -29,6 +34,18 @@ class SettingsFragment : Fragment() {
     private var _binding: FragmentSettingsBinding? = null
     private val binding get() = _binding!!
     private lateinit var appState: AppState
+    private val requestNotificationPermission = registerForActivityResult(
+        ActivityResultContracts.RequestPermission()
+    ) { granted ->
+        EngagementNotificationWorker.setDailyRemindersEnabled(requireContext(), granted)
+        updateSettingsUI()
+        val message = if (granted) {
+            "Lock Screen reminders enabled."
+        } else {
+            "Notification permission is off. Enable it in Android Settings to use reminders."
+        }
+        Toast.makeText(requireContext(), message, Toast.LENGTH_SHORT).show()
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -62,10 +79,12 @@ class SettingsFragment : Fragment() {
             showAppearanceDialog()
         }
 
-        // Extras click listeners
-        binding.rowReplayOnboarding.setOnClickListener {
-            appState.hasCompletedOnboarding = false
-            findNavController().navigate(R.id.onboardingFragment)
+        binding.rowNotifications.setOnClickListener {
+            binding.switchNotifications.performClick()
+        }
+
+        binding.switchNotifications.setOnCheckedChangeListener { _, checked ->
+            setNotificationsEnabled(checked)
         }
 
         binding.rowShareApp.setOnClickListener {
@@ -112,10 +131,12 @@ class SettingsFragment : Fragment() {
         binding.tvLangTitle.text = AppLocalizer.text(AppTextKey.LANGUAGE, language)
         binding.tvLocTitle.text = AppLocalizer.text(AppTextKey.LOCATION, language)
         binding.tvThemeTitle.text = AppLocalizer.text(AppTextKey.APPEARANCE, language)
+        binding.tvNotificationsTitle.text = when (language.localizedContentLanguage) {
+            LocalizedContentLanguage.ENGLISH -> "Lock Screen reminders"
+            LocalizedContentLanguage.HINDI -> "लॉक स्क्रीन रिमाइंडर"
+            LocalizedContentLanguage.GUJARATI -> "લૉક સ્ક્રીન રિમાઇન્ડર"
+        }
         
-        binding.tvReplayTitle.text = AppLocalizer.text(AppTextKey.REPLAY_ONBOARDING, language)
-        binding.tvReplayValue.text = AppLocalizer.text(AppTextKey.SEE_INTRODUCTION_AGAIN, language)
-
         binding.tvShareTitle.text = AppLocalizer.text(AppTextKey.SHARE_APP, language)
         binding.tvShareValue.text = AppLocalizer.text(AppTextKey.SHARE_APP_SUBTITLE, language)
         binding.tvRateTitle.text = AppLocalizer.text(AppTextKey.RATE_APP, language)
@@ -133,14 +154,49 @@ class SettingsFragment : Fragment() {
             appState.selectedCity.city
         }
         binding.tvThemeValue.text = appState.themeMode.displayName(language)
+        val notificationsEnabled = EngagementNotificationWorker.dailyRemindersEnabled(requireContext())
+        binding.switchNotifications.setOnCheckedChangeListener(null)
+        binding.switchNotifications.isChecked = notificationsEnabled
+        binding.switchNotifications.setOnCheckedChangeListener { _, checked ->
+            setNotificationsEnabled(checked)
+        }
+        binding.tvNotificationsValue.text = if (notificationsEnabled) {
+            when (language.localizedContentLanguage) {
+                LocalizedContentLanguage.ENGLISH -> "Daily timing reminder is on"
+                LocalizedContentLanguage.HINDI -> "दैनिक समय रिमाइंडर चालू है"
+                LocalizedContentLanguage.GUJARATI -> "દૈનિક સમય રિમાઇન્ડર ચાલુ છે"
+            }
+        } else {
+            when (language.localizedContentLanguage) {
+                LocalizedContentLanguage.ENGLISH -> "Show daily timing alerts"
+                LocalizedContentLanguage.HINDI -> "दैनिक समय सूचना दिखाएं"
+                LocalizedContentLanguage.GUJARATI -> "દૈનિક સમય સૂચના બતાવો"
+            }
+        }
+    }
+
+    private fun setNotificationsEnabled(enabled: Boolean) {
+        if (!enabled) {
+            EngagementNotificationWorker.setDailyRemindersEnabled(requireContext(), false)
+            updateSettingsUI()
+            return
+        }
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU &&
+            ContextCompat.checkSelfPermission(requireContext(), Manifest.permission.POST_NOTIFICATIONS) != PackageManager.PERMISSION_GRANTED
+        ) {
+            binding.switchNotifications.isChecked = false
+            requestNotificationPermission.launch(Manifest.permission.POST_NOTIFICATIONS)
+            return
+        }
+
+        EngagementNotificationWorker.setDailyRemindersEnabled(requireContext(), true)
+        updateSettingsUI()
+        Toast.makeText(requireContext(), "Lock Screen reminders enabled.", Toast.LENGTH_SHORT).show()
     }
 
     private fun showLanguageDialog() {
-        val languages = arrayOf(
-            AppLanguage.ENGLISH,
-            AppLanguage.HINDI,
-            AppLanguage.GUJARATI
-        )
+        val languages = AppLanguage.entries.toTypedArray()
         val items = languages.map { it.displayName }.toTypedArray()
         val checkedItem = languages.indexOf(appState.selectedLanguage)
 

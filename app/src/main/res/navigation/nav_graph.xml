@@ -36,6 +36,12 @@
         tools:layout="@layout/fragment_sky" />
 
     <fragment
+        android:id="@+id/panchangFragment"
+        android:name="com.techmeeva.chogadiyawidgets.features.panchang.PanchangFragment"
+        android:label="Panchang"
+        tools:layout="@layout/fragment_panchang" />
+
+    <fragment
         android:id="@+id/settingsFragment"
         android:name="com.techmeeva.chogadiyawidgets.features.settings.SettingsFragment"
         android:label="Settings"

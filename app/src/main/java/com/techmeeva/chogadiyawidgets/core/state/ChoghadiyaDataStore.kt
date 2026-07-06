@@ -11,6 +11,8 @@ import com.techmeeva.chogadiyawidgets.core.localization.AppLanguage
 import com.techmeeva.chogadiyawidgets.core.network.APIClient
 import com.techmeeva.chogadiyawidgets.models.ChoghadiyaDay
 import com.techmeeva.chogadiyawidgets.models.ChoghadiyaRangeResponse
+import com.techmeeva.chogadiyawidgets.models.PanchangDay
+import com.techmeeva.chogadiyawidgets.models.PanchangDayResponse
 import com.techmeeva.chogadiyawidgets.models.SeedCity
 import com.techmeeva.chogadiyawidgets.models.SolarLunarDay
 import com.techmeeva.chogadiyawidgets.models.SolarLunarDayResponse
@@ -63,6 +65,18 @@ data class AstronomyState(
         get() = day != null
 }
 
+data class PanchangState(
+    var day: PanchangDay? = null,
+    var provider: String = "",
+    var lastUpdated: Date? = null,
+    var isLoading: Boolean = false,
+    var isRefreshing: Boolean = false,
+    var errorMessage: String? = null
+) {
+    val hasContent: Boolean
+        get() = day != null
+}
+
 class ChoghadiyaDataStore(context: Context) {
 
     private val db = ChoghadiyaDatabase.getDatabase(context)
@@ -79,6 +93,9 @@ class ChoghadiyaDataStore(context: Context) {
     private val _astronomyStates = MutableLiveData<Map<String, AstronomyState>>(emptyMap())
     val astronomyStates: LiveData<Map<String, AstronomyState>> = _astronomyStates
 
+    private val _panchangStates = MutableLiveData<Map<String, PanchangState>>(emptyMap())
+    val panchangStates: LiveData<Map<String, PanchangState>> = _panchangStates
+
     private val lastRefreshMoments = mutableMapOf<String, Date>()
 
     fun getHomeState(city: SeedCity): HomeTimelineState {
@@ -93,10 +110,15 @@ class ChoghadiyaDataStore(context: Context) {
         return _astronomyStates.value?.get(astronomyStateKey(city, date)) ?: AstronomyState()
     }
 
+    fun getPanchangState(city: SeedCity, date: Date): PanchangState {
+        return _panchangStates.value?.get(panchangStateKey(city, date)) ?: PanchangState()
+    }
+
     suspend fun preloadInitial(baseURL: String, city: SeedCity, subscriptionStatus: String, language: AppLanguage) {
         val currentMonth = normalizedMonth(Date(), city.timezone)
         loadHome(baseURL, city, subscriptionStatus, language)
         loadAstronomy(baseURL, city, Date(), subscriptionStatus, language)
+        loadPanchang(baseURL, city, Date(), subscriptionStatus, language)
         loadCalendarMonth(baseURL, city, currentMonth)
     }
 
@@ -304,6 +326,69 @@ class ChoghadiyaDataStore(context: Context) {
         }
     }
 
+    @Suppress("UNUSED_PARAMETER")
+    suspend fun loadPanchang(
+        baseURL: String,
+        city: SeedCity,
+        date: Date,
+        subscriptionStatus: String,
+        language: AppLanguage,
+        forceRefresh: Boolean = false
+    ) = withContext(Dispatchers.IO) {
+        val stateKey = panchangStateKey(city, date)
+        val throttleKey = "network.panchang.$stateKey"
+        val cacheKey = "cache.panchang.$stateKey"
+
+        if (!getPanchangState(city, date).hasContent) {
+            val cachedEntry = cacheDao.getEntry(cacheKey)
+            if (cachedEntry != null) {
+                try {
+                    val cachedResponse = gson.fromJson(cachedEntry.value, PanchangDayResponse::class.java)
+                    withContext(Dispatchers.Main) {
+                        applyPanchang(cachedResponse, stateKey)
+                    }
+                } catch (e: Exception) {
+                    // Ignore corrupted cache and refresh from the network.
+                }
+            }
+        }
+
+        if (shouldSkipRefresh(throttleKey, forceRefresh, 90) && getPanchangState(city, date).hasContent) {
+            return@withContext
+        }
+
+        withContext(Dispatchers.Main) {
+            val currentMap = _panchangStates.value ?: emptyMap()
+            val state = currentMap[stateKey] ?: PanchangState()
+            if (!state.isLoading || forceRefresh) {
+                state.isLoading = !state.hasContent
+                state.isRefreshing = state.hasContent
+                state.errorMessage = null
+                _panchangStates.value = currentMap + (stateKey to state)
+            }
+        }
+
+        try {
+            val response = apiClient.fetchPanchangDay(baseURL, city, date)
+            cacheDao.insertEntry(CacheEntry(cacheKey, gson.toJson(response)))
+
+            lastRefreshMoments[throttleKey] = Date()
+
+            withContext(Dispatchers.Main) {
+                applyPanchang(response, stateKey)
+            }
+        } catch (e: Exception) {
+            withContext(Dispatchers.Main) {
+                val currentMap = _panchangStates.value ?: emptyMap()
+                val state = currentMap[stateKey] ?: PanchangState()
+                state.isLoading = false
+                state.isRefreshing = false
+                state.errorMessage = e.message ?: e.toString()
+                _panchangStates.value = currentMap + (stateKey to state)
+            }
+        }
+    }
+
     private fun applyHome(response: ChoghadiyaRangeResponse, city: SeedCity, stateKey: String) {
         val now = Date()
         val visible = TimelineBuilder.visibleTimeline(response.days, city.timezone, now)
@@ -351,6 +436,18 @@ class ChoghadiyaDataStore(context: Context) {
         _astronomyStates.value = currentMap + (stateKey to state)
     }
 
+    private fun applyPanchang(response: PanchangDayResponse, stateKey: String) {
+        val currentMap = _panchangStates.value ?: emptyMap()
+        val state = currentMap[stateKey] ?: PanchangState()
+        state.day = response.day
+        state.provider = response.provider
+        state.lastUpdated = parseISO8601(response.generatedAt)
+        state.isLoading = false
+        state.isRefreshing = false
+        state.errorMessage = null
+        _panchangStates.value = currentMap + (stateKey to state)
+    }
+
     private fun shouldSkipRefresh(throttleKey: String, forceRefresh: Boolean, minimumIntervalSeconds: Int): Boolean {
         if (forceRefresh) return false
         val lastTime = lastRefreshMoments[throttleKey] ?: return false
@@ -370,6 +467,13 @@ class ChoghadiyaDataStore(context: Context) {
     }
 
     private fun astronomyStateKey(city: SeedCity, date: Date): String {
+        val sdf = SimpleDateFormat("yyyy-MM-dd", Locale.US).apply {
+            timeZone = TimeZone.getTimeZone(city.timezone)
+        }
+        return "${city.id}|${sdf.format(date)}"
+    }
+
+    private fun panchangStateKey(city: SeedCity, date: Date): String {
         val sdf = SimpleDateFormat("yyyy-MM-dd", Locale.US).apply {
             timeZone = TimeZone.getTimeZone(city.timezone)
         }

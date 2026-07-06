@@ -16,6 +16,7 @@ import androidx.lifecycle.lifecycleScope
 import com.techmeeva.chogadiyawidgets.R
 import com.techmeeva.chogadiyawidgets.core.localization.AppLocalizer
 import com.techmeeva.chogadiyawidgets.core.localization.AppTextKey
+import com.techmeeva.chogadiyawidgets.core.localization.LocalizedContentLanguage
 import com.techmeeva.chogadiyawidgets.core.state.AppState
 import com.techmeeva.chogadiyawidgets.core.state.ChoghadiyaDataStore
 import com.techmeeva.chogadiyawidgets.core.state.MonthScheduleState
@@ -144,10 +145,10 @@ class CalendarFragment : Fragment() {
         binding.tvNighttimeHeader.text = AppLocalizer.text(AppTextKey.NIGHTTIME, language).uppercase(Locale.US)
         binding.btnUnlockCalendar.text = AppLocalizer.text(AppTextKey.UPGRADE, language).uppercase(Locale.US)
         binding.btnCalendarRetry.text = AppLocalizer.text(AppTextKey.TRY_AGAIN, language).uppercase(Locale.US)
-        binding.tvCalendarLoading.text = when (language) {
-            com.techmeeva.chogadiyawidgets.core.localization.AppLanguage.ENGLISH -> "Updating calendar"
-            com.techmeeva.chogadiyawidgets.core.localization.AppLanguage.HINDI -> "कैलेंडर अपडेट हो रहा है"
-            com.techmeeva.chogadiyawidgets.core.localization.AppLanguage.GUJARATI -> "કેલેન્ડર અપડેટ થઈ રહ્યું છે"
+        binding.tvCalendarLoading.text = when (language.localizedContentLanguage) {
+            LocalizedContentLanguage.ENGLISH -> "Updating calendar"
+            LocalizedContentLanguage.HINDI -> "कैलेंडर अपडेट हो रहा है"
+            LocalizedContentLanguage.GUJARATI -> "કેલેન્ડર અપડેટ થઈ રહ્યું છે"
         }
 
         // Populate Weekday labels

@@ -17,6 +17,7 @@ import com.techmeeva.chogadiyawidgets.R
 import com.techmeeva.chogadiyawidgets.core.localization.AppLanguage
 import com.techmeeva.chogadiyawidgets.core.localization.AppLocalizer
 import com.techmeeva.chogadiyawidgets.core.localization.AppThemeMode
+import com.techmeeva.chogadiyawidgets.core.localization.LocalizedContentLanguage
 import com.techmeeva.chogadiyawidgets.core.state.HomeTimelineState
 import com.techmeeva.chogadiyawidgets.core.state.AppState
 import java.util.Locale
@@ -552,18 +553,18 @@ object WidgetResponsiveBuilder {
     }
 
     private fun remainingShort(language: AppLanguage): String {
-        return when (language) {
-            AppLanguage.ENGLISH -> "Left"
-            AppLanguage.HINDI -> "शेष"
-            AppLanguage.GUJARATI -> "બાકી"
+        return when (language.localizedContentLanguage) {
+            LocalizedContentLanguage.ENGLISH -> "Left"
+            LocalizedContentLanguage.HINDI -> "शेष"
+            LocalizedContentLanguage.GUJARATI -> "બાકી"
         }
     }
 
     private fun currentShort(language: AppLanguage): String {
-        return when (language) {
-            AppLanguage.ENGLISH -> "Current"
-            AppLanguage.HINDI -> "वर्तमान"
-            AppLanguage.GUJARATI -> "હાલ"
+        return when (language.localizedContentLanguage) {
+            LocalizedContentLanguage.ENGLISH -> "Current"
+            LocalizedContentLanguage.HINDI -> "वर्तमान"
+            LocalizedContentLanguage.GUJARATI -> "હાલ"
         }
     }
 

@@ -30,6 +30,7 @@ import androidx.lifecycle.repeatOnLifecycle
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.techmeeva.chogadiyawidgets.core.localization.AppLocalizer
 import com.techmeeva.chogadiyawidgets.core.localization.AppTextKey
+import com.techmeeva.chogadiyawidgets.core.localization.LocalizedContentLanguage
 import com.techmeeva.chogadiyawidgets.core.state.AppConfiguration
 import com.techmeeva.chogadiyawidgets.core.state.EngagementManager
 import com.techmeeva.chogadiyawidgets.core.state.EngagementSurface
@@ -52,7 +53,7 @@ class MainActivity : AppCompatActivity() {
         } else true
         
         if (notificationsGranted) {
-            EngagementNotificationWorker.scheduleEngagementReminders(this)
+            EngagementNotificationWorker.setDailyRemindersEnabled(this, true)
         }
     }
 
@@ -146,7 +147,7 @@ class MainActivity : AppCompatActivity() {
 
     private fun applySystemBarInsets() {
         val navHostView = findViewById<View>(R.id.nav_host_fragment)
-        val baseBottomNavHeight = (64 * resources.displayMetrics.density).toInt()
+        val baseBottomNavHeight = (88 * resources.displayMetrics.density).toInt()
         val bottomNavPaddingLeft = binding.bottomNav.paddingLeft
         val bottomNavPaddingTop = binding.bottomNav.paddingTop
         val bottomNavPaddingRight = binding.bottomNav.paddingRight
@@ -236,14 +237,14 @@ class MainActivity : AppCompatActivity() {
             .setPositiveButton("Allow") { _, _ ->
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
                     if (ContextCompat.checkSelfPermission(this, Manifest.permission.POST_NOTIFICATIONS) == PackageManager.PERMISSION_GRANTED) {
-                        EngagementNotificationWorker.scheduleEngagementReminders(this)
+                        EngagementNotificationWorker.setDailyRemindersEnabled(this, true)
                         engagementManager.markNotificationPrompted()
                     } else {
                         // The RequestMultiplePermissions launcher will handle this
                         requestPermissionLauncher.launch(arrayOf(Manifest.permission.POST_NOTIFICATIONS))
                     }
                 } else {
-                    EngagementNotificationWorker.scheduleEngagementReminders(this)
+                    EngagementNotificationWorker.setDailyRemindersEnabled(this, true)
                     engagementManager.markNotificationPrompted()
                 }
             }
@@ -263,10 +264,15 @@ class MainActivity : AppCompatActivity() {
         val language = appState.selectedLanguage
         binding.bottomNav.menu.findItem(R.id.homeFragment)?.title = AppLocalizer.text(AppTextKey.HOME, language)
         binding.bottomNav.menu.findItem(R.id.calendarFragment)?.title = AppLocalizer.text(AppTextKey.CALENDAR, language)
-        binding.bottomNav.menu.findItem(R.id.skyFragment)?.title = when (language) {
-            com.techmeeva.chogadiyawidgets.core.localization.AppLanguage.ENGLISH -> "Sky"
-            com.techmeeva.chogadiyawidgets.core.localization.AppLanguage.HINDI -> "आकाश"
-            com.techmeeva.chogadiyawidgets.core.localization.AppLanguage.GUJARATI -> "આકાશ"
+        binding.bottomNav.menu.findItem(R.id.skyFragment)?.title = when (language.localizedContentLanguage) {
+            LocalizedContentLanguage.ENGLISH -> "Sky"
+            LocalizedContentLanguage.HINDI -> "आकाश"
+            LocalizedContentLanguage.GUJARATI -> "આકાશ"
+        }
+        binding.bottomNav.menu.findItem(R.id.panchangFragment)?.title = when (language.localizedContentLanguage) {
+            LocalizedContentLanguage.ENGLISH -> "Panchang"
+            LocalizedContentLanguage.HINDI -> "पंचांग"
+            LocalizedContentLanguage.GUJARATI -> "પંચાંગ"
         }
         binding.bottomNav.menu.findItem(R.id.settingsFragment)?.title = AppLocalizer.text(AppTextKey.SETTINGS, language)
     }
