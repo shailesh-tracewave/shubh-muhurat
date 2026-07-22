@@ -9,9 +9,10 @@
 
     <TextView
         android:id="@+id/tv_day_number"
-        android:layout_width="38dp"
-        android:layout_height="38dp"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
         android:gravity="center"
+        android:background="@drawable/bg_calendar_day_selected"
         android:textColor="@color/celestial_text"
         android:textSize="14sp"
         android:textStyle="bold" />
